@@ -37,8 +37,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         private void DrawGameField()
         {
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-
             fieldCells.DrawAllRows();
         }
 

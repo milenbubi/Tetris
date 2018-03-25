@@ -9,7 +9,7 @@ namespace Tetris.Logic.Game.Keys
         public override void Action(IFigure figure)
         {
             ShowSomeInfoAboutGame();
-            ScoreManager.DisplayCurrentScores();
+            ScoreManager.DisplayScores();
             Console.ReadKey(true);
 
             Console.Clear();
@@ -26,7 +26,8 @@ namespace Tetris.Logic.Game.Keys
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("Your score: {0}", GameData.pointPerLine);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+          //  Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
             SetPreviewCoordinatesToNextFigure(nextFigure);
             graphic.Draw(nextFigure);
+            Console.ForegroundColor = ConsoleColor.White;
 
             CloneNextFigureAsPrevious(nextFigure);
             GivingBackOriginalCoordinatesToNextFigure(nextFigure);
