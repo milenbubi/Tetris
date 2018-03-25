@@ -1,2 +1,2 @@
 # Tetris
-C# console project
+C# console project just for fun and exercise
