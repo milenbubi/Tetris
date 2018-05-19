@@ -3,33 +3,31 @@ using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game
 {
-    public class GameController : IGameControler
+    public class GameController
     {
-        private InfoPanel infoPanel;
-        private WindowInitializer initializer;
-
         public GameController()
         {
             this.Check = new Checker();
             this.Graphic = new GameGraphic();
-            this.infoPanel = new InfoPanel();
-            this.initializer = new WindowInitializer();
+            this.InfoPanel = new InfoPanel();
         }
 
         public Checker Check { get; }
 
         public GameGraphic Graphic { get; }
 
+        public InfoPanel InfoPanel { get; }
+
         public void Initialize()
         {
-            initializer.SetUpWindow();
-            this.Update();
-            initializer.ShowWelcomeMessage();
+            GameInitializeManager.SetUpWindow();
+            this.UpdateInfo();
+            GameInitializeManager.ShowWelcomeMessage();
         }
 
-        public void Update()
+        public void UpdateInfo()
         {
-            infoPanel.Update();
+            InfoPanel.Update();
         }
 
         public void Finish()

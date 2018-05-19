@@ -25,17 +25,17 @@ namespace Tetris
             Type randomFigure = figureTypes[rand.Next(figureTypes.Length)];
 
             IFigure figure = (IFigure)Activator.CreateInstance(randomFigure);
-             return figure;
+            return figure;
         }
 
         private static void AllTypesImplementingIFigure()
         {
             Type figureType = typeof(IFigure);
 
-            figureTypes = AppDomain.CurrentDomain.GetAssemblies().
-                         SelectMany(x => x.GetTypes()).
-                         Where(f => figureType.IsAssignableFrom(f) && !f.IsAbstract).
-                         ToArray();
+            figureTypes = AppDomain.CurrentDomain.GetAssemblies()
+                   .SelectMany(a => a.GetTypes())
+                   .Where(t => figureType.IsAssignableFrom(t) && !t.IsAbstract)
+                   .ToArray();
         }
     }
 }

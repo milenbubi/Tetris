@@ -1,53 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class ScoreManager
     {
-        private static string[] scores;
-        private static LogFileManager logFileManager;
-        private static readonly int countOfBestScores;
+        private static ICollection<string> scoreTable;
+        private const int countOfBestScores = 10;
+        private static string defaultScore = "0";
 
         static ScoreManager()
         {
-            countOfBestScores = 10;
-            logFileManager = new LogFileManager();
-            scores = new string[countOfBestScores];
-
-            for (int i = 0; i < scores.Length; i++)
-            {
-                scores[i] = "";
-            }
+            scoreTable = LogFileManager.Read();
         }
 
-        /// There is  a lot of work ...
+        internal static void UpdateScores()
+        {
+            string playScore = $"{GameData.points,-9:d5}{"-",-5}";
+            string playDate = $"{DateTime.Now:dd MMM yyyy}";
+
+            string currentResult = playScore + playDate;
+            string worstResult = scoreTable.LastOrDefault();
+
+            ReorderScoreTable(currentResult, worstResult);
+
+            LogFileManager.Write(scoreTable);
+        }
+
         internal static void DisplayScores()
         {
-            logFileManager.ReadOldScoresFromFile(scores);
-
-            var playScore = string.Format("{0:d5}  -".PadRight(14), GameData.points);
-            var playDate = string.Format(DateTime.Now.ToShortDateString());
-
-            if ((playScore + playDate).CompareTo(scores[scores.Length - 1]) >= 0)
-            {
-                scores[scores.Length - 1] = playScore + playDate;
-            }
-
-            Array.Sort(scores);
-            Array.Reverse(scores);
-
-            logFileManager.WriteNewScoresToFile(scores);
-
-            Console.WriteLine(string.Join("\n", scores));
+            Console.WriteLine($"{"Best Scores:",18}");
+            Console.WriteLine();
+            Console.WriteLine(string.Join("\n", scoreTable));
         }
 
-
-        //Finish The Method !!!!!!!!!!
-        internal static void DisplayCurrentScores()
+        private static void ReorderScoreTable(string currentResult, string worstResult)
         {
-            //TODO да показва некви опции за резултати, класиране, да пита искаш ли рестарт или край и т.н. ...
+            if (currentResult.CompareTo(worstResult) >= 0)
+            {
+                scoreTable.Remove(worstResult);
+                scoreTable.Add(currentResult);
 
+                scoreTable = scoreTable
+                    .OrderByDescending(s => s)
+                    .Concat(Enumerable.Repeat(defaultScore, 10))
+                    .Take(countOfBestScores)
+                    .ToList();
+            }
         }
-
     }
 }

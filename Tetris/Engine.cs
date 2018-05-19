@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using Tetris.Logic.Game;
 using Tetris.Logic.Figures;
@@ -11,10 +11,10 @@ namespace Tetris
         private int speed;
 
         private IFigure figure;
-        private IKeyController keyController;
-        private IGameControler gameController;
+        private KeyController keyController;
+        private GameController gameController;
 
-        public Engine(IGameControler gameController, IKeyController keyController)
+        public Engine(GameController gameController, KeyController keyController)
         {
             this.speed = StartSpeed;
             this.keyController = keyController;
@@ -38,7 +38,7 @@ namespace Tetris
                 for (; figureCount <= FigureCountPerLevel; figureCount++)
                 {
                     SetUpFigure();
-                    gameController.Update();
+                    gameController.UpdateInfo();
 
                     TheHeartOfGame();
                     points++;

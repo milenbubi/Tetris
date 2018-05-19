@@ -56,7 +56,7 @@
     <Compile Include="Logic\Figures\ZLine.cs" />
     <Compile Include="Logic\Figures\FigureElement.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\LogFileManager.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Managers\FieldCellsManager.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Helpers\FieldCells.cs" />
     <Compile Include="Logic\Game\BaseLogic\Helpers\GameGraphic.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\FinishManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\NextFigurePreviewManager.cs" />
@@ -70,15 +70,13 @@
     <Compile Include="Logic\Game\Keys\RightArrow.cs" />
     <Compile Include="Logic\Game\Keys\S.cs" />
     <Compile Include="Logic\Game\Keys\Spacebar.cs" />
-    <Compile Include="Logic\Game\IGameControler.cs" />
     <Compile Include="Logic\Game\KeyController.cs" />
     <Compile Include="Logic\Game\GameController.cs" />
     <Compile Include="Logic\Game\BaseLogic\Helpers\InfoPanel.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Helpers\WindowInitializer.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Managers\GameInitializeManager.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FigureFactory.cs" />
     <Compile Include="Logic\Figures\IFigure.cs" />
-    <Compile Include="Logic\Game\IKeyController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

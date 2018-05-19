@@ -1,16 +1,15 @@
 ﻿using Tetris.Logic.Figures;
-using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
     public class Checker
     {
-        private FieldCellsManager fieldCells;
+        private FieldCells fieldCells;
         private int[] elementsCoordinates;
 
         public Checker()
         {
-            this.fieldCells = new FieldCellsManager();
+            this.fieldCells = new FieldCells();
         }
 
         internal bool IsFinished(IFigure figure)
@@ -59,7 +58,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             return false;
         }
 
-        internal void CheckForReadyLine(IFigure figure)
+        private void CheckForReadyLine(IFigure figure)
         {
             //That row says the maximum size of figure must be 3(Nine) cells, no more. I decided so!
             int approximateRow = figure.PositionY + 1;
@@ -92,6 +91,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                     GameData.points += GameData.pointPerLine;
                     continue;
                 }
+
                 approximateRow -= 1;
             }
         }

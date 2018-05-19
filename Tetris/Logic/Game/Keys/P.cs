@@ -4,30 +4,37 @@ using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game.Keys
 {
-    class P : PressedKey, IKey
+    internal class P : PressedKey, IKey
     {
+        string resumeGame = "Resume game  -  press any key\n";
+        string cancelGame = "Cancel game  -  press C\n";
+
         public override void Action(IFigure figure)
         {
-            ShowSomeInfoAboutGame();
-            ScoreManager.DisplayScores();
-            Console.ReadKey(true);
+            ShowPauseWindow();
 
-            Console.Clear();
-            infoPanel.Update();
-            fieldCells.DrawAllRows();
+            string decision = Console.ReadKey(true).Key.ToString();
 
-            //TODO да показва нек'ви опции за резултати, класиране, да пита искаш ли рестарт или край и т.н. ...
+            if (decision.ToLower() == "c")
+            {
+                FinishManager.EndOfGame();
+            }
+            else
+            {
+                BackToGame();
+            }
         }
 
-        private void ShowSomeInfoAboutGame()
+        protected override void ShowPauseWindow()
         {
-            Console.Clear();
-            Console.SetCursorPosition(5, 5);
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            base.ShowPauseWindow();
 
-            Console.WriteLine("Your score: {0}", GameData.pointPerLine);
-            Console.WriteLine();
-          //  Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Your score: {0}\n", GameData.points);
+
+            ScoreManager.DisplayScores();
+
+            message = string.Format("\n{0}{1}", resumeGame, cancelGame);
+            Console.WriteLine(message);
         }
     }
 }

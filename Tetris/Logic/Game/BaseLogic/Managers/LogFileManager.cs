@@ -1,47 +1,47 @@
 ﻿using System.IO;
+using System.Collections.Generic;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
-    internal class LogFileManager
+    internal static class LogFileManager
     {
-        private  string logFile;
+        private static string logFile = GameData.logFile;
 
-        internal LogFileManager()
-        {
-            this.logFile = GameData.logFile;
-        }
-
-        internal  void ReadOldScoresFromFile(string[] scores)
+        static LogFileManager()
         {
             if (!File.Exists(logFile))
             {
-                File.Create(logFile);
+                File.Create(logFile).Dispose();
             }
+        }
 
-            var reader = new StreamReader(logFile);
-            string line = reader.ReadLine();
+        internal static ICollection<string> Read()
+        {
+            ICollection<string> scoreTable = new List<string>();
 
-            for (int i = 0; i < scores.Length; i++)
+            using (StreamReader reader = new StreamReader(logFile))
             {
-                if (line != null)
+                string line = reader.ReadLine();
+
+                while (line != null)
                 {
-                    scores[i] = line;
+                    scoreTable.Add(line);
                     line = reader.ReadLine();
                 }
             }
 
-            reader.Close();
+            return scoreTable;
         }
 
-        internal  void WriteNewScoresToFile(string[]scores)
+        internal static void Write(ICollection<string> scoreTable)
         {
-            var writer = new StreamWriter(logFile);
-            for (int i = 0; i < scores.Length; i++)
+            using (StreamWriter writer = new StreamWriter(logFile))
             {
-                writer.WriteLine(scores[i]);
+                foreach (string score in scoreTable)
+                {
+                    writer.WriteLine(score);
+                }
             }
-
-            writer.Close();
         }
     }
 }

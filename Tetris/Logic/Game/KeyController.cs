@@ -5,7 +5,7 @@ using Tetris.Logic.Game.Keys;
 
 namespace Tetris.Logic.Game
 {
-    public class KeyController : IKeyController
+    public class KeyController
     {
         private IKey[] keyClasses;
         private Type[] keyClassesTypes;
@@ -33,8 +33,8 @@ namespace Tetris.Logic.Game
             Type keyType = typeof(IKey);
 
             this.keyClassesTypes = AppDomain.CurrentDomain.GetAssemblies()
-                            .SelectMany(x => x.GetTypes())
-                            .Where(k => keyType.IsAssignableFrom(k) && !k.IsAbstract)
+                            .SelectMany(a => a.GetTypes())
+                            .Where(t => keyType.IsAssignableFrom(t) && !t.IsAbstract)
                             .ToArray();
         }
 

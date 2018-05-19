@@ -3,7 +3,7 @@ using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
-    internal class InfoPanel
+    public class InfoPanel
     {
         private int horPosition;
         private int vertPosition;
@@ -39,7 +39,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             //Current points
             CursorPosition(9);
             Console.Write("Points - ");
-            Console.WriteLine("{0:d4}", GameData.points);
+            Console.WriteLine("{0:d5}", GameData.points);
         }
 
         private void CursorPosition(int deviation)

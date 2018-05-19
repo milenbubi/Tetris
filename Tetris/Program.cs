@@ -1,9 +1,4 @@
-﻿using System;
-using Tetris.Logic.Game;
-using Tetris.Logic;
-using System.IO;
-using Tetris.Logic.Game.Keys;
-using Tetris.Logic.Figures;
+﻿using Tetris.Logic.Game;
 
 namespace Tetris
 {
@@ -11,17 +6,11 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
-
-            IGameControler moveController = new GameController();
-            IKeyController keyController = new KeyController();
+            GameController moveController = new GameController();
+            KeyController keyController = new KeyController();
             Engine engine = new Engine(moveController, keyController);
 
-             engine.Run();
-
-            //     F finish = new F();
-            //   finish.KeyAction(new SLine());
-
-
+            engine.Run();
         }
     }
 }

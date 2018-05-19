@@ -14,7 +14,9 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
 
+            ScoreManager.UpdateScores();
             ScoreManager.DisplayScores();
+
             Environment.Exit(0);
         }
     }
