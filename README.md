@@ -1,6 +1,11 @@
 # Tetris
 .NET console project based on classic Tetris game
 
+ This application has detailed menu section and simplified, but informative interface.
+ 
+ The graphics is clear, without screen flickering.
+
+
 Game controls:
 
         Right Arrow - Right
@@ -8,15 +13,13 @@ Game controls:
         Down Arrow - To Bottom
         Space - Figure rotation
         
-        S - Change current figure
-        P - Pause
-        F - Finish the Game
+        S - Skip current figure
+        M - Game Menu - Pause
         
         
-Still unfinished -
+And... still unfinished -
 
-        Welcome screen
-        ,processes upon unsuccessful game ending
-        ,some changes in Score table - e.g. showing your result in case it is not present in Top 10 best scores;
+        ,fast menu implementation brings to me a lot of code to be refactored;
+        ,some changes in Score table - e.g. showing your result in case it's not present in Top 10 best scores;
         
 19 May 2018
