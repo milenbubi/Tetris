@@ -22,4 +22,3 @@ And... still unfinished -
         ,fast menu implementation brings to me a lot of code to be refactored;
         ,some changes in Score table - e.g. showing your result in case it's not present in Top 10 best scores;
         
-19 May 2018
