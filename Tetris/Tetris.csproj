@@ -55,6 +55,7 @@
     <Compile Include="Logic\Figures\SLine.cs" />
     <Compile Include="Logic\Figures\ZLine.cs" />
     <Compile Include="Logic\Figures\FigureElement.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Helpers\Menu.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\LogFileManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Helpers\FieldCells.cs" />
     <Compile Include="Logic\Game\BaseLogic\Helpers\GameGraphic.cs" />
@@ -62,10 +63,8 @@
     <Compile Include="Logic\Game\BaseLogic\Managers\NextFigurePreviewManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\ScoreManager.cs" />
     <Compile Include="Logic\Game\Keys\DownArrow.cs" />
-    <Compile Include="Logic\Game\Keys\F.cs" />
     <Compile Include="Logic\Game\Keys\LeftArrow.cs" />
     <Compile Include="Logic\Game\Keys\IKey.cs" />
-    <Compile Include="Logic\Game\Keys\P.cs" />
     <Compile Include="Logic\Game\Keys\PressedKey.cs" />
     <Compile Include="Logic\Game\Keys\RightArrow.cs" />
     <Compile Include="Logic\Game\Keys\S.cs" />
@@ -77,6 +76,8 @@
     <Compile Include="Engine.cs" />
     <Compile Include="FigureFactory.cs" />
     <Compile Include="Logic\Figures\IFigure.cs" />
+    <Compile Include="Logic\Game\Keys\M.cs" />
+    <Compile Include="Logic\Status.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

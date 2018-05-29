@@ -12,11 +12,15 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             Console.WindowWidth = 75;
 
             Console.Clear();
+            Console.CursorVisible = true;
+
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
             ScoreManager.UpdateScores();
             ScoreManager.DisplayScores();
 
+            Console.WriteLine();
             Environment.Exit(0);
         }
     }

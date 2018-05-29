@@ -3,6 +3,7 @@ using System.Threading;
 using Tetris.Logic.Game;
 using Tetris.Logic.Figures;
 using static Tetris.Logic.GameData;
+using Tetris.Logic;
 
 namespace Tetris
 {
@@ -17,6 +18,7 @@ namespace Tetris
         public Engine(GameController gameController, KeyController keyController)
         {
             this.speed = StartSpeed;
+
             this.keyController = keyController;
             this.gameController = gameController;
         }
@@ -25,30 +27,66 @@ namespace Tetris
         {
             get
             {
-                return this.gameController.Check.IsFinished(figure);
+                if (status != Status.Play)
+                {//Too many repetitions of Status check !!!
+                    if (status == Status.Skip)
+                    {
+                        status = Status.Play;
+                    }
+
+                    return true;
+                }
+
+                return gameController.Check.IsFinished(figure);
             }
         }
 
         public void Run()
         {
-            this.gameController.Initialize();
+            gameController.InitializeGame();
 
-            for (; level <= MaxLevelCount; level++)
+            Play();
+
+            HandleFurtherGameFlow();
+        }
+
+        private void Play()
+        {
+            while (level <= LevelsCount)
             {
-                for (; figureCount <= FigureCountPerLevel; figureCount++)
+                while (figureCount <= FiguresPerLevel)
                 {
                     SetUpFigure();
                     gameController.UpdateInfo();
+                    DrawFigure();
 
                     TheHeartOfGame();
+
+                    if (status != Status.Play)
+                    {
+                        return;
+                    }
+
+                    figureCount++;
                     points++;
                 }
 
+                level++;
+                speed -= 10;
                 points += PointsPerLevel;
                 figureCount = 1;
-                speed -= 10;
             }
-            gameController.Finish();
+        }
+
+        private void DrawFigure()
+        {
+            if (gameController.Check.IsReachedBorder(figure))
+            {
+                status = Status.GameOver;
+                return;
+            }
+
+            gameController.Graphic.Draw(figure);
         }
 
         private void SetUpFigure()
@@ -75,7 +113,7 @@ namespace Tetris
 
         private void MoveFigure()
         {
-            this.gameController.Graphic.Move(figure, 0, 1);
+            gameController.Graphic.Move(figure, 0, 1);
         }
 
         private void UsePressedKey()
@@ -85,7 +123,17 @@ namespace Tetris
 
             string keyClassName = Console.ReadKey(true).Key.ToString();
 
-            this.keyController.Action(figure, keyClassName);
+            keyController.Action(figure, keyClassName);
+        }
+
+        private void HandleFurtherGameFlow()
+        {
+            if (status != Status.NewGame)
+            {
+                gameController.Finish();
+            }
+
+            Run();
         }
     }
 }

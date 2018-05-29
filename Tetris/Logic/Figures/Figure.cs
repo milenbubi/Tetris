@@ -6,11 +6,13 @@ namespace Tetris.Logic.Figures
     public abstract class Figure : IFigure
     {
         protected int[][] elemCoords;
+        private int positionY = 2;
+        private int positionX = FieldData.GameFieldWidth / 2;
 
         public Figure(int states)
         {
-            this.PositionX = FieldData.GameFieldWidth / 2;
-            this.PositionY = 2;
+            this.PositionX = positionX;
+            this.PositionY = positionY;
 
             this.Element = new FigureElement();
             this.Element.Color = GetRandomColor();
@@ -40,8 +42,8 @@ namespace Tetris.Logic.Figures
 
         public int[] ElementsCoordinates()
         {
-            int pos = this.State.Peek();
-            return this.elemCoords[pos];
+            int position = this.State.Peek();
+            return this.elemCoords[position];
         }
 
         private ConsoleColor GetRandomColor()

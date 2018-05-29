@@ -4,11 +4,11 @@ namespace Tetris.Logic.Figures
 {
     public class FigureElement
     {
-        private char symbol=(char)3;
+        private const char figureSymbol = (char)3;
 
         public FigureElement()
         {
-            this.Symbol = symbol;
+            this.Symbol = figureSymbol;
         }
 
         public FigureElement(ConsoleColor color, char symbol)
@@ -18,7 +18,7 @@ namespace Tetris.Logic.Figures
         }
 
         public ConsoleColor Color { get; set; }
-        public Char Symbol { get; set; }
+        public Char Symbol { get; private set; }
 
         public override string ToString()
         {
@@ -26,5 +26,4 @@ namespace Tetris.Logic.Figures
             return this.Symbol.ToString();
         }
     }
-
 }

@@ -18,6 +18,5 @@ Still unfinished -
         Welcome screen
         ,processes upon unsuccessful game ending
         ,some changes in Score table - e.g. showing your result in case it is not present in Top 10 best scores;
-        
         
-Till the end of May I will deploy menu options. 
+19 May 2018

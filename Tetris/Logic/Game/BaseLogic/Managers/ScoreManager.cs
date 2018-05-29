@@ -30,6 +30,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static void DisplayScores()
         {
+            Console.Clear();
             Console.WriteLine($"{"Best Scores:",18}");
             Console.WriteLine();
             Console.WriteLine(string.Join("\n", scoreTable));

@@ -5,7 +5,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class LogFileManager
     {
-        private static string logFile = GameData.logFile;
+        private static string logFile = GameData.LogFile;
 
         static LogFileManager()
         {

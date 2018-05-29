@@ -19,7 +19,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal void Update()
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = FieldData.InfoPanelColor;
 
             //Next figure preview
             CursorPosition(-10);
@@ -29,12 +29,12 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             //Current level
             CursorPosition(3);
             Console.Write("Level - ");
-            Console.WriteLine(GameData.level + " / " + GameData.MaxLevelCount);
+            Console.WriteLine(GameData.level + " / " + GameData.LevelsCount);
 
             //Figure count per current level
             CursorPosition(6);
             Console.Write("Figure - ");
-            Console.WriteLine(GameData.figureCount + " / " + GameData.FigureCountPerLevel);
+            Console.WriteLine(GameData.figureCount + " / " + GameData.FiguresPerLevel);
 
             //Current points
             CursorPosition(9);

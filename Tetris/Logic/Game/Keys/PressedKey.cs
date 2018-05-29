@@ -1,5 +1,4 @@
-﻿using System;
-using Tetris.Logic.Figures;
+﻿using Tetris.Logic.Figures;
 using Tetris.Logic.Game.BaseLogic.Helpers;
 
 namespace Tetris.Logic.Game.Keys
@@ -23,19 +22,5 @@ namespace Tetris.Logic.Game.Keys
         public GameGraphic Graphic { get; }
 
         public abstract void Action(IFigure figure);
-
-        protected void BackToGame()
-        {
-            Console.Clear();
-            infoPanel.Update();
-            fieldCells.DrawAllRows();
-        }
-
-        protected virtual void ShowPauseWindow()
-        {
-            Console.Clear();
-            Console.SetCursorPosition(6, 4);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-        }
     }
 }

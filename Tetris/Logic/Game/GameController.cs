@@ -1,38 +1,103 @@
-﻿using Tetris.Logic.Game.BaseLogic.Helpers;
+﻿using System;
+using Tetris.Logic.Game.BaseLogic.Helpers;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game
 {
     public class GameController
     {
-        public GameController()
+        internal GameController()
         {
             this.Check = new Checker();
             this.Graphic = new GameGraphic();
             this.InfoPanel = new InfoPanel();
+            this.FieldCells = new FieldCells();
         }
 
-        public Checker Check { get; }
+        internal Checker Check { get; }
 
-        public GameGraphic Graphic { get; }
+        internal GameGraphic Graphic { get; }
 
-        public InfoPanel InfoPanel { get; }
+        internal InfoPanel InfoPanel { get; }
 
-        public void Initialize()
+        internal FieldCells FieldCells { get; }
+
+        //Under Construction
+        internal Status Status { get; private set; }
+
+        internal void InitializeGame()
         {
+            GameData.status = Status.Play;
             GameInitializeManager.SetUpWindow();
-            this.UpdateInfo();
+            UpdateInfo();
+
+            FieldCells.DrawAllRows();
             GameInitializeManager.ShowWelcomeMessage();
+
+            if (ReadKey() == "M")
+            {
+                Menu.Show();
+            }
+
+            GameInitializeManager.ShowWelcomeMessage(false);
         }
 
-        public void UpdateInfo()
+        internal void UpdateInfo()
         {
             InfoPanel.Update();
         }
 
-        public void Finish()
+        //Under Construction
+        internal bool? MayPlay()
         {
-            FinishManager.EndOfGame();
+            switch (Status)
+            {
+                case Status.Play:
+                    break;
+                case Status.Skip:
+                    break;
+                case Status.NewGame:
+                    break;
+                case Status.GameOver:
+                    break;
+                default:
+                    break;
+            }
+
+            return null;
+        }
+
+        internal void Finish()
+        {
+            Console.Clear();
+            Console.ForegroundColor = FieldData.MessageColor;
+
+            string[] message = new string[]
+            {
+                new string('\n', FieldData.WindowHeight/2-3),
+                "GAME OVER",
+                new string('\n', 2),
+                "Press 'Q' to quit game",
+                "or press any key to play new game"
+            };
+
+            foreach (var text in message)
+            {
+                int padding = (FieldData.WindowWidth - text.Length) / 2;
+
+                Console.WriteLine("{0}{1}", new string(' ', padding), text);
+            }
+
+            if (ReadKey() == "Q")
+            {
+                FinishManager.EndOfGame();
+            }
+        }
+
+        private static string ReadKey()
+        {
+            string key = Console.ReadKey(true).Key.ToString().ToUpper();
+            return key;
         }
     }
 }

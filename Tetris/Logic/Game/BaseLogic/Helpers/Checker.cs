@@ -14,11 +14,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal bool IsFinished(IFigure figure)
         {
-            if (figure.Element == null)
-            {
-                return true;
-            }
-
             int x;
             int y;
             elementsCoordinates = figure.ElementsCoordinates();
@@ -39,7 +34,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             return false;
         }
 
-        internal bool IsReachedBorder(IFigure figure, sbyte xValue, sbyte yValue)
+        internal bool IsReachedBorder(IFigure figure, sbyte xValue = 0, sbyte yValue = 0)
         {
             int x = figure.PositionX + xValue;
             int y = figure.PositionY + yValue;
@@ -60,7 +55,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         private void CheckForReadyLine(IFigure figure)
         {
-            //That row says the maximum size of figure must be 3(Nine) cells, no more. I decided so!
+            //That row says the maximum size of figure must be 3(Three) cells, no more. I decided so!
             int approximateRow = figure.PositionY + 1;
             bool isReadyLine;
 
@@ -88,7 +83,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 if (isReadyLine)
                 {
                     ReDrawFieldOnReadyLine(figure, approximateRow);
-                    GameData.points += GameData.pointPerLine;
+                    GameData.points += GameData.PointPerLine;
                     continue;
                 }
 
@@ -98,7 +93,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         private void ReDrawFieldOnReadyLine(IFigure figure, int readyLine)
         {
-            //Премахване на готова линия, вмъкване и инициализиране на нов празен ред
+            //Removing ready line, insert and initializing a new empty row
             fieldCells.Remove(readyLine);
             fieldCells.InsertNewRow();
 

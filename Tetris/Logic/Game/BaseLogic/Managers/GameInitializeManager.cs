@@ -1,56 +1,57 @@
 ﻿using System;
-using Tetris.Logic.Game.BaseLogic.Helpers;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class GameInitializeManager
     {
-        private static FieldCells fieldCells;
+        private static string[] welcome;
 
         static GameInitializeManager()
         {
-            fieldCells = new FieldCells();
+            welcome = new string[]
+            {
+                "Press \"M\"",
+                "for Main Menu",
+                 new string('\n',2),
+                "or",
+                "any key",
+                "to play !!!"
+            };
         }
 
         internal static void SetUpWindow()
         {
-            int windowWidth = FieldData.GameFieldWidth + FieldData.InfoPanelWidth;
+            Console.CursorVisible = false;
+            Console.BackgroundColor = FieldData.BackgroundColor;
 
-            Console.BufferWidth = Console.WindowWidth = windowWidth;
-            Console.BufferHeight = Console.WindowHeight = FieldData.WindowHeight;
             Console.Title = "TETRIS by ffilip";
 
-            DrawGameField();
+            Console.BufferWidth = Console.WindowWidth = FieldData.WindowWidth;
+            Console.BufferHeight = Console.WindowHeight = FieldData.WindowHeight;
         }
 
-        internal static void ShowWelcomeMessage()
+        internal static void ShowWelcomeMessage(bool showMessage = true)
         {
-            string[] words = { "Press", "any key", "to play !!!" };
-            PrintWelcomeMessage(words);
+            Console.ForegroundColor = FieldData.MessageColor;
 
-            Console.ReadKey(true);
-
-            Console.ForegroundColor = Console.BackgroundColor;
-            PrintWelcomeMessage(words);
-        }
-
-        private static void DrawGameField()
-        {
-            Console.BackgroundColor = ConsoleColor.Black;
-            fieldCells.DrawAllRows();
-        }
-
-        private static void PrintWelcomeMessage(string[] words)
-        {
-            int messageRow = FieldData.WindowHeight / 2 - 2;
-
-            for (int i = 0; i < words.Length; i++)
+            if (!showMessage)
             {
-                int wordLength = words[i].Length;
-                int messageCol = (FieldData.GameFieldWidth - wordLength) / 2;
+                Console.ForegroundColor = Console.BackgroundColor;
+            }
+
+            PrintMessage(welcome);
+        }
+
+        private static void PrintMessage(string[] welcome)
+        {
+            int messageRow = FieldData.WindowHeight / 2 - welcome.Length / 2;
+
+            foreach (var text in welcome)
+            {
+                int messageCol = (FieldData.GameFieldWidth - text.Length) / 2;
 
                 Console.SetCursorPosition(messageCol, messageRow++);
-                Console.Write(words[i]);
+                Console.Write(text);
             }
         }
     }

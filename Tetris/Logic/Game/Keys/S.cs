@@ -7,17 +7,16 @@ namespace Tetris.Logic.Game.Keys
     {
         public override void Action(IFigure figure)
         {
-            try
-            {
-                figure.Element.Color = Console.BackgroundColor;
-                Graphic.Clear(figure);
-            }
-            catch (NullReferenceException)
+            //Escape method on long pressed button
+            if (GameData.status==Status.Skip)
             {
                 return;
             }
 
-            figure.Element = null;
+            figure.Element.Color = Console.BackgroundColor;
+            Graphic.Clear(figure);
+
+            GameData.status=Status.Skip;
 
             GameData.points--;
             GameData.figureCount--;

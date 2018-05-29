@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 
 {
-    internal class FieldCells
+    public class FieldCells
     {
         private static int fieldRows;
         private static int fieldColumns;
@@ -18,22 +18,10 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             fieldRows = FieldData.GameFieldHeight;
             fieldColumns = FieldData.GameFieldWidth;
 
-            fieldCells = new List<FigureElement[]>(fieldRows);
+            horBorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.HorizontalBorderSymbol);
+            vertBorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.VerticalBorderSymbol);
 
-            horBorderElement = new FigureElement(ConsoleColor.White, FieldData.HorizontalBorderSymbol);
-            vertBorderElement = new FigureElement(ConsoleColor.White, FieldData.VerticalBorderSymbol);
-
-            //Initialize the cell List
-            for (int row = 0; row < fieldRows - 1; row++)
-            {
-                fieldCells.Add(new FigureElement[fieldColumns]);
-                Initialize(row);
-            }
-
-            //Initialize the top and bottom
-            fieldCells.Insert(0, new FigureElement[fieldColumns]);
-            fieldCells.Add(new FigureElement[fieldColumns]);
-            InitializeHorizontalBorders();
+            ResetCells();
         }
 
         internal FigureElement[] this[int index]
@@ -42,6 +30,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             {
                 return fieldCells[index];
             }
+
         }
 
         internal void Remove(int readyLine)
@@ -91,6 +80,23 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 fieldCells[0][col] = horBorderElement;
                 fieldCells[fieldRows - 1][col] = horBorderElement;
             }
+        }
+
+        internal static void ResetCells()
+        {
+            fieldCells = new List<FigureElement[]>(fieldRows);
+
+            //Initialize the cell List
+            for (int row = 0; row < fieldRows - 1; row++)
+            {
+                fieldCells.Add(new FigureElement[fieldColumns]);
+                Initialize(row);
+            }
+
+            //Initialize the top and bottom
+            fieldCells.Insert(0, new FigureElement[fieldColumns]);
+            fieldCells.Add(new FigureElement[fieldColumns]);
+            InitializeHorizontalBorders();
         }
     }
 }
