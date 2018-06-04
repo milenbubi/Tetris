@@ -9,8 +9,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
     {
         private static int fieldRows;
         private static int fieldColumns;
-        private static FigureElement horBorderElement;
-        private static FigureElement vertBorderElement;
+        private static FigureElement BorderElement;
         private static List<FigureElement[]> fieldCells;
 
         static FieldCells()
@@ -18,10 +17,8 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             fieldRows = FieldData.GameFieldHeight;
             fieldColumns = FieldData.GameFieldWidth;
 
-            horBorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.HorizontalBorderSymbol);
-            vertBorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.VerticalBorderSymbol);
-
-            ResetCells();
+            BorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.BorderSymbol);
+            BorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.BorderSymbol);
         }
 
         internal FigureElement[] this[int index]
@@ -69,16 +66,16 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             }
 
             //Vertical borders
-            fieldCells[row][0] = vertBorderElement;
-            fieldCells[row][fieldColumns - 1] = vertBorderElement;
+            fieldCells[row][0] = BorderElement;
+            fieldCells[row][fieldColumns - 1] = BorderElement;
         }
 
         private static void InitializeHorizontalBorders()
         {
             for (int col = 0; col < fieldColumns; col++)
             {
-                fieldCells[0][col] = horBorderElement;
-                fieldCells[fieldRows - 1][col] = horBorderElement;
+                fieldCells[0][col] = BorderElement;
+                fieldCells[fieldRows - 1][col] = BorderElement;
             }
         }
 

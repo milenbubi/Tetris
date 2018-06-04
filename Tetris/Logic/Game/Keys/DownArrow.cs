@@ -4,7 +4,7 @@ namespace Tetris.Logic.Game.Keys
 {
     internal class DownArrow : PressedKey, IKey
     {
-        public override void Action( IFigure figure)
+        public override void Action(IFigure figure)
         {
             while (!Check.IsReachedBorder(figure, 0, 1))
             {

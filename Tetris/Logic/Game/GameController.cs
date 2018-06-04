@@ -22,15 +22,14 @@ namespace Tetris.Logic.Game
 
         internal FieldCells FieldCells { get; }
 
-        //Under Construction
-        internal Status Status { get; private set; }
-
         internal void InitializeGame()
         {
-            GameData.status = Status.Play;
+            Console.Clear();
+            GameData.ResetData();
             GameInitializeManager.SetUpWindow();
             UpdateInfo();
 
+            FieldCells.ResetCells();
             FieldCells.DrawAllRows();
             GameInitializeManager.ShowWelcomeMessage();
 
@@ -45,26 +44,6 @@ namespace Tetris.Logic.Game
         internal void UpdateInfo()
         {
             InfoPanel.Update();
-        }
-
-        //Under Construction
-        internal bool? MayPlay()
-        {
-            switch (Status)
-            {
-                case Status.Play:
-                    break;
-                case Status.Skip:
-                    break;
-                case Status.NewGame:
-                    break;
-                case Status.GameOver:
-                    break;
-                default:
-                    break;
-            }
-
-            return null;
         }
 
         internal void Finish()

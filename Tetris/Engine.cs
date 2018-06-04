@@ -23,23 +23,14 @@ namespace Tetris
             this.gameController = gameController;
         }
 
-        private bool IsFinished
+        private bool InPlay
         {
             get
             {
-                if (status != Status.Play)
-                {//Too many repetitions of Status check !!!
-                    if (status == Status.Skip)
-                    {
-                        status = Status.Play;
-                    }
-
-                    return true;
-                }
-
-                return gameController.Check.IsFinished(figure);
+                return IsStatusPlay() && !gameController.Check.IsFinished(figure);
             }
         }
+
 
         public void Run()
         {
@@ -62,10 +53,7 @@ namespace Tetris
 
                     TheHeartOfGame();
 
-                    if (status != Status.Play)
-                    {
-                        return;
-                    }
+                    if (!IsStatusPlay()) return;
 
                     figureCount++;
                     points++;
@@ -98,7 +86,7 @@ namespace Tetris
 
         private void TheHeartOfGame()
         {
-            while (!IsFinished)
+            while (InPlay)
             {
                 Thread.Sleep(speed);
 
@@ -126,9 +114,25 @@ namespace Tetris
             keyController.Action(figure, keyClassName);
         }
 
+        private bool IsStatusPlay()
+        {
+            switch (status)
+            {
+                case Status.Play: return true;
+
+                case Status.Skip:
+                    status = Status.Play;
+                    figureCount--;
+                    points--;
+                    return false;
+
+                default: return false;
+            }
+        }
+
         private void HandleFurtherGameFlow()
         {
-            if (status != Status.NewGame)
+            if (status == Status.GameOver)
             {
                 gameController.Finish();
             }

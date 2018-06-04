@@ -8,7 +8,7 @@ namespace Tetris.Logic.Game.Keys
     {
         private Queue<int> tempFigureState;
 
-        public override void Action( IFigure figure)
+        public override void Action(IFigure figure)
         {
             this.tempFigureState = new Queue<int>(figure.State);
             figure.Rotate();

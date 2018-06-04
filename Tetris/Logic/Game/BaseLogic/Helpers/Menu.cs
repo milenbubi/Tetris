@@ -10,6 +10,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         private static string key;
         private static string[] items;
+        private static string[] backMessage;
 
         private static InfoPanel infoPanel;
         private static FieldCells fieldCells;
@@ -20,7 +21,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             items = new string[]
             {
-                "\n",
+                Environment.NewLine,
                 Title.PadLeft(padding + Title.Length),
                 Environment.NewLine,
                 "'C' - Controls",
@@ -35,6 +36,13 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 " any key",
                 " to continue",
                 " playing."
+            };
+
+            backMessage = new string[]
+            {
+                new string('\n', 3),
+                "Press any key",
+                "to go Back."
             };
 
             infoPanel = new InfoPanel();
@@ -88,13 +96,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         private static void DisplayScores()
         {
-            string[] backMessage =
-            {
-                new string('\n', 3),
-                "Press any key",
-                "to go Back."
-            };
-
             ScoreManager.DisplayScores();
 
             PrintItemInformation(backMessage);
@@ -103,8 +104,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         private static void NewGame()
         {
             GameData.status = Status.NewGame;
-            GameData.Initialize();
-            FieldCells.ResetCells();
         }
 
         private static void QuitGame()
@@ -115,16 +114,16 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         private static void AboutMe()
         {
             string title = "About project author";
-            int padding = (FieldData.WindowWidth - title.Length) / 2;
+            int padding = (FieldData.WindowWidth - title.Length) / 2 + title.Length;
 
             string[] aboutMe =
             {
                 Environment.NewLine,
-                title.PadLeft(padding + title.Length),
+                title.PadLeft(padding),
                 Environment.NewLine,
                 " Hi! I am Phillip Coitchev and I am",
                 "entry level .NET developer.\n",
-                " An unknown woman has inspired me",
+                " An unknown user has inspired me",
                 "to create the game. I have spent many",
                 "days to fix, remove, add or change",
                 "something in this code, but it",
@@ -132,9 +131,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 " If you have related questions,",
                 "comments or advices, feel free",
                 "to contact me - fcc@abv.bg",
-                new string('\n', 4),
-                "   Press any key",
-                "   to go Back."
+                string.Join(Environment.NewLine, backMessage)
             };
 
             Console.Clear();
@@ -153,7 +150,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             infoPanel.Update();
             Console.ForegroundColor = FieldData.MessageColor;
 
-            // !!!  After Info Panel is printed, cursor is fixed on the last line and I am forced to move it up~!
+            // !!!  After printing Info Panel, cursor is fixed on the last line and I am forced to move it up~!
             Console.SetCursorPosition(0, 0);
         }
 

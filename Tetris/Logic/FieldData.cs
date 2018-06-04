@@ -9,11 +9,10 @@ namespace Tetris.Logic
 
         internal const int WindowWidth = InfoPanelWidth + GameFieldWidth;
 
-        internal const int GameFieldHeight = 25;
         internal const int WindowHeight = 26;
+        internal const int GameFieldHeight = 25;
 
-        internal const char VerticalBorderSymbol = '*';
-        internal const char HorizontalBorderSymbol = '*';
+        internal const char BorderSymbol = '*';
         internal const ConsoleColor BorderSymbolColor = ConsoleColor.White;
 
         internal const ConsoleColor MessageColor = ConsoleColor.Yellow;
@@ -21,5 +20,3 @@ namespace Tetris.Logic
         internal const ConsoleColor BackgroundColor = ConsoleColor.Black;
     }
 }
-
-

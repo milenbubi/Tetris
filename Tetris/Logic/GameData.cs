@@ -20,17 +20,13 @@ namespace Tetris.Logic
         internal static Status status;
         internal static IFigure nextFigure;
 
-        static GameData()
-        {
-            Initialize();
-        }
-
-        internal static void Initialize()
+        internal static void ResetData()
         {
             level = 1;
             points = 0;
             figureCount = 1;
 
+            status = Status.Play;
             nextFigure = FigureFactory.GetRandomFigure();
         }
     }

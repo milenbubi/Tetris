@@ -7,8 +7,8 @@ namespace Tetris.Logic.Game.Keys
     {
         public override void Action(IFigure figure)
         {
-            //Escape method on long pressed button
-            if (GameData.status==Status.Skip)
+            //Exit from method if button "S" is long pressed
+            if (GameData.status == Status.Skip)
             {
                 return;
             }
@@ -16,10 +16,7 @@ namespace Tetris.Logic.Game.Keys
             figure.Element.Color = Console.BackgroundColor;
             Graphic.Clear(figure);
 
-            GameData.status=Status.Skip;
-
-            GameData.points--;
-            GameData.figureCount--;
+            GameData.status = Status.Skip;
         }
     }
 }
