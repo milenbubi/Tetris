@@ -38,7 +38,10 @@ namespace Tetris.Logic.Game
                 Menu.Show();
             }
 
-            GameInitializeManager.ShowWelcomeMessage(false);
+            else
+            {
+                GameInitializeManager.ShowWelcomeMessage(false);
+            }
         }
 
         internal void UpdateInfo()

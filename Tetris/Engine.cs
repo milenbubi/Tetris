@@ -31,7 +31,6 @@ namespace Tetris
             }
         }
 
-
         public void Run()
         {
             gameController.InitializeGame();

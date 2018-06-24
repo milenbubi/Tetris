@@ -25,5 +25,4 @@ Game controls:
 And... still unfinished -
 
         there is some more code to be refactored;
-        some changes in Score table - e.g. showing your result in case it's not present in Top 10 best scores;
-        
+               

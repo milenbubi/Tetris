@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
@@ -96,7 +98,29 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         private static void DisplayScores()
         {
+            //Under Construction!! -  info about user result in case it is not present in Top 10 !
+
+            ICollection<string> bestScores = LogFileManager.Read();
+
             ScoreManager.DisplayScores();
+
+            int currentResult = GameData.points;
+
+            int lowestBestScore = Convert.ToInt32(bestScores
+                .Last()
+                .Split()
+                .First());
+
+            if (currentResult < lowestBestScore)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine(Environment.NewLine);
+                Console.Write(new String(' ', 2));
+                Console.WriteLine("Your current result: {0}", currentResult);
+
+                Console.ForegroundColor = FieldData.MessageColor;
+            }
 
             PrintItemInformation(backMessage);
         }

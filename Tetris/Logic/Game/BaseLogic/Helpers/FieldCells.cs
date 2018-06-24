@@ -1,6 +1,7 @@
 ﻿using System;
 using Tetris.Logic.Figures;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 
@@ -70,30 +71,24 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             fieldCells[row][fieldColumns - 1] = BorderElement;
         }
 
-        private static void InitializeHorizontalBorders()
-        {
-            for (int col = 0; col < fieldColumns; col++)
-            {
-                fieldCells[0][col] = BorderElement;
-                fieldCells[fieldRows - 1][col] = BorderElement;
-            }
-        }
-
         internal static void ResetCells()
         {
             fieldCells = new List<FigureElement[]>(fieldRows);
 
             //Initialize the cell List
-            for (int row = 0; row < fieldRows - 1; row++)
+            for (int row = 0; row < fieldRows - 2; row++)
             {
                 fieldCells.Add(new FigureElement[fieldColumns]);
                 Initialize(row);
             }
 
             //Initialize the top and bottom
-            fieldCells.Insert(0, new FigureElement[fieldColumns]);
-            fieldCells.Add(new FigureElement[fieldColumns]);
-            InitializeHorizontalBorders();
+            FigureElement[] horizontalBorder = Enumerable
+                .Repeat(BorderElement, fieldColumns)
+                .ToArray();
+
+            fieldCells.Insert(0, horizontalBorder);
+            fieldCells.Add(horizontalBorder);
         }
     }
 }
