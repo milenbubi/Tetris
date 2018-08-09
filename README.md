@@ -26,4 +26,6 @@ Game controls:
 </div>
 
 
-This is Final Version!               
+<b>
+    This is Final Version!               
+<b/>
