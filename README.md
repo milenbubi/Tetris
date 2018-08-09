@@ -18,12 +18,11 @@ Game controls:
         
 
 <div>
-    <img src = "1.png"> &nbsp;
+    <img src = "1.png">
+ &nbsp;
     <img src = "2.png">
     <br>
     <br>
 </div>
-      
-      
-      
-   This is Final Version!               
+
+This is Final Version!               
