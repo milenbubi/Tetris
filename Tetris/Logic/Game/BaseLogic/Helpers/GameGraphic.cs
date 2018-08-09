@@ -3,18 +3,18 @@ using Tetris.Logic.Figures;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
-    public class GameGraphic
+    internal class GameGraphic
     {
         private int[] elemCoords;
 
-        public void Move(IFigure figure, sbyte xValue, sbyte yValue)
+        internal void Move(IFigure figure, sbyte xValue, sbyte yValue)
         {
             Clear(figure);
             SetNewPosition(figure, xValue, yValue);
             Draw(figure);
         }
 
-        public void Clear(IFigure figure)
+        internal void Clear(IFigure figure)
         {
             ConsoleColor tempColorHolder = figure.Element.Color;
 
@@ -24,7 +24,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             figure.Element.Color = tempColorHolder;
         }
 
-        public void Draw(IFigure figure)
+        internal void Draw(IFigure figure)
         {
             this.elemCoords = figure.ElementsCoordinates();
 

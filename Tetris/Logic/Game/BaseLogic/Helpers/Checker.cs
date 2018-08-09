@@ -2,12 +2,12 @@
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
-    public class Checker
+    internal class Checker
     {
         private FieldCells fieldCells;
         private int[] elementsCoordinates;
 
-        public Checker()
+        internal Checker()
         {
             this.fieldCells = new FieldCells();
         }

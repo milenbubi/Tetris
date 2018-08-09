@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
@@ -7,8 +6,8 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
     internal static class Menu
     {
-        private const string Title = "MAIN MENU";
         private const string ItemKeys = "CBNQA";
+        private const string Title = "MAIN MENU";
 
         private static string key;
         private static string[] items;
@@ -51,22 +50,22 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             fieldCells = new FieldCells();
         }
 
-        public static void Show()
+        internal static void Show()
         {
             do
             {
-                switch (key)
+                ShowMenu();
+
+                switch (ReadKey())
                 {
                     case "C": Controls(); break;
-                    case "B": DisplayScores(); break;
+                    case "B": BestScores(); break;
                     case "N": NewGame(); key = null; return;
                     case "Q": QuitGame(); break;
                     case "A": AboutMe(); break;
                 }
 
-                ShowMenu();
-
-            } while (ItemKeys.Contains(ReadKey()));
+            } while (ItemKeys.Contains(key));
 
             fieldCells.DrawAllRows();
         }
@@ -87,42 +86,41 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 " S - Next figure",
                 string.Empty,
                 " M - Menu",
-                new string('\n', 3),
-                "   Press any key",
-                "   to go Back."
+                string.Join(Environment.NewLine, backMessage)
             };
 
             PrepareMenuWindow();
-            PrintItemInformation(controls);
+            Print(controls);
         }
 
-        private static void DisplayScores()
+        private static void BestScores()
         {
-            //Under Construction!! -  info about user result in case it is not present in Top 10 !
-
-            ICollection<string> bestScores = LogFileManager.Read();
-
             ScoreManager.DisplayScores();
 
             int currentResult = GameData.points;
 
-            int lowestBestScore = Convert.ToInt32(bestScores
+            int lowestBestScore = Convert.ToInt32(LogFile
+                .Read()
                 .Last()
                 .Split()
                 .First());
 
+            Console.ForegroundColor = ConsoleColor.Red;
+
             if (currentResult < lowestBestScore)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-
-                Console.WriteLine(Environment.NewLine);
-                Console.Write(new String(' ', 2));
-                Console.WriteLine("Your current result: {0}", currentResult);
-
-                Console.ForegroundColor = FieldData.MessageColor;
+                Console.WriteLine("  Your current score: {0}", currentResult);
+            }
+            else
+            {
+                Console.WriteLine("  Your current score has already");
+                Console.WriteLine("  reached the top 10 table.");
+                Console.WriteLine("  Just finish the game!");
             }
 
-            PrintItemInformation(backMessage);
+            Console.ForegroundColor = FieldData.MessageColor;
+
+            Print(backMessage);
         }
 
         private static void NewGame()
@@ -137,7 +135,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         private static void AboutMe()
         {
-            string title = "About project author";
+            string title = "About Project Author ";
             int padding = (FieldData.WindowWidth - title.Length) / 2 + title.Length;
 
             string[] aboutMe =
@@ -148,7 +146,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 " Hi! I am Phillip Coitchev and I am",
                 "entry level .NET developer.\n",
                 " An unknown user has inspired me",
-                "to create the game. I have spent many",
+                "to make this game. I have spent many",
                 "days to fix, remove, add or change",
                 "something in this code, but it",
                 "gets better and better.\n",
@@ -159,7 +157,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             };
 
             Console.Clear();
-            PrintItemInformation(aboutMe);
+            Print(aboutMe);
         }
 
         private static void ShowMenu()
@@ -189,9 +187,9 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             return pressedKey;
         }
 
-        private static void PrintItemInformation(string[] backMessage)
+        private static void Print(string[] text)
         {
-            Console.WriteLine(string.Join("\n", backMessage));
+            Console.WriteLine(string.Join("\n", text));
             Console.ReadKey(true);
         }
     }

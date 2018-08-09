@@ -3,7 +3,7 @@ using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
-    public class InfoPanel
+    internal class InfoPanel
     {
         private int horPosition;
         private int vertPosition;

@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tetris.Logic.Figures
 {
     public abstract class Figure : IFigure
     {
         protected int[][] elemCoords;
-        private int positionY = 2;
-        private int positionX = FieldData.GameFieldWidth / 2;
+        private const int positionY = 2;
+        private const int positionX = FieldData.GameFieldWidth / 2;
 
         public Figure(int states)
         {
-            this.PositionX = positionX;
-            this.PositionY = positionY;
+            PositionX = positionX;
+            PositionY = positionY;
 
-            this.Element = new FigureElement();
-            this.Element.Color = GetRandomColor();
+            Element = new FigureElement();
+            Element.Color = GetRandomColor();
 
-            this.elemCoords = new int[states][];
-            this.State = new Queue<int>(states);
+            elemCoords = new int[states][];
 
-            for (int i = 0; i < states; i++)
-            {
-                this.State.Enqueue(i);
-            }
+            State = new Queue<int>(Enumerable.Range(0, states));
         }
 
         public int PositionX { get; set; }

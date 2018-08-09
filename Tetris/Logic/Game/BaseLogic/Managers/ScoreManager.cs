@@ -12,7 +12,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         static ScoreManager()
         {
-            scoreTable = LogFileManager.Read();
+            scoreTable = LogFile.Read();
         }
 
         internal static void UpdateScores()
@@ -21,34 +21,29 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             string playDate = $"{DateTime.Now:dd MMM yyyy}";
 
             string currentResult = playScore + playDate;
-            string worstResult = scoreTable.LastOrDefault();
 
-            ReorderScoreTable(currentResult, worstResult);
+            ReorderScoreTable(currentResult);
 
-            LogFileManager.Write(scoreTable);
+            LogFile.Write(scoreTable);
         }
 
         internal static void DisplayScores()
         {
             Console.Clear();
-            Console.WriteLine($"{"Best Scores:",18}");
-            Console.WriteLine();
+            Console.WriteLine($"\n{"Best Scores:",18}\n");
             Console.WriteLine(string.Join("\n", scoreTable));
+            Console.WriteLine(Environment.NewLine);
         }
 
-        private static void ReorderScoreTable(string currentResult, string worstResult)
+        private static void ReorderScoreTable(string currentResult)
         {
-            if (currentResult.CompareTo(worstResult) >= 0)
-            {
-                scoreTable.Remove(worstResult);
-                scoreTable.Add(currentResult);
+            scoreTable.Add(currentResult);
 
-                scoreTable = scoreTable
-                    .OrderByDescending(s => s)
-                    .Concat(Enumerable.Repeat(defaultScore, 10))
-                    .Take(countOfBestScores)
-                    .ToList();
-            }
+            scoreTable = scoreTable
+                .OrderByDescending(s => s)
+                .Concat(Enumerable.Repeat(defaultScore, 10))
+                .Take(countOfBestScores)
+                .ToList();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    public class Line : Figure, IFigure
+    internal class Line : Figure, IFigure
     {
         public Line() : base(2)
         {

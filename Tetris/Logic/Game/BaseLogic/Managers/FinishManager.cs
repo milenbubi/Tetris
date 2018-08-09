@@ -20,7 +20,6 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             ScoreManager.UpdateScores();
             ScoreManager.DisplayScores();
 
-            Console.WriteLine();
             Environment.Exit(0);
         }
     }

@@ -7,7 +7,7 @@ using Tetris.Logic;
 
 namespace Tetris
 {
-    public class Engine
+    internal class Engine
     {
         private int speed;
 
@@ -15,7 +15,7 @@ namespace Tetris
         private KeyController keyController;
         private GameController gameController;
 
-        public Engine(GameController gameController, KeyController keyController)
+        internal Engine(GameController gameController, KeyController keyController)
         {
             this.speed = StartSpeed;
 
@@ -23,7 +23,7 @@ namespace Tetris
             this.gameController = gameController;
         }
 
-        private bool InPlay
+        private bool IsInPlay
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Tetris
 
         private void TheHeartOfGame()
         {
-            while (InPlay)
+            while (IsInPlay)
             {
                 Thread.Sleep(speed);
 
@@ -121,8 +121,6 @@ namespace Tetris
 
                 case Status.Skip:
                     status = Status.Play;
-                    figureCount--;
-                    points--;
                     return false;
 
                 default: return false;

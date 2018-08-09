@@ -5,6 +5,6 @@
         Play,
         Skip,
         NewGame,
-        GameOver,
+        GameOver
     }
 }

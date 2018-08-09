@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
-
 {
-    public class FieldCells
+    internal class FieldCells
     {
         private static int fieldRows;
         private static int fieldColumns;
@@ -19,17 +18,9 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             fieldColumns = FieldData.GameFieldWidth;
 
             BorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.BorderSymbol);
-            BorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.BorderSymbol);
         }
 
-        internal FigureElement[] this[int index]
-        {
-            get
-            {
-                return fieldCells[index];
-            }
-
-        }
+        internal FigureElement[] this[int index] => fieldCells[index];
 
         internal void Remove(int readyLine)
         {
@@ -51,24 +42,8 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         {
             for (int row = from; row <= to; row++)
             {
-                Console.SetCursorPosition(0, row);
-                foreach (var item in fieldCells[row])
-                {
-                    Console.Write(string.Join("", item));
-                }
+                Console.WriteLine(string.Join<FigureElement>("", fieldCells[row]));
             }
-        }
-
-        private static void Initialize(int row)
-        {
-            for (int col = 1; col < fieldColumns - 1; col++)
-            {
-                fieldCells[row][col] = new FigureElement(ConsoleColor.White, ' ');
-            }
-
-            //Vertical borders
-            fieldCells[row][0] = BorderElement;
-            fieldCells[row][fieldColumns - 1] = BorderElement;
         }
 
         internal static void ResetCells()
@@ -89,6 +64,18 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             fieldCells.Insert(0, horizontalBorder);
             fieldCells.Add(horizontalBorder);
+        }
+
+        private static void Initialize(int row)
+        {
+            for (int col = 1; col < fieldColumns - 1; col++)
+            {
+                fieldCells[row][col] = new FigureElement(ConsoleColor.White, ' ');
+            }
+
+            //Vertical borders
+            fieldCells[row][0] = BorderElement;
+            fieldCells[row][fieldColumns - 1] = BorderElement;
         }
     }
 }

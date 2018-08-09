@@ -11,15 +11,15 @@ namespace Tetris.Logic.Game.Keys
 
         protected PressedKey()
         {
-            this.Check = new Checker();
-            this.Graphic = new GameGraphic();
+            Check = new Checker();
+            Graphic = new GameGraphic();
 
-            this.infoPanel = new InfoPanel();
-            this.fieldCells = new FieldCells();
+            infoPanel = new InfoPanel();
+            fieldCells = new FieldCells();
         }
 
-        public Checker Check { get; }
-        public GameGraphic Graphic { get; }
+        protected Checker Check { get; }
+        protected GameGraphic Graphic { get; }
 
         public abstract void Action(IFigure figure);
     }

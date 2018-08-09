@@ -4,7 +4,7 @@ using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game
 {
-    public class GameController
+    internal class GameController
     {
         internal GameController()
         {
@@ -38,10 +38,7 @@ namespace Tetris.Logic.Game
                 Menu.Show();
             }
 
-            else
-            {
-                GameInitializeManager.ShowWelcomeMessage(false);
-            }
+            GameInitializeManager.ShowWelcomeMessage(false);
         }
 
         internal void UpdateInfo()

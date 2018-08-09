@@ -6,19 +6,19 @@ namespace Tetris.Logic.Figures
     {
         private const char figureSymbol = (char)3;
 
-        public FigureElement()
+        internal FigureElement()
         {
             this.Symbol = figureSymbol;
         }
 
-        public FigureElement(ConsoleColor color, char symbol)
+        internal FigureElement(ConsoleColor color, char symbol)
         {
             this.Color = color;
             this.Symbol = symbol;
         }
 
-        public ConsoleColor Color { get; set; }
-        public Char Symbol { get; private set; }
+        internal ConsoleColor Color { get; set; }
+        internal Char Symbol { get; private set; }
 
         public override string ToString()
         {

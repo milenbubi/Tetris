@@ -4,7 +4,7 @@ namespace Tetris
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             GameController moveController = new GameController();
             KeyController keyController = new KeyController();

@@ -4,11 +4,11 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class GameInitializeManager
     {
-        private static string[] welcome;
+        private static string[] welcomeMessage;
 
         static GameInitializeManager()
         {
-            welcome = new string[]
+            welcomeMessage = new string[]
             {
                 "Press \"M\"",
                 "for Main Menu",
@@ -39,7 +39,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
                 Console.ForegroundColor = Console.BackgroundColor;
             }
 
-            PrintMessage(welcome);
+            PrintMessage(welcomeMessage);
         }
 
         private static void PrintMessage(string[] welcome)

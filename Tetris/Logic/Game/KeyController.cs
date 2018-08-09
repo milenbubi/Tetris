@@ -5,18 +5,18 @@ using Tetris.Logic.Game.Keys;
 
 namespace Tetris.Logic.Game
 {
-    public class KeyController
+    internal class KeyController
     {
         private IKey[] keyClasses;
         private Type[] keyClassesTypes;
 
-        public KeyController()
+        internal KeyController()
         {
             AllTypesImplementingIKey();
             RetrieveAllClassesImplementingIKey();
         }
 
-        public void Action(IFigure figure, string keyClassName)
+        internal void Action(IFigure figure, string keyClassName)
         {
             foreach (IKey keyClass in keyClasses)
             {

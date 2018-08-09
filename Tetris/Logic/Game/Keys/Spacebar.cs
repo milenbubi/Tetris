@@ -10,7 +10,7 @@ namespace Tetris.Logic.Game.Keys
 
         public override void Action(IFigure figure)
         {
-            this.tempFigureState = new Queue<int>(figure.State);
+            tempFigureState = new Queue<int>(figure.State);
             figure.Rotate();
 
             try

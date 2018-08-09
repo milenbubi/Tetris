@@ -1,6 +1,6 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    public class RightAngle : Figure, IFigure
+    internal class RightAngle : Figure, IFigure
     {
         public RightAngle() : base(4)
         {

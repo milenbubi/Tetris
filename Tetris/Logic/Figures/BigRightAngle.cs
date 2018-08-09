@@ -1,6 +1,6 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    public class BigRightAngle : Figure, IFigure
+    internal class BigRightAngle : Figure, IFigure
     {
         public BigRightAngle() : base(4)
         {

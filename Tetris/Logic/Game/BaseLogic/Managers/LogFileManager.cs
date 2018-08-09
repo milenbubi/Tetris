@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
-    internal static class LogFileManager
+    internal static class LogFile
     {
         private static string logFile = GameData.LogFile;
 
-        static LogFileManager()
+        static LogFile()
         {
             if (!File.Exists(logFile))
             {
