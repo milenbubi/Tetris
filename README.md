@@ -20,8 +20,10 @@ Game controls:
 <div>
     <img src = "1.png"> &nbsp;
     <img src = "2.png">
+    <br>
+    <br>
 </div>
       
       
       
-   This is final version!               
+   This is Final Version!               
