@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
-    internal static class LogFile
+    internal static class LogFileManager
     {
         private static string logFile = GameData.LogFile;
 
-        static LogFile()
+        static LogFileManager()
         {
             if (!File.Exists(logFile))
             {
@@ -15,25 +15,21 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             }
         }
 
-        internal static ICollection<string> Read()
+        internal static IEnumerable<string> Read()
         {
-            ICollection<string> scoreTable = new List<string>();
-
             using (StreamReader reader = new StreamReader(logFile))
             {
                 string line = reader.ReadLine();
 
                 while (line != null)
                 {
-                    scoreTable.Add(line);
+                    yield return line;
                     line = reader.ReadLine();
                 }
             }
-
-            return scoreTable;
         }
 
-        internal static void Write(ICollection<string> scoreTable)
+        internal static void Write(IEnumerable<string> scoreTable)
         {
             using (StreamWriter writer = new StreamWriter(logFile))
             {

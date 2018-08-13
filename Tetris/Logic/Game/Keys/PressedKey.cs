@@ -7,7 +7,6 @@ namespace Tetris.Logic.Game.Keys
     {
         protected InfoPanel infoPanel;
         protected FieldCells fieldCells;
-        protected string message;
 
         protected PressedKey()
         {

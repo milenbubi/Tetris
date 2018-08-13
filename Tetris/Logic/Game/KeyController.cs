@@ -32,16 +32,17 @@ namespace Tetris.Logic.Game
         {
             Type keyType = typeof(IKey);
 
-            this.keyClassesTypes = AppDomain.CurrentDomain.GetAssemblies()
-                            .SelectMany(a => a.GetTypes())
-                            .Where(t => keyType.IsAssignableFrom(t) && !t.IsAbstract)
-                            .ToArray();
+            this.keyClassesTypes = AppDomain.CurrentDomain
+                                            .GetAssemblies()
+                                            .SelectMany(a => a.GetTypes())
+                                            .Where(t => keyType.IsAssignableFrom(t) && !t.IsAbstract)
+                                            .ToArray();
         }
 
         private void RetrieveAllClassesImplementingIKey()
         {
             int countOfKeyClasses = this.keyClassesTypes.Length;
-            this.keyClasses = new IKey[countOfKeyClasses];
+            keyClasses = new IKey[countOfKeyClasses];
 
             for (int i = 0; i < countOfKeyClasses; i++)
             {

@@ -99,7 +99,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             int currentResult = GameData.points;
 
-            int lowestBestScore = Convert.ToInt32(LogFile
+            int lowestBestScore = Convert.ToInt32(LogFileManager
                 .Read()
                 .Last()
                 .Split()
@@ -109,12 +109,13 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             if (currentResult < lowestBestScore)
             {
-                Console.WriteLine("  Your current score: {0}", currentResult);
+                Console.WriteLine("  Your current score: {0} points", currentResult);
             }
             else
             {
-                Console.WriteLine("  Your current score has already");
-                Console.WriteLine("  reached the top 10 table.");
+                Console.WriteLine("  Your current score - {0} pts", currentResult);
+                Console.WriteLine("  has already reached");
+                Console.WriteLine("  the top 10 results.\n");
                 Console.WriteLine("  Just finish the game!");
             }
 

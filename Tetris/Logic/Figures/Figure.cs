@@ -33,14 +33,13 @@ namespace Tetris.Logic.Figures
 
         public void Rotate()
         {
-            this.State.Enqueue(
-                  this.State.Dequeue());
+            State.Enqueue(State.Dequeue());
         }
 
         public int[] ElementsCoordinates()
         {
-            int position = this.State.Peek();
-            return this.elemCoords[position];
+            int position = State.Peek();
+            return elemCoords[position];
         }
 
         private ConsoleColor GetRandomColor()

@@ -6,13 +6,13 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class ScoreManager
     {
-        private static ICollection<string> scoreTable;
+        private static IEnumerable<string> scoreTable;
         private const int countOfBestScores = 10;
         private static string defaultScore = "0";
 
         static ScoreManager()
         {
-            scoreTable = LogFile.Read();
+            scoreTable = LogFileManager.Read();
         }
 
         internal static void UpdateScores()
@@ -24,7 +24,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
             ReorderScoreTable(currentResult);
 
-            LogFile.Write(scoreTable);
+            LogFileManager.Write(scoreTable);
         }
 
         internal static void DisplayScores()
@@ -37,11 +37,10 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         private static void ReorderScoreTable(string currentResult)
         {
-            scoreTable.Add(currentResult);
-
             scoreTable = scoreTable
+                .Concat(new string[] { currentResult })
                 .OrderByDescending(s => s)
-                .Concat(Enumerable.Repeat(defaultScore, 10))
+                .Concat(Enumerable.Repeat(defaultScore, countOfBestScores))
                 .Take(countOfBestScores)
                 .ToList();
         }

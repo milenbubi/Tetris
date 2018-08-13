@@ -32,10 +32,11 @@ namespace Tetris
         {
             Type figureType = typeof(IFigure);
 
-            figureTypes = AppDomain.CurrentDomain.GetAssemblies()
-                   .SelectMany(a => a.GetTypes())
-                   .Where(t => figureType.IsAssignableFrom(t) && !t.IsAbstract)
-                   .ToArray();
+            figureTypes = AppDomain.CurrentDomain
+                                   .GetAssemblies()
+                                   .SelectMany(a => a.GetTypes())
+                                   .Where(t => figureType.IsAssignableFrom(t) && !t.IsAbstract)
+                                   .ToArray();
         }
     }
 }
