@@ -82,7 +82,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
                 if (isReadyLine)
                 {
-                    ReDrawFieldOnReadyLine(figure, approximateRow);
+                    ReDrawFieldOnReadyLine(approximateRow);
                     GameData.points += GameData.PointPerLine;
                     continue;
                 }
@@ -91,7 +91,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             }
         }
 
-        private void ReDrawFieldOnReadyLine(IFigure figure, int readyLine)
+        private void ReDrawFieldOnReadyLine(int readyLine)
         {
             //Removing ready line, insert and initializing a new empty row
             fieldCells.Remove(readyLine);

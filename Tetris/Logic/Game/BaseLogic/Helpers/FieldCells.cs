@@ -42,7 +42,11 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         {
             for (int row = from; row <= to; row++)
             {
-                Console.WriteLine(string.Join<FigureElement>("", fieldCells[row]));
+                Console.SetCursorPosition(0, row);
+                foreach (var item in fieldCells[row])
+                {
+                    Console.Write(item);
+                }
             }
         }
 
