@@ -7,9 +7,9 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
     internal class FieldCells
     {
-        private static int fieldRows;
-        private static int fieldColumns;
-        private static FigureElement BorderElement;
+        private static readonly int fieldRows;
+        private static readonly int fieldColumns;
+        private static readonly FigureElement BorderElement;
         private static List<FigureElement[]> fieldCells;
 
         static FieldCells()

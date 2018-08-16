@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
@@ -10,8 +11,8 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         private const string Title = "MAIN MENU";
 
         private static string key;
-        private static string[] items;
-        private static string[] backMessage;
+        private static readonly string[] items;
+        private static readonly string[] backMessage;
 
         private static InfoPanel infoPanel;
         private static FieldCells fieldCells;
@@ -97,26 +98,31 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         {
             ScoreManager.DisplayScores();
 
-            int currentResult = GameData.points;
-
-            int lowestBestScore = Convert.ToInt32(LogFileManager
-                .Read()
-                .Last()
-                .Split()
-                .First());
-
             Console.ForegroundColor = ConsoleColor.Red;
 
-            if (currentResult < lowestBestScore)
+            IEnumerable<string> scoreTable = LogFileManager.Read();
+
+            if (scoreTable.Count() == 0)
             {
-                Console.WriteLine("  Your current score: {0} points", currentResult);
+                Console.WriteLine("\n  Score table is empty!\n");
             }
             else
             {
-                Console.WriteLine("  Your current score - {0} pts", currentResult);
-                Console.WriteLine("  has already reached");
-                Console.WriteLine("  the top 10 results.\n");
-                Console.WriteLine("  Just finish the game!");
+                int currentResult = GameData.points;
+
+                int lowestBestScore = Convert.ToInt32(scoreTable
+                   .Last()
+                   .Split()
+                   .First());
+
+                Console.WriteLine("  Your current score: {0} pts.", currentResult);
+
+                if (currentResult >= lowestBestScore)
+                {
+                    Console.WriteLine("  You already reached");
+                    Console.WriteLine("  the top 10 results.\n");
+                    Console.WriteLine("  Just finish the game!");
+                }
             }
 
             Console.ForegroundColor = FieldData.MessageColor;

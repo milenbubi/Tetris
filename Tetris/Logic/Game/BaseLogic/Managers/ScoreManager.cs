@@ -8,7 +8,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
     {
         private static IEnumerable<string> scoreTable;
         private const int countOfBestScores = 10;
-        private static string defaultScore = "0";
+        private const string defaultScore = "0";
 
         static ScoreManager()
         {

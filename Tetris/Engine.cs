@@ -37,7 +37,9 @@ namespace Tetris
 
             Play();
 
-            HandleFurtherGameFlow();
+            gameController.Finish();
+
+            Run();
         }
 
         private void Play()
@@ -125,16 +127,6 @@ namespace Tetris
 
                 default: return false;
             }
-        }
-
-        private void HandleFurtherGameFlow()
-        {
-            if (status == Status.GameOver)
-            {
-                gameController.Finish();
-            }
-
-            Run();
         }
     }
 }

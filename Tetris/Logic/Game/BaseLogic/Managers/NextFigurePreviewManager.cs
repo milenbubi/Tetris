@@ -51,7 +51,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         private void CloneNextFigureAsPrevious(IFigure nextFigure)
         {
             Type type = nextFigure.GetType();
-            previousFigure = (IFigure)Activator.CreateInstance(type);
+            previousFigure = (IFigure)Activator.CreateInstance(type, true);
 
             previousFigure.PositionX = nextFigureInfoPanelPositionX;
             previousFigure.PositionY = nextFigureInfoPanelPositionY;

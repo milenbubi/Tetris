@@ -48,6 +48,8 @@ namespace Tetris.Logic.Game
 
         internal void Finish()
         {
+            ScoreManager.UpdateScores();
+
             Console.Clear();
             Console.ForegroundColor = FieldData.MessageColor;
 
