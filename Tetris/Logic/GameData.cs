@@ -11,7 +11,7 @@ namespace Tetris.Logic
         internal const int PointPerLine = 28;
 
         internal const int StartSpeed = 355;
-        internal const string LogFile = "GameLog.txt";
+        internal const string LogFile = "GameLog.ini";
 
         internal static byte level;
         internal static int points;

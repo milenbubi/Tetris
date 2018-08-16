@@ -22,35 +22,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal FigureElement[] this[int index] => fieldCells[index];
 
-        internal void Remove(int readyLine)
-        {
-            fieldCells.RemoveAt(readyLine);
-        }
-
-        internal void InsertNewRow()
-        {
-            fieldCells.Insert(1, new FigureElement[fieldColumns]);
-            Initialize(1);
-        }
-
-        internal void DrawAllRows()
-        {
-            DrawRowsInRange(0, fieldRows - 1);
-        }
-
-        internal void DrawRowsInRange(int from, int to)
-        {
-            for (int row = from; row <= to; row++)
-            {
-                Console.SetCursorPosition(0, row);
-                foreach (var item in fieldCells[row])
-                {
-                    Console.Write(item);
-                }
-            }
-        }
-
-        internal static void ResetCells()
+        internal void ResetCells()
         {
             fieldCells = new List<FigureElement[]>(fieldRows);
 
@@ -70,7 +42,23 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             fieldCells.Add(horizontalBorder);
         }
 
-        private static void Initialize(int row)
+        internal void DrawAllRows()
+        {
+            DrawRowsInRange(0, fieldRows - 1);
+        }
+
+        internal void ReDrawFieldOnReadyLine(int readyLine)
+        {
+            //Removing ready line, insert and initializing a new empty row
+            fieldCells.RemoveAt(readyLine);
+            fieldCells.Insert(1, new FigureElement[fieldColumns]);
+            Initialize(1);
+
+            //Redrawing game field
+            DrawRowsInRange(2, readyLine);
+        }
+
+        private void Initialize(int row)
         {
             for (int col = 1; col < fieldColumns - 1; col++)
             {
@@ -80,6 +68,23 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             //Vertical borders
             fieldCells[row][0] = BorderElement;
             fieldCells[row][fieldColumns - 1] = BorderElement;
+        }
+
+        private void DrawRowsInRange(int from, int to)
+        {
+            for (int row = from; row <= to; row++)
+            {
+                Console.SetCursorPosition(0, row);
+                foreach (var item in fieldCells[row])
+                {
+                    Console.Write(item);
+                }
+            }
+        }
+
+        internal int Count()
+        {
+            return fieldCells.Count;
         }
     }
 }

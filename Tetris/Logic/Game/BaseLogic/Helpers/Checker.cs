@@ -64,7 +64,8 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 isReadyLine = true;
 
                 //Checks if approximate row is out of range
-                if (approximateRow > (FieldData.WindowHeight - 3) || approximateRow <= 1)
+            //    if (approximateRow > (FieldData.WindowHeight - 3) || approximateRow <= 1)
+                if (approximateRow > (fieldCells.Count() - 2) || approximateRow <= 1)
                 {
                     approximateRow -= 1;
                     continue;
@@ -82,23 +83,13 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
                 if (isReadyLine)
                 {
-                    ReDrawFieldOnReadyLine(approximateRow);
+                    fieldCells.ReDrawFieldOnReadyLine(approximateRow);
                     GameData.points += GameData.PointPerLine;
                     continue;
                 }
 
                 approximateRow -= 1;
             }
-        }
-
-        private void ReDrawFieldOnReadyLine(int readyLine)
-        {
-            //Removing ready line, insert and initializing a new empty row
-            fieldCells.Remove(readyLine);
-            fieldCells.InsertNewRow();
-
-            //Redrawing game field
-            fieldCells.DrawRowsInRange(2, readyLine);
         }
     }
 }

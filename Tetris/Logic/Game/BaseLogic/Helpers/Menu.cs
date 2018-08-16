@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
@@ -42,7 +41,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             backMessage = new string[]
             {
-                new string('\n', 3),
+                Environment.NewLine,
                 "Press any key",
                 "to go Back."
             };
@@ -100,29 +99,27 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             Console.ForegroundColor = ConsoleColor.Red;
 
-            IEnumerable<string> scoreTable = LogFileManager.Read();
+            int currentScore = GameData.points;
+            Console.WriteLine("  Current score: {0} pts.\n", currentScore);
 
-            if (scoreTable.Count() == 0)
+            try
             {
-                Console.WriteLine("\n  Score table is empty!\n");
-            }
-            else
-            {
-                int currentResult = GameData.points;
+                int lowestBestScore = Convert.ToInt32(LogFileManager
+                    .Read()
+                    .Last()
+                    .Split()
+                    .First());
 
-                int lowestBestScore = Convert.ToInt32(scoreTable
-                   .Last()
-                   .Split()
-                   .First());
-
-                Console.WriteLine("  Your current score: {0} pts.", currentResult);
-
-                if (currentResult >= lowestBestScore)
+                if (currentScore >= lowestBestScore)
                 {
                     Console.WriteLine("  You already reached");
                     Console.WriteLine("  the top 10 results.\n");
                     Console.WriteLine("  Just finish the game!");
                 }
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("  Score table is empty!\n");
             }
 
             Console.ForegroundColor = FieldData.MessageColor;
@@ -160,6 +157,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 " If you have related questions,",
                 "comments or advices, feel free",
                 "to contact me - fcc@abv.bg",
+                Environment.NewLine,
                 string.Join(Environment.NewLine, backMessage)
             };
 
