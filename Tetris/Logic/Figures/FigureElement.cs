@@ -8,13 +8,13 @@ namespace Tetris.Logic.Figures
 
         internal FigureElement()
         {
-            this.Symbol = figureSymbol;
+            Symbol = figureSymbol;
         }
 
         internal FigureElement(ConsoleColor color, char symbol)
         {
-            this.Color = color;
-            this.Symbol = symbol;
+            Color = color;
+            Symbol = symbol;
         }
 
         internal ConsoleColor Color { get; set; }
@@ -22,8 +22,8 @@ namespace Tetris.Logic.Figures
 
         public override string ToString()
         {
-            Console.ForegroundColor = this.Color;
-            return this.Symbol.ToString();
+            Console.ForegroundColor = Color;
+            return Symbol.ToString();
         }
     }
 }

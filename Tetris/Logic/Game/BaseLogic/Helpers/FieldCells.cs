@@ -22,6 +22,10 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal FigureElement[] this[int index] => fieldCells[index];
 
+        internal int Count => fieldCells.Count;
+
+        internal void DrawAllRows() => DrawRowsInRange(0, fieldRows - 1);
+
         internal void ResetCells()
         {
             fieldCells = new List<FigureElement[]>(fieldRows);
@@ -40,11 +44,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             fieldCells.Insert(0, horizontalBorder);
             fieldCells.Add(horizontalBorder);
-        }
-
-        internal void DrawAllRows()
-        {
-            DrawRowsInRange(0, fieldRows - 1);
         }
 
         internal void ReDrawFieldOnReadyLine(int readyLine)
@@ -80,11 +79,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                     Console.Write(item);
                 }
             }
-        }
-
-        internal int Count()
-        {
-            return fieldCells.Count;
         }
     }
 }

@@ -64,8 +64,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 isReadyLine = true;
 
                 //Checks if approximate row is out of range
-            //    if (approximateRow > (FieldData.WindowHeight - 3) || approximateRow <= 1)
-                if (approximateRow > (fieldCells.Count() - 2) || approximateRow <= 1)
+                if (approximateRow > (fieldCells.Count - 2) || approximateRow <= 1)
                 {
                     approximateRow -= 1;
                     continue;

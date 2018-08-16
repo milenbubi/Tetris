@@ -18,7 +18,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         internal NextFigurePreviewManager()
         {
             nextFigureInfoPanelPositionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
-            nextFigureInfoPanelPositionY = 5;
+            nextFigureInfoPanelPositionY = 6;
             graphic = new GameGraphic();
         }
 

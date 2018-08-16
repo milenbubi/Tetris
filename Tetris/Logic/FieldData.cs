@@ -22,7 +22,6 @@ namespace Tetris.Logic
         static FieldData()
         {
             GameFieldHeight = WindowHeight - 1;
-
         }
     }
 }
