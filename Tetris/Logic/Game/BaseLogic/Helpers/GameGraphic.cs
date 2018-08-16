@@ -20,18 +20,17 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
             figure.Element.Color = Console.BackgroundColor;
             Draw(figure);
-
             figure.Element.Color = tempColorHolder;
         }
 
         internal void Draw(IFigure figure)
         {
-            this.elemCoords = figure.ElementsCoordinates();
+            elemCoords = figure.ElementsCoordinates();
 
             for (int i = 0; i < elemCoords.Length; i += 2)
             {
                 Console.SetCursorPosition(figure.PositionX + elemCoords[i]
-                                         , figure.PositionY + elemCoords[i + 1]);
+                                        , figure.PositionY + elemCoords[i + 1]);
 
                 Console.WriteLine(figure.Element);
             }

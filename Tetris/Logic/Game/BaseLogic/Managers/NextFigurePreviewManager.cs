@@ -4,62 +4,46 @@ using Tetris.Logic.Game.BaseLogic.Helpers;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
-    internal class NextFigurePreviewManager
+    class NextFigurePreviewManager
     {
-        private int nextFigureOriginalPositionX;
-        private int nextFigureOriginalPositionY;
+        private readonly int previewPositionX;
+        private readonly int previewPositionY;
 
-        private readonly int nextFigureInfoPanelPositionX;
-        private readonly int nextFigureInfoPanelPositionY;
-
-        private IFigure previousFigure;
+        private IFigure preview;
         private GameGraphic graphic;
 
         internal NextFigurePreviewManager()
         {
-            nextFigureInfoPanelPositionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
-            nextFigureInfoPanelPositionY = 6;
+            previewPositionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
+            previewPositionY = 6;
             graphic = new GameGraphic();
         }
 
         internal void Update(IFigure nextFigure)
         {
-            if (previousFigure != null)
-            {
-                previousFigure.Element.Color = Console.BackgroundColor;
-                graphic.Draw(previousFigure);
-            }
-
-            SetPreviewCoordinatesToNextFigure(nextFigure);
-            graphic.Draw(nextFigure);
+            ClearPreview();
+            CreatePreview(nextFigure);
+            graphic.Draw(preview);
 
             Console.ForegroundColor = ConsoleColor.White;
-
-            CloneNextFigureAsPrevious(nextFigure);
-            GivingBackOriginalCoordinatesToNextFigure(nextFigure);
         }
 
-        private void SetPreviewCoordinatesToNextFigure(IFigure nextFigure)
+        private void ClearPreview()
         {
-            nextFigureOriginalPositionX = nextFigure.PositionX;
-            nextFigureOriginalPositionY = nextFigure.PositionY;
-
-            nextFigure.PositionX = nextFigureInfoPanelPositionX;
-            nextFigure.PositionY = nextFigureInfoPanelPositionY;
+            if (preview != null)
+            {
+                preview.Element.Color = Console.BackgroundColor;
+                graphic.Draw(preview);
+            }
         }
 
-        private void CloneNextFigureAsPrevious(IFigure nextFigure)
+        private void CreatePreview(IFigure nextFigure)
         {
-            previousFigure = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
+            preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
 
-            previousFigure.PositionX = nextFigureInfoPanelPositionX;
-            previousFigure.PositionY = nextFigureInfoPanelPositionY;
-        }
-
-        private void GivingBackOriginalCoordinatesToNextFigure(IFigure nextFigure)
-        {
-            nextFigure.PositionX = nextFigureOriginalPositionX;
-            nextFigure.PositionY = nextFigureOriginalPositionY;
+            preview.PositionX = previewPositionX;
+            preview.PositionY = previewPositionY;
+            preview.Element.Color = nextFigure.Element.Color;
         }
     }
 }
