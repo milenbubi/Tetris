@@ -9,18 +9,17 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         private int nextFigureOriginalPositionX;
         private int nextFigureOriginalPositionY;
 
-        private int nextFigureInfoPanelPositionX;
-        private int nextFigureInfoPanelPositionY;
+        private readonly int nextFigureInfoPanelPositionX;
+        private readonly int nextFigureInfoPanelPositionY;
 
         private IFigure previousFigure;
         private GameGraphic graphic;
 
         internal NextFigurePreviewManager()
         {
-            int positionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
-            this.nextFigureInfoPanelPositionX = positionX;
-            this.nextFigureInfoPanelPositionY = 5;
-            this.graphic = new GameGraphic();
+            nextFigureInfoPanelPositionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
+            nextFigureInfoPanelPositionY = 5;
+            graphic = new GameGraphic();
         }
 
         internal void Update(IFigure nextFigure)
@@ -33,6 +32,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
             SetPreviewCoordinatesToNextFigure(nextFigure);
             graphic.Draw(nextFigure);
+
             Console.ForegroundColor = ConsoleColor.White;
 
             CloneNextFigureAsPrevious(nextFigure);
@@ -50,8 +50,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         private void CloneNextFigureAsPrevious(IFigure nextFigure)
         {
-            Type type = nextFigure.GetType();
-            previousFigure = (IFigure)Activator.CreateInstance(type, true);
+            previousFigure = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
 
             previousFigure.PositionX = nextFigureInfoPanelPositionX;
             previousFigure.PositionY = nextFigureInfoPanelPositionY;

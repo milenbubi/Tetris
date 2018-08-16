@@ -10,7 +10,7 @@ namespace Tetris.Logic.Figures
         private const int positionY = 2;
         private const int positionX = FieldData.GameFieldWidth / 2;
 
-        public Figure(int states)
+        internal Figure(int states)
         {
             PositionX = positionX;
             PositionY = positionY;

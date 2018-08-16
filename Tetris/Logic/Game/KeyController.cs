@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Tetris.Logic.Figures;
 using Tetris.Logic.Game.Keys;
@@ -7,8 +8,8 @@ namespace Tetris.Logic.Game
 {
     internal class KeyController
     {
-        private IKey[] keyClasses;
-        private Type[] keyClassesTypes;
+        private IEnumerable<IKey> keyClasses;
+        private IEnumerable<Type> keyClassesTypes;
 
         internal KeyController()
         {
@@ -18,13 +19,13 @@ namespace Tetris.Logic.Game
 
         internal void Action(IFigure figure, string keyClassName)
         {
-            foreach (IKey keyClass in keyClasses)
+            IKey keyClass = keyClasses
+                .Where(c => c.GetType().Name == keyClassName)
+                .FirstOrDefault();
+
+            if (keyClass != null)
             {
-                if (keyClass.GetType().Name == keyClassName)
-                {
-                    keyClass.Action(figure);
-                    return;
-                }
+                keyClass.Action(figure);
             }
         }
 
@@ -35,20 +36,13 @@ namespace Tetris.Logic.Game
             keyClassesTypes = AppDomain.CurrentDomain
                                        .GetAssemblies()
                                        .SelectMany(a => a.GetTypes())
-                                       .Where(t => keyType.IsAssignableFrom(t) && !t.IsAbstract)
-                                       .ToArray();
+                                       .Where(t => keyType.IsAssignableFrom(t) && !t.IsAbstract);
         }
 
         private void RetrieveAllClassesImplementingIKey()
         {
-            int countOfKeyClasses = this.keyClassesTypes.Length;
-            keyClasses = new IKey[countOfKeyClasses];
-
-            for (int i = 0; i < countOfKeyClasses; i++)
-            {
-                IKey keyClass = (IKey)Activator.CreateInstance(keyClassesTypes[i]);
-                keyClasses[i] = keyClass;
-            }
+            keyClasses = keyClassesTypes
+                .Select(t => (IKey)Activator.CreateInstance(t));
         }
     }
 }
