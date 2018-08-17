@@ -8,16 +8,18 @@ namespace Tetris.Logic.Game
     {
         internal GameController()
         {
-            Check = new Checker();
             Graphic = new GameGraphic();
             FieldCells = new FieldCells();
+            Check = new Checker();
         }
-
-        internal Checker Check { get; }
 
         internal GameGraphic Graphic { get; }
 
         internal FieldCells FieldCells { get; }
+
+        internal Checker Check { get; }
+
+        internal void UpdateInfo() => InfoPanel.Update();
 
         internal void InitializeGame()
         {
@@ -35,11 +37,6 @@ namespace Tetris.Logic.Game
             }
 
             GameInitializeManager.ShowWelcomeMessage(false);
-        }
-
-        internal void UpdateInfo()
-        {
-            InfoPanel.Update();
         }
 
         internal void Finish()
@@ -71,7 +68,7 @@ namespace Tetris.Logic.Game
             }
         }
 
-        private static string ReadKey()
+        private string ReadKey()
         {
             string key = Console.ReadKey(true).Key.ToString().ToUpper();
             return key;

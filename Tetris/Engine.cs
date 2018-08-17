@@ -17,7 +17,7 @@ namespace Tetris
 
         internal Engine(GameController gameController, KeyController keyController)
         {
-           speed = StartSpeed;
+            speed = StartSpeed;
 
             this.keyController = keyController;
             this.gameController = gameController;

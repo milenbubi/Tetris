@@ -11,11 +11,11 @@ namespace Tetris.Logic.Game.Keys
         {
             Check = new Checker();
             Graphic = new GameGraphic();
-
             fieldCells = new FieldCells();
         }
 
         protected Checker Check { get; }
+
         protected GameGraphic Graphic { get; }
 
         public abstract void Action(IFigure figure);

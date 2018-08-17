@@ -1,4 +1,5 @@
 ﻿using Tetris.Logic.Figures;
+using Tetris.Logic.Game.BaseLogic.Helpers;
 
 namespace Tetris.Logic.Game.Keys
 {
@@ -10,6 +11,7 @@ namespace Tetris.Logic.Game.Keys
             {
                 return;
             }
+
             Graphic.Move(figure, 1, 0);
         }
     }

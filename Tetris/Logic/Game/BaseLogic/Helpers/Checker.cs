@@ -9,7 +9,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal Checker()
         {
-            this.fieldCells = new FieldCells();
+            fieldCells = new FieldCells();
         }
 
         internal bool IsFinished(IFigure figure)
