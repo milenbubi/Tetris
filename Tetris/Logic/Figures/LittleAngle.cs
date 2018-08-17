@@ -1,8 +1,8 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    internal class RightAngle : Figure, IFigure
+    internal class LittleAngle : Figure, IFigure
     {
-        internal RightAngle() : base(4)
+        internal LittleAngle() : base(4)
         {
             elemCoords[0] = new int[] { 0, 0, 0, -1, -1, 0 };
             elemCoords[1] = new int[] { 0, 0, -1, 0, 0, 1 };

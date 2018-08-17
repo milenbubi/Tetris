@@ -17,11 +17,11 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
 
         internal void Clear(IFigure figure)
         {
-            tempColorHolder = figure.Element.Color;
+            tempColorHolder = figure.Color;
 
-            figure.Element.Color = Console.BackgroundColor;
+            figure.Color = Console.BackgroundColor;
             Draw(figure);
-            figure.Element.Color = tempColorHolder;
+            figure.Color = tempColorHolder;
         }
 
         internal void Draw(IFigure figure)

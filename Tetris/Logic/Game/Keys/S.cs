@@ -13,7 +13,7 @@ namespace Tetris.Logic.Game.Keys
                 return;
             }
 
-            figure.Element.Color = Console.BackgroundColor;
+            figure.Color = Console.BackgroundColor;
             Graphic.Clear(figure);
 
             GameData.status = Status.Skip;

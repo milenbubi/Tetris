@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Tetris.Logic.Figures
 {
@@ -8,8 +9,9 @@ namespace Tetris.Logic.Figures
         int PositionY { get; set; }
         Queue<int> State { get; set; }
         FigureElement Element { get; set; }
+        ConsoleColor Color { get; set; }
 
-        void Rotate();
         int[] ElementsCoordinates { get; }
+        void Rotate();
     }
 }
