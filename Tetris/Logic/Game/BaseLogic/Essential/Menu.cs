@@ -2,7 +2,7 @@
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
-namespace Tetris.Logic.Game.BaseLogic.Helpers
+namespace Tetris.Logic.Game.BaseLogic.Essential
 {
     internal static class Menu
     {

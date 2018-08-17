@@ -50,7 +50,7 @@
     <Compile Include="Logic\Figures\LittleT.cs" />
     <Compile Include="Logic\Figures\RightAngle.cs" />
     <Compile Include="Logic\GameData.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Helpers\Checker.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Essential\Checker.cs" />
     <Compile Include="Logic\FieldData.cs" />
     <Compile Include="Logic\Figures\Cube.cs" />
     <Compile Include="Logic\Figures\Figure.cs" />
@@ -58,10 +58,10 @@
     <Compile Include="Logic\Figures\SLine.cs" />
     <Compile Include="Logic\Figures\ZLine.cs" />
     <Compile Include="Logic\Figures\FigureElement.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Helpers\Menu.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Essential\Menu.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\LogFileManager.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Helpers\FieldCells.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Helpers\GameGraphic.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Essential\FieldCells.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Essential\GameGraphic.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\FinishManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\NextFigurePreviewManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\ScoreManager.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Logic\Game\Keys\Spacebar.cs" />
     <Compile Include="Logic\Game\KeyController.cs" />
     <Compile Include="Logic\Game\GameController.cs" />
-    <Compile Include="Logic\Game\BaseLogic\Helpers\InfoPanel.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Essential\InfoPanel.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\GameInitializeManager.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FigureFactory.cs" />

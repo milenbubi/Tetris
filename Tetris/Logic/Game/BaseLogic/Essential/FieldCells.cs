@@ -3,7 +3,7 @@ using Tetris.Logic.Figures;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tetris.Logic.Game.BaseLogic.Helpers
+namespace Tetris.Logic.Game.BaseLogic.Essential
 {
     internal class FieldCells
     {

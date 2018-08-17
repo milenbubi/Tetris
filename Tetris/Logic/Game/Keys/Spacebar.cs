@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tetris.Logic.Figures;
-using Tetris.Logic.Game.BaseLogic.Helpers;
 
 namespace Tetris.Logic.Game.Keys
 {

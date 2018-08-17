@@ -1,5 +1,5 @@
 ﻿using System;
-using Tetris.Logic.Game.BaseLogic.Helpers;
+using Tetris.Logic.Game.BaseLogic.Essential;
 using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game
