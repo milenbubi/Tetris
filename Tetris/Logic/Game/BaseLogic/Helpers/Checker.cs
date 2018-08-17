@@ -16,7 +16,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         {
             int x;
             int y;
-            elementsCoordinates = figure.ElementsCoordinates();
+            elementsCoordinates = figure.ElementsCoordinates;
 
             if (IsReachedBorder(figure, 0, 1))
             {
@@ -38,7 +38,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         {
             int x = figure.PositionX + xValue;
             int y = figure.PositionY + yValue;
-            elementsCoordinates = figure.ElementsCoordinates();
+            elementsCoordinates = figure.ElementsCoordinates;
 
             for (int i = 0; i < elementsCoordinates.Length; i += 2)
             {

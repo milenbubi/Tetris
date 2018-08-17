@@ -7,8 +7,8 @@ namespace Tetris.Logic
         internal const byte LevelsCount = 8;
         internal const byte FiguresPerLevel = 6;
 
-        internal const int PointsPerLevel = 7;
         internal const int PointPerLine = 28;
+        internal const int PointsPerLevel = 7;
 
         internal const int StartSpeed = 355;
         internal const string LogFile = "GameLog.ini";
@@ -20,7 +20,7 @@ namespace Tetris.Logic
         internal static Status status;
         internal static IFigure nextFigure;
 
-        internal static void ResetData()
+       internal static void ResetData()
         {
             level = 1;
             points = 0;

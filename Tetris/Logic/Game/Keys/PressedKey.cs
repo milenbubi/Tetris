@@ -5,7 +5,6 @@ namespace Tetris.Logic.Game.Keys
 {
     internal abstract class PressedKey : IKey
     {
-        protected InfoPanel infoPanel;
         protected FieldCells fieldCells;
 
         protected PressedKey()
@@ -13,7 +12,6 @@ namespace Tetris.Logic.Game.Keys
             Check = new Checker();
             Graphic = new GameGraphic();
 
-            infoPanel = new InfoPanel();
             fieldCells = new FieldCells();
         }
 

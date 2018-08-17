@@ -10,6 +10,6 @@ namespace Tetris.Logic.Figures
         FigureElement Element { get; set; }
 
         void Rotate();
-        int[] ElementsCoordinates();
+        int[] ElementsCoordinates { get; }
     }
 }

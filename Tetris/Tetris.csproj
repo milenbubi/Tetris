@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\Figures\BigRightAngle.cs" />
+    <Compile Include="Logic\Figures\Cross.cs" />
+    <Compile Include="Logic\Figures\LittlePortal.cs" />
+    <Compile Include="Logic\Figures\LittleT.cs" />
     <Compile Include="Logic\Figures\RightAngle.cs" />
     <Compile Include="Logic\GameData.cs" />
     <Compile Include="Logic\Game\BaseLogic\Helpers\Checker.cs" />

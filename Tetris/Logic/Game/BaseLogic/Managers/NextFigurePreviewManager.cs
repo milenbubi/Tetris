@@ -4,22 +4,22 @@ using Tetris.Logic.Game.BaseLogic.Helpers;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
-    class NextFigurePreviewManager
+    internal static class NextFigurePreviewManager
     {
-        private readonly int previewPositionX;
-        private readonly int previewPositionY;
+        private static readonly int previewPositionX;
+        private static readonly int previewPositionY;
 
-        private IFigure preview;
-        private GameGraphic graphic;
+        private static IFigure preview;
+        private static GameGraphic graphic;
 
-        internal NextFigurePreviewManager()
+        static NextFigurePreviewManager()
         {
             previewPositionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
             previewPositionY = 6;
             graphic = new GameGraphic();
         }
 
-        internal void Update(IFigure nextFigure)
+        internal static void Update(IFigure nextFigure)
         {
             ClearPreview();
             CreatePreview(nextFigure);
@@ -28,7 +28,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        private void ClearPreview()
+        private static void ClearPreview()
         {
             if (preview != null)
             {
@@ -37,7 +37,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             }
         }
 
-        private void CreatePreview(IFigure nextFigure)
+        private static void CreatePreview(IFigure nextFigure)
         {
             preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
 

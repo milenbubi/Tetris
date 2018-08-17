@@ -3,28 +3,25 @@ using Tetris.Logic.Game.BaseLogic.Managers;
 
 namespace Tetris.Logic.Game.BaseLogic.Helpers
 {
-    internal class InfoPanel
+    internal static class InfoPanel
     {
-        private int horPosition;
-        private int vertPosition;
+        private static int horPosition;
+        private static int vertPosition;
 
-        internal InfoPanel()
+        static InfoPanel()
         {
-            this.horPosition = FieldData.GameFieldWidth + 4;
-            this.vertPosition = FieldData.WindowHeight / 2;
-            this.Preview = new NextFigurePreviewManager();
+            horPosition = FieldData.GameFieldWidth + 4;
+            vertPosition = FieldData.WindowHeight / 2;
         }
 
-        private NextFigurePreviewManager Preview { get; }
-
-        internal void Update()
+        internal static void Update()
         {
             Console.ForegroundColor = FieldData.InfoPanelColor;
 
             //Next figure preview
             CursorPosition(-10);
             Console.WriteLine("Next Figure:");
-            Preview.Update(GameData.nextFigure);
+            NextFigurePreviewManager.Update(GameData.nextFigure);
 
             //Current level
             CursorPosition(3);
@@ -42,7 +39,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
             Console.WriteLine("{0:d5}", GameData.points);
         }
 
-        private void CursorPosition(int deviation)
+        private static void CursorPosition(int deviation)
         {
             Console.SetCursorPosition(horPosition, vertPosition + deviation);
         }

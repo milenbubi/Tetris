@@ -24,6 +24,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             Console.CursorVisible = false;
             Console.BackgroundColor = FieldData.BackgroundColor;
 
+            Console.Clear();
             Console.Title = "TETRIS by ffilip";
 
             Console.BufferWidth = Console.WindowWidth = FieldData.WindowWidth;

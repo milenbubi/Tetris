@@ -6,6 +6,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
     internal class GameGraphic
     {
         private int[] elemCoords;
+        private ConsoleColor tempColorHolder;
 
         internal void Move(IFigure figure, sbyte xValue, sbyte yValue)
         {
@@ -16,7 +17,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal void Clear(IFigure figure)
         {
-            ConsoleColor tempColorHolder = figure.Element.Color;
+            tempColorHolder = figure.Element.Color;
 
             figure.Element.Color = Console.BackgroundColor;
             Draw(figure);
@@ -25,14 +26,14 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
 
         internal void Draw(IFigure figure)
         {
-            elemCoords = figure.ElementsCoordinates();
+            elemCoords = figure.ElementsCoordinates;
 
             for (int i = 0; i < elemCoords.Length; i += 2)
             {
-                Console.SetCursorPosition(figure.PositionX + elemCoords[i]
-                                        , figure.PositionY + elemCoords[i + 1]);
+                Console.SetCursorPosition(figure.PositionX + elemCoords[i],
+                                          figure.PositionY + elemCoords[i + 1]);
 
-                Console.WriteLine(figure.Element);
+                Console.Write(figure.Element);
             }
         }
 

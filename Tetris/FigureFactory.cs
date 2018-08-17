@@ -11,26 +11,20 @@ namespace Tetris
 
         static FigureFactory()
         {
-            AllTypesImplementingIFigure();
+            figureTypes = AppDomain.CurrentDomain
+                                   .GetAssemblies()
+                                   .SelectMany(a => a.GetTypes())
+                                   .Where(t => typeof(IFigure).IsAssignableFrom(t) && !t.IsAbstract);
         }
 
         internal static IFigure GetRandomFigure()
         {
-            var seed = (int)DateTime.Now.Ticks;
-            Random rand = new Random(seed);
+            int seed = (int)DateTime.Now.Ticks;
+            int randomPosition = new Random(seed).Next(figureTypes.Count());
 
-            Type randomFigure = figureTypes.ElementAt(rand.Next(figureTypes.Count()));
+            Type randomFigure = figureTypes.ElementAt(randomPosition);
 
             return (IFigure)Activator.CreateInstance(randomFigure, true);
-        }
-
-        private static void AllTypesImplementingIFigure()
-        {
-            figureTypes = AppDomain.CurrentDomain
-                                   .GetAssemblies()
-                                   .SelectMany(a => a.GetTypes())
-                                   .Where(t => typeof(IFigure).IsAssignableFrom(t) && !t.IsAbstract)
-                                   .ToArray();
         }
     }
 }

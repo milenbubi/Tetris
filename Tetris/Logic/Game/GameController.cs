@@ -8,25 +8,21 @@ namespace Tetris.Logic.Game
     {
         internal GameController()
         {
-            this.Check = new Checker();
-            this.Graphic = new GameGraphic();
-            this.InfoPanel = new InfoPanel();
-            this.FieldCells = new FieldCells();
+            Check = new Checker();
+            Graphic = new GameGraphic();
+            FieldCells = new FieldCells();
         }
 
         internal Checker Check { get; }
 
         internal GameGraphic Graphic { get; }
 
-        internal InfoPanel InfoPanel { get; }
-
         internal FieldCells FieldCells { get; }
 
         internal void InitializeGame()
         {
-            Console.Clear();
-            GameData.ResetData();
             GameInitializeManager.SetUpWindow();
+            GameData.ResetData();
             UpdateInfo();
 
             FieldCells.ResetCells();

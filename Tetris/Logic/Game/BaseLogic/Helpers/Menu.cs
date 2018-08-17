@@ -13,7 +13,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         private static readonly string[] items;
         private static readonly string[] backMessage;
 
-        private static InfoPanel infoPanel;
         private static FieldCells fieldCells;
 
         static Menu()
@@ -46,7 +45,6 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
                 "to go Back."
             };
 
-            infoPanel = new InfoPanel();
             fieldCells = new FieldCells();
         }
 
@@ -174,7 +172,7 @@ namespace Tetris.Logic.Game.BaseLogic.Helpers
         private static void PrepareMenuWindow()
         {
             Console.Clear();
-            infoPanel.Update();
+            InfoPanel.Update();
             Console.ForegroundColor = FieldData.MessageColor;
 
             // !!!  After printing Info Panel, cursor is fixed on the last line and I am forced to move it up~!
