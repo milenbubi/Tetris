@@ -13,7 +13,7 @@ namespace Tetris.Logic.Figures
             PositionX = FieldData.GameFieldWidth / 2;
             PositionY = 2;
 
-            Element = new FigureElement() { Color = GetRandomColor() };
+            Element = new FigureElement(RandomColor());
 
             elemCoords = new int[states][];
 
@@ -37,7 +37,7 @@ namespace Tetris.Logic.Figures
             State.Enqueue(State.Dequeue());
         }
 
-        private ConsoleColor GetRandomColor()
+        private ConsoleColor RandomColor()
         {
             int seed = (int)DateTime.Now.Ticks;
             Random rand = new Random(seed);

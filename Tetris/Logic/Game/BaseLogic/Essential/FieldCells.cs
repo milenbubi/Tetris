@@ -61,7 +61,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         {
             for (int col = 1; col < fieldColumns - 1; col++)
             {
-                fieldCells[row][col] = new FigureElement(ConsoleColor.White, ' ');
+                fieldCells[row][col] = new FigureElement(FieldData.BackgroundColor, ' ');
             }
 
             //Vertical borders

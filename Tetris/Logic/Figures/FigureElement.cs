@@ -6,9 +6,8 @@ namespace Tetris.Logic.Figures
     {
         private const char figureSymbol = (char)3;
 
-        internal FigureElement()
+        internal FigureElement(ConsoleColor color) : this(color, figureSymbol)
         {
-            Symbol = figureSymbol;
         }
 
         internal FigureElement(ConsoleColor color, char symbol)
