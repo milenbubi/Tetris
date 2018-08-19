@@ -17,12 +17,12 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
 
         static Menu()
         {
-            int padding = (FieldData.GameFieldWidth - Title.Length) / 2;
+            int padding = (FieldData.GameFieldWidth + Title.Length) / 2;
 
             items = new string[]
             {
                 Environment.NewLine,
-                Title.PadLeft(padding + Title.Length),
+                Title.PadLeft(padding),
                 Environment.NewLine,
                 "'C' - Controls",
                 "'B' - Best Scores\n",
