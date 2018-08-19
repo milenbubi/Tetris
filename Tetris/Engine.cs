@@ -81,7 +81,6 @@ namespace Tetris
         private void SetUpFigure()
         {
             figure = nextFigure;
-            Thread.Sleep(3);
             nextFigure = FigureFactory.GetRandomFigure();
         }
 

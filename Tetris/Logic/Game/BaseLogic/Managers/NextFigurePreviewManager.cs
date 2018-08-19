@@ -6,26 +6,19 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class NextFigurePreviewManager
     {
-        private static readonly int previewPositionX;
-        private static readonly int previewPositionY;
-
         private static IFigure preview;
         private static GameGraphic graphic;
 
         static NextFigurePreviewManager()
         {
-            previewPositionX = FieldData.GameFieldWidth + (FieldData.InfoPanelWidth / 2);
-            previewPositionY = 6;
             graphic = new GameGraphic();
         }
 
-        internal static void Update(IFigure nextFigure)
+        internal static void Update(IFigure nextFigure, int[] coordinates)
         {
             ClearPreview();
-            CreatePreview(nextFigure);
+            CreatePreview(nextFigure, coordinates);
             graphic.Draw(preview);
-
-            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private static void ClearPreview()
@@ -37,12 +30,12 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             }
         }
 
-        private static void CreatePreview(IFigure nextFigure)
+        private static void CreatePreview(IFigure nextFigure, int[] coordinates)
         {
             preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
 
-            preview.PositionX = previewPositionX;
-            preview.PositionY = previewPositionY;
+            preview.PositionX = coordinates[0];
+            preview.PositionY = coordinates[1];
             preview.Color = nextFigure.Color;
         }
     }

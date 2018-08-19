@@ -84,11 +84,11 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                 " S - Next figure",
                 string.Empty,
                 " M - Menu",
-                string.Join(Environment.NewLine, backMessage)
+                Environment.NewLine
             };
 
             PrepareMenuWindow();
-            Print(controls);
+            Print(controls.Concat(backMessage).ToArray());
         }
 
         private static void BestScores()
@@ -155,12 +155,11 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                 " If you have related questions,",
                 "comments or advices, feel free",
                 "to contact me - fcc@abv.bg",
-                Environment.NewLine,
-                string.Join(Environment.NewLine, backMessage)
+                Environment.NewLine
             };
 
             Console.Clear();
-            Print(aboutMe);
+            Print(aboutMe.Concat(backMessage).ToArray());
         }
 
         private static void ShowMenu()

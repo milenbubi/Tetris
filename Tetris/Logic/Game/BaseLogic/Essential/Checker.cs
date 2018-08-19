@@ -1,4 +1,5 @@
 ﻿using Tetris.Logic.Figures;
+using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Essential
 {
@@ -50,6 +51,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -57,12 +59,9 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         {
             //That row says the maximum size of figure must be 3(Three) cells, no more. I decided so!
             int approximateRow = figure.PositionY + 1;
-            bool isReadyLine;
 
             while (approximateRow >= (figure.PositionY - 1))
             {
-                isReadyLine = true;
-
                 //Checks if approximate row is out of range
                 if (approximateRow > (fieldCells.Count - 2) || approximateRow <= 1)
                 {
@@ -70,17 +69,8 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                     continue;
                 }
 
-                //Checks if approximate row is not filled
-                for (int col = 1; col < fieldCells[approximateRow].Length - 1; col++)
-                {
-                    if (fieldCells[approximateRow][col].Symbol == ' ')
-                    {
-                        isReadyLine = false;
-                        break;
-                    }
-                }
-
-                if (isReadyLine)
+                //Checks if approximate row is ready
+                if (fieldCells[approximateRow].All(e => e.Symbol != ' '))
                 {
                     fieldCells.ReDrawFieldOnReadyLine(approximateRow);
                     GameData.points += GameData.PointPerLine;

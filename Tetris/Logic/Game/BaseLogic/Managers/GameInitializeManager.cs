@@ -45,7 +45,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         private static void PrintMessage(string[] welcome)
         {
-            int messageRow = FieldData.WindowHeight / 2 - welcome.Length / 2;
+            int messageRow = (FieldData.WindowHeight - welcome.Length) / 2;
 
             foreach (var text in welcome)
             {
