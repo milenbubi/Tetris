@@ -10,6 +10,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
 
         static InfoPanel()
         {
+
             horPosition = FieldData.GameFieldWidth + 4;
             vertPosition = FieldData.WindowHeight / 2;
         }
