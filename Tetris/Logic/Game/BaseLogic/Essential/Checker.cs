@@ -6,7 +6,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
     internal class Checker
     {
         private FieldCells fieldCells;
-        private int[] elementsCoordinates;
+        private int[] elemCoords;
 
         internal Checker()
         {
@@ -17,14 +17,14 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         {
             int x;
             int y;
-            elementsCoordinates = figure.ElementsCoordinates;
+            elemCoords = figure.ElementsCoordinates;
 
             if (IsReachedBorder(figure, 0, 1))
             {
-                for (int j = 0; j < elementsCoordinates.Length; j += 2)
+                for (int j = 0; j < elemCoords.Length; j += 2)
                 {
-                    x = figure.PositionX + elementsCoordinates[j];
-                    y = figure.PositionY + elementsCoordinates[j + 1];
+                    x = figure.PositionX + elemCoords[j];
+                    y = figure.PositionY + elemCoords[j + 1];
 
                     fieldCells[y][x] = figure.Element;
                 }
@@ -32,6 +32,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                 CheckForReadyLine(figure);
                 return true;
             }
+
             return false;
         }
 
@@ -39,13 +40,13 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         {
             int x = figure.PositionX + xValue;
             int y = figure.PositionY + yValue;
-            elementsCoordinates = figure.ElementsCoordinates;
+            elemCoords = figure.ElementsCoordinates;
 
-            for (int i = 0; i < elementsCoordinates.Length; i += 2)
+            for (int i = 0; i < elemCoords.Length; i += 2)
             {
                 if (fieldCells
-                   [y + elementsCoordinates[i + 1]]
-                   [x + elementsCoordinates[i]]
+                   [y + elemCoords[i + 1]]
+                   [x + elemCoords[i]]
                    .Symbol != ' ')
                 {
                     return true;
@@ -63,7 +64,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             while (approximateRow >= (figure.PositionY - 1))
             {
                 //Checks if approximate row is out of range
-                if (approximateRow > (fieldCells.Count - 2) || approximateRow <= 1)
+                if (approximateRow > (fieldCells.Count - 2) || approximateRow < 1)
                 {
                     approximateRow -= 1;
                     continue;

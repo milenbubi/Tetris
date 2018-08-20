@@ -7,14 +7,14 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
     {
         private static int horPosition;
         private static int vertPosition;
-        private static int[] coordinates;
+        private static int[] positions;
 
         static InfoPanel()
         {
             horPosition = FieldData.GameFieldWidth + 4;
             vertPosition = FieldData.WindowHeight / 2;
 
-            coordinates = new int[]
+            positions = new int[]
             {
                 FieldData.GameFieldWidth + FieldData.InfoPanelWidth / 2,
                 vertPosition - 7
@@ -28,7 +28,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             //Next figure preview
             CursorPosition(-10);
             Console.WriteLine("Next Figure:");
-            NextFigurePreviewManager.Update(GameData.nextFigure, coordinates);
+            NextFigurePreviewManager.Update(GameData.nextFigure, positions);
             Console.ForegroundColor = FieldData.InfoPanelColor;
 
             //Current level

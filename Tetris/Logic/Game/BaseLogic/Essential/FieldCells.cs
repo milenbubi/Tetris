@@ -10,7 +10,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         private static readonly int fieldRows;
         private static readonly int fieldColumns;
         private static readonly FigureElement BorderElement;
-        private static List<FigureElement[]> fieldCells;
+        private static IList<FigureElement[]> fieldCells;
 
         static FieldCells()
         {
@@ -74,6 +74,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             for (int row = from; row <= to; row++)
             {
                 Console.SetCursorPosition(0, row);
+
                 foreach (var item in fieldCells[row])
                 {
                     Console.Write(item);

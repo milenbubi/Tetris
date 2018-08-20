@@ -30,7 +30,7 @@ namespace Tetris.Logic.Figures
 
         public int[] ElementsCoordinates => elemCoords[State.Peek()];
 
-        public ConsoleColor Color { get { return Element.Color; } set { Element.Color = value; } }
+        public ConsoleColor Color { get => Element.Color;  set => Element.Color = value;} 
 
         public void Rotate()
         {

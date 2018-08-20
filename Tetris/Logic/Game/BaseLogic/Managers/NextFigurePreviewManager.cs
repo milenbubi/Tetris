@@ -14,10 +14,10 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             graphic = new GameGraphic();
         }
 
-        internal static void Update(IFigure nextFigure, int[] coordinates)
+        internal static void Update(IFigure nextFigure, int[] positions)
         {
             ClearPreview();
-            CreatePreview(nextFigure, coordinates);
+            CreatePreview(nextFigure, positions);
             graphic.Draw(preview);
         }
 
@@ -30,12 +30,12 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             }
         }
 
-        private static void CreatePreview(IFigure nextFigure, int[] coordinates)
+        private static void CreatePreview(IFigure nextFigure, int[] positions)
         {
             preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
 
-            preview.PositionX = coordinates[0];
-            preview.PositionY = coordinates[1];
+            preview.PositionX = positions[0];
+            preview.PositionY = positions[1];
             preview.Color = nextFigure.Color;
         }
     }
