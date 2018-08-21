@@ -9,13 +9,10 @@ namespace Tetris.Logic.Game
         internal GameController()
         {
             Graphic = new GameGraphic();
-            FieldCells = new FieldCells();
             Check = new Checker();
         }
 
         internal GameGraphic Graphic { get; }
-
-        internal FieldCells FieldCells { get; }
 
         internal Checker Check { get; }
 
@@ -48,9 +45,9 @@ namespace Tetris.Logic.Game
 
             string[] message = new string[]
             {
-                new string('\n', FieldData.WindowHeight/2-3),
+                new string('\n', FieldData.WindowHeight/2 - 4),
                 "GAME OVER",
-                new string('\n', 2),
+                Environment.NewLine,
                 "Press 'Q' to quit game",
                 "or press any key to play new game"
             };
@@ -70,8 +67,10 @@ namespace Tetris.Logic.Game
 
         private string ReadKey()
         {
-            string key = Console.ReadKey(true).Key.ToString().ToUpper();
-            return key;
+            return Console.ReadKey(true)
+                          .Key
+                          .ToString()
+                          .ToUpper();
         }
     }
 }

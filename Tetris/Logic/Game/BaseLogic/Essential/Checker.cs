@@ -64,7 +64,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             while (approximateRow >= (figure.PositionY - 1))
             {
                 //Checks if approximate row is out of range
-                if (approximateRow > (fieldCells.Count - 2) || approximateRow < 1)
+                if (approximateRow > (fieldCells.Count - 2))
                 {
                     approximateRow -= 1;
                     continue;

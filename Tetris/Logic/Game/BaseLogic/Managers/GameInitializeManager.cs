@@ -10,9 +10,9 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         {
             welcomeMessage = new string[]
             {
-                "Press \"M\"",
+                "Press 'M'",
                 "for Main Menu",
-                 new string('\n',2),
+                string.Empty,
                 "or",
                 "any key",
                 "to play !!!"
@@ -45,14 +45,14 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         private static void PrintMessage(string[] welcome)
         {
-            int messageRow = (FieldData.WindowHeight - welcome.Length) / 2;
+            Console.CursorTop = FieldData.WindowHeight / 2 - 3;
 
             foreach (var text in welcome)
             {
                 int messageCol = (FieldData.GameFieldWidth - text.Length) / 2;
 
-                Console.SetCursorPosition(messageCol, messageRow++);
-                Console.Write(text);
+                Console.CursorLeft = messageCol;
+                Console.WriteLine(text);
             }
         }
     }

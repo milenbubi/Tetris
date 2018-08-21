@@ -88,8 +88,6 @@ namespace Tetris
         {
             while (IsInPlay)
             {
-                Thread.Sleep(speed);
-
                 MoveFigure();
 
                 while (Console.KeyAvailable)
@@ -101,6 +99,7 @@ namespace Tetris
 
         private void MoveFigure()
         {
+            Thread.Sleep(speed);
             gameController.Graphic.Move(figure, 0, 1);
         }
 

@@ -24,9 +24,20 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
 
         internal int Count => fieldCells.Count;
 
-        internal void DrawAllRows() => DrawRowsInRange(0, fieldRows - 1);
+        internal void ReDrawFieldOnReadyLine(int readyLine)
+        {
+            //Removing ready line, insert and initializing a new empty row
+            fieldCells.RemoveAt(readyLine);
+            fieldCells.Insert(1, new FigureElement[fieldColumns]);
+            Initialize(1);
 
-        internal void ResetCells()
+            //Redrawing game field
+            DrawRowsInRange(2, readyLine);
+        }
+
+        internal static void DrawAllRows() => DrawRowsInRange(0, fieldRows - 1);
+
+        internal static void ResetCells()
         {
             fieldCells = new List<FigureElement[]>(fieldRows);
 
@@ -46,18 +57,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             fieldCells.Add(horizontalBorder);
         }
 
-        internal void ReDrawFieldOnReadyLine(int readyLine)
-        {
-            //Removing ready line, insert and initializing a new empty row
-            fieldCells.RemoveAt(readyLine);
-            fieldCells.Insert(1, new FigureElement[fieldColumns]);
-            Initialize(1);
-
-            //Redrawing game field
-            DrawRowsInRange(2, readyLine);
-        }
-
-        private void Initialize(int row)
+        private static void Initialize(int row)
         {
             for (int col = 1; col < fieldColumns - 1; col++)
             {
@@ -69,7 +69,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             fieldCells[row][fieldColumns - 1] = BorderElement;
         }
 
-        private void DrawRowsInRange(int from, int to)
+        private static void DrawRowsInRange(int from, int to)
         {
             for (int row = from; row <= to; row++)
             {

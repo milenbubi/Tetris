@@ -6,14 +6,10 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
 {
     internal static class Menu
     {
-        private const string ItemKeys = "CBNQA";
         private const string Title = "MAIN MENU";
 
-        private static string key;
-        private static readonly string[] items;
-        private static readonly string[] backMessage;
-
-        private static FieldCells fieldCells;
+        private static string[] items;
+        private static string[] backMessage;
 
         static Menu()
         {
@@ -44,28 +40,30 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                 "Press any key",
                 "to go Back."
             };
-
-            fieldCells = new FieldCells();
         }
 
         internal static void Show()
         {
-            do
+            ShowMenu();
+
+            switch (ReadKey())
             {
-                ShowMenu();
+                case "C": Controls(); break;
+                case "B": BestScores(); break;
+                case "N": NewGame(); return;
+                case "Q": QuitGame(); break;
+                case "A": AboutMe(); break;
+                default: ShowInfoPanel(); FieldCells.DrawAllRows(); return;
+            }
 
-                switch (ReadKey())
-                {
-                    case "C": Controls(); break;
-                    case "B": BestScores(); break;
-                    case "N": NewGame(); key = null; return;
-                    case "Q": QuitGame(); break;
-                    case "A": AboutMe(); break;
-                }
+            Show();
+        }
 
-            } while (ItemKeys.Contains(key));
-
-            fieldCells.DrawAllRows();
+        private static void ShowMenu()
+        {
+            //Repeating
+            PrepareMenuWindow();
+            Console.WriteLine(string.Join("\n", items));
         }
 
         private static void Controls()
@@ -87,6 +85,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                 Environment.NewLine
             };
 
+            //Repeating
             PrepareMenuWindow();
             Print(controls.Concat(backMessage).ToArray());
         }
@@ -162,31 +161,27 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             Print(aboutMe.Concat(backMessage).ToArray());
         }
 
-        private static void ShowMenu()
-        {
-            PrepareMenuWindow();
-            Console.WriteLine(string.Join("\n", items));
-        }
-
         private static void PrepareMenuWindow()
         {
-            Console.Clear();
-            InfoPanel.Update();
+            ShowInfoPanel();
             Console.ForegroundColor = FieldData.MessageColor;
 
             // !!!  After printing Info Panel, cursor is fixed on the last line and I am forced to move it up~!
             Console.SetCursorPosition(0, 0);
         }
 
+        private static void ShowInfoPanel()
+        {
+            Console.Clear();
+            InfoPanel.Update();
+        }
+
         private static string ReadKey()
         {
-            string pressedKey = Console.ReadKey(true)
-                .Key
-                .ToString()
-                .ToUpper();
-
-            key = pressedKey;
-            return pressedKey;
+            return Console.ReadKey(true)
+                          .Key
+                          .ToString()
+                          .ToUpper();
         }
 
         private static void Print(string[] text)
