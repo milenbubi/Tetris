@@ -1,5 +1,5 @@
 ﻿using Tetris.Logic.Figures;
-using Tetris.Logic.Game.BaseLogic.Essential;
+using Tetris.Logic.Game.BaseLogic.Essentials;
 
 namespace Tetris.Logic.Game.Keys
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Tetris.Logic.Figures;
 
-namespace Tetris.Logic.Game.BaseLogic.Essential
+namespace Tetris.Logic.Game.BaseLogic.Visualizers
 {
     internal class GameGraphic
     {

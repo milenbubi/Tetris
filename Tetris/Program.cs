@@ -6,9 +6,9 @@ namespace Tetris
     {
         public static void Main(string[] args)
         {
-            GameController moveController = new GameController();
+            GameController gameController = new GameController();
             KeyController keyController = new KeyController();
-            Engine engine = new Engine(moveController, keyController);
+            Engine engine = new Engine(gameController, keyController);
 
             engine.Run();
         }

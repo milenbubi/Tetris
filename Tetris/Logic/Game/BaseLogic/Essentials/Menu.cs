@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
+using Tetris.Logic.Game.BaseLogic.Visualizers;
 
-namespace Tetris.Logic.Game.BaseLogic.Essential
+namespace Tetris.Logic.Game.BaseLogic.Essentials
 {
     internal static class Menu
     {

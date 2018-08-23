@@ -3,7 +3,7 @@ using Tetris.Logic.Figures;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tetris.Logic.Game.BaseLogic.Essential
+namespace Tetris.Logic.Game.BaseLogic.Visualizers
 {
     internal class FieldCells
     {
@@ -21,8 +21,6 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         }
 
         internal FigureElement[] this[int index] => fieldCells[index];
-
-        internal int Count => fieldCells.Count;
 
         internal void ReDrawFieldOnReadyLine(int readyLine)
         {

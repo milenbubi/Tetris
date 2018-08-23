@@ -6,22 +6,16 @@ namespace Tetris.Logic
     {
         internal const int InfoPanelWidth = 21;
         internal const int GameFieldWidth = 17;
-
         internal const int WindowWidth = InfoPanelWidth + GameFieldWidth;
 
         internal const int WindowHeight = 26;
-        internal static readonly int GameFieldHeight;
+        internal const int GameFieldHeight = WindowHeight - 1;
 
-        internal const char BorderSymbol = '*';
-        internal const ConsoleColor BorderSymbolColor = ConsoleColor.White;
+        internal static char BorderSymbol = '*';
 
-        internal const ConsoleColor MessageColor = ConsoleColor.Yellow;
-        internal const ConsoleColor InfoPanelColor = ConsoleColor.White;
-        internal const ConsoleColor BackgroundColor = ConsoleColor.Black;
-
-        static FieldData()
-        {
-            GameFieldHeight = WindowHeight - 1;
-        }
+        internal static ConsoleColor MessageColor = ConsoleColor.Yellow;
+        internal static ConsoleColor InfoPanelColor = ConsoleColor.White;
+        internal static ConsoleColor BackgroundColor = ConsoleColor.Black;
+        internal static ConsoleColor BorderSymbolColor = ConsoleColor.White;
     }
 }

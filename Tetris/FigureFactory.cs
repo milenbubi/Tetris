@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Tetris.Logic.Figures;
 
 namespace Tetris
@@ -19,6 +20,7 @@ namespace Tetris
 
         internal static IFigure GetRandomFigure()
         {
+            Task.Delay(20).Wait();
             int seed = (int)DateTime.Now.Ticks;
             int randomPosition = new Random(seed).Next(figureTypes.Count());
 

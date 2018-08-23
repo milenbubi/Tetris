@@ -1,6 +1,9 @@
 ﻿using System;
-using Tetris.Logic.Game.BaseLogic.Essential;
+using System.Threading.Tasks;
+using Tetris.Logic.Figures;
+using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Managers;
+using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game
 {
@@ -8,9 +11,12 @@ namespace Tetris.Logic.Game
     {
         internal GameController()
         {
+            FieldCells = new FieldCells();
             Graphic = new GameGraphic();
             Check = new Checker();
         }
+
+        internal FieldCells FieldCells { get; }
 
         internal GameGraphic Graphic { get; }
 
@@ -36,6 +42,19 @@ namespace Tetris.Logic.Game
             GameInitializeManager.ShowWelcomeMessage(false);
         }
 
+        internal void SetObstacles()
+        {
+            FieldCells.ResetCells();
+            Task.Delay(500).Wait();
+
+            for (int i = 1; i < GameData.level; i++)
+            {
+                FieldCellsManager.AddNewObstacle(FieldCells);
+                FieldCells.DrawAllRows();
+                Task.Delay(500).Wait();
+            }
+        }
+
         internal void Finish()
         {
             ScoreManager.UpdateScores();
@@ -45,18 +64,17 @@ namespace Tetris.Logic.Game
 
             string[] message = new string[]
             {
-                new string('\n', FieldData.WindowHeight/2 - 4),
-                "GAME OVER",
-                Environment.NewLine,
+                "GAME OVER\n",
                 "Press 'Q' to quit game",
                 "or press any key to play new game"
             };
 
+            Console.CursorTop = (FieldData.WindowHeight - message.Length) / 2;
+
             foreach (var text in message)
             {
-                int padding = (FieldData.WindowWidth - text.Length) / 2;
-
-                Console.WriteLine("{0}{1}", new string(' ', padding), text);
+                Console.CursorLeft = (FieldData.WindowWidth - text.Length) / 2;
+                Console.WriteLine(text);
             }
 
             if (ReadKey() == "Q")

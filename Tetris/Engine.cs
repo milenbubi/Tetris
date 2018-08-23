@@ -1,9 +1,9 @@
 using System;
-using System.Threading;
 using Tetris.Logic.Game;
 using Tetris.Logic.Figures;
 using static Tetris.Logic.GameData;
 using Tetris.Logic;
+using System.Threading.Tasks;
 
 namespace Tetris
 {
@@ -31,7 +31,7 @@ namespace Tetris
             }
         }
 
-        public void Run()
+        internal void Run()
         {
             gameController.InitializeGame();
 
@@ -46,6 +46,8 @@ namespace Tetris
         {
             while (level <= LevelsCount)
             {
+                gameController.SetObstacles();
+
                 while (figureCount <= FiguresPerLevel)
                 {
                     SetUpFigure();
@@ -58,12 +60,12 @@ namespace Tetris
 
                     figureCount++;
                     points++;
+                    speed--;
                 }
 
                 level++;
-                speed -= 10;
-                points += PointsPerLevel;
                 figureCount = 1;
+                points += PointsPerLevel;
             }
         }
 
@@ -99,15 +101,14 @@ namespace Tetris
 
         private void MoveFigure()
         {
-            Thread.Sleep(speed);
+            Task.Delay(speed).Wait();
             gameController.Graphic.Move(figure, 0, 1);
         }
 
         private void UsePressedKey()
         {
             //Smoothing the left/right moving
-            Thread.Sleep(12);
-
+            Task.Delay(12).Wait();
             string keyClassName = Console.ReadKey(true).Key.ToString();
 
             keyController.Action(figure, keyClassName);

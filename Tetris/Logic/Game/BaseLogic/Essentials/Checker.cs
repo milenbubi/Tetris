@@ -1,12 +1,13 @@
 ﻿using Tetris.Logic.Figures;
 using System.Linq;
+using Tetris.Logic.Game.BaseLogic.Visualizers;
+using Tetris.Logic.Game.BaseLogic.Managers;
 
-namespace Tetris.Logic.Game.BaseLogic.Essential
+namespace Tetris.Logic.Game.BaseLogic.Essentials
 {
     internal class Checker
     {
         private FieldCells fieldCells;
-        private int[] elemCoords;
 
         internal Checker()
         {
@@ -15,19 +16,10 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
 
         internal bool IsFinished(IFigure figure)
         {
-            int x;
-            int y;
-            elemCoords = figure.ElementsCoordinates;
 
             if (IsReachedBorder(figure, 0, 1))
             {
-                for (int j = 0; j < elemCoords.Length; j += 2)
-                {
-                    x = figure.PositionX + elemCoords[j];
-                    y = figure.PositionY + elemCoords[j + 1];
-
-                    fieldCells[y][x] = figure.Element;
-                }
+                FieldCellsManager.AddNewItem(fieldCells,figure);
 
                 CheckForReadyLine(figure);
                 return true;
@@ -40,7 +32,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
         {
             int x = figure.PositionX + xValue;
             int y = figure.PositionY + yValue;
-            elemCoords = figure.ElementsCoordinates;
+            int[] elemCoords = figure.ElementsCoordinates;
 
             for (int i = 0; i < elemCoords.Length; i += 2)
             {
@@ -64,9 +56,9 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
             while (approximateRow >= (figure.PositionY - 1))
             {
                 //Checks if approximate row is out of range
-                if (approximateRow > (fieldCells.Count - 2))
+                if (approximateRow > (FieldData.GameFieldHeight - 2))
                 {
-                    approximateRow -= 1;
+                    approximateRow--;
                     continue;
                 }
 
@@ -78,7 +70,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essential
                     continue;
                 }
 
-                approximateRow -= 1;
+                approximateRow--;
             }
         }
     }

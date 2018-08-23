@@ -27,5 +27,6 @@ Game controls:
 
 
 <b>
-    This is Final Version!               
+    I have added new feature - obstacles after each level.
+    But this is beta version.
 <b/>
