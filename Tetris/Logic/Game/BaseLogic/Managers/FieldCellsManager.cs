@@ -10,10 +10,10 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         static FieldCellsManager()
         {
-            obstacle = new FigureElement(ConsoleColor.Yellow);
+            obstacle = new FigureElement(FieldData.ObstacleColor);
         }
 
-        internal static void AddNewItem(FieldCells fieldCells, IFigure figure)
+        internal static void AddFigure(FieldCells fieldCells, IFigure figure)
         {
             int x;
             int y;
@@ -32,11 +32,11 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         {
             int middle = FieldData.GameFieldHeight / 2;
             int bottom = FieldData.GameFieldHeight - 3;
-            int lastGameFieldColumn = FieldData.GameFieldWidth - 3;
+            int lastColumn = FieldData.GameFieldWidth - 3;
 
             Random random = new Random((int)DateTime.Now.Ticks);
 
-            int x = random.Next(2, lastGameFieldColumn);
+            int x = random.Next(2, lastColumn);
             int y = random.Next(middle + 1, bottom);
 
             fieldCells[y][x] = obstacle;

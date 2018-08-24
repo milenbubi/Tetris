@@ -1,8 +1,8 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    internal class LittleT : Figure, IFigure
+    public class LittleT : Figure, IFigure
     {
-        internal LittleT() : base(4)
+        public LittleT(params int[] coords) : base(4, coords)
         {
             elemCoords[0] = new int[] { 0, 0, -1, 0, 1, 0, 0, -1 };
             elemCoords[1] = new int[] { 0, 0, 0, -1, 0, 1, 1, 0 };

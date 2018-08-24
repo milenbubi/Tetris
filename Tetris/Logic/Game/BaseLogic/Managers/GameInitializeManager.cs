@@ -37,7 +37,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
             if (!showMessage)
             {
-                Console.ForegroundColor = Console.BackgroundColor;
+                Console.ForegroundColor = FieldData.BackgroundColor;
             }
 
             PrintMessage(welcomeMessage);
@@ -45,13 +45,13 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         private static void PrintMessage(string[] welcome)
         {
-            Console.CursorTop = FieldData.WindowHeight / 2 - 3;
+            Console.CursorTop = (FieldData.WindowHeight - welcome.Length) / 2;
 
             foreach (var text in welcome)
             {
-                int messageCol = (FieldData.GameFieldWidth - text.Length) / 2;
+                int textColumn = (FieldData.GameFieldWidth - text.Length) / 2;
 
-                Console.CursorLeft = messageCol;
+                Console.CursorLeft = textColumn;
                 Console.WriteLine(text);
             }
         }

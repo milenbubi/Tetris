@@ -19,7 +19,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
             if (IsReachedBorder(figure, 0, 1))
             {
-                FieldCellsManager.AddNewItem(fieldCells,figure);
+                FieldCellsManager.AddFigure(fieldCells, figure);
 
                 CheckForReadyLine(figure);
                 return true;

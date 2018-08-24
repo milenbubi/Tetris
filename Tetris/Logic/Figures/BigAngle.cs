@@ -1,8 +1,8 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    internal class BigAngle : Figure, IFigure
+    public class BigAngle : Figure, IFigure
     {
-        internal BigAngle() : base(4)
+        public BigAngle(params int[] coords) : base(4, coords)
         {
             elemCoords[0] = new int[] { -1, -1, 0, -1, 1, -1, 1, 0, 1, 1 };
             elemCoords[1] = new int[] { -1, 1, 0, 1, 1, 1, 1, 0, 1, -1 };

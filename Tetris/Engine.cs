@@ -15,12 +15,12 @@ namespace Tetris
         private KeyController keyController;
         private GameController gameController;
 
-        internal Engine(GameController gameController, KeyController keyController)
-        {
+        internal Engine()
+        {//SPeed??
             speed = StartSpeed;
 
-            this.keyController = keyController;
-            this.gameController = gameController;
+            keyController = new KeyController();
+            gameController = new GameController();
         }
 
         private bool IsInPlay
@@ -50,7 +50,7 @@ namespace Tetris
 
                 while (figureCount <= FiguresPerLevel)
                 {
-                    SetUpFigure();
+                    SetFigure();
                     gameController.UpdateInfo();
                     DrawFigure();
 
@@ -80,10 +80,10 @@ namespace Tetris
             gameController.Graphic.Draw(figure);
         }
 
-        private void SetUpFigure()
+        private void SetFigure()
         {
             figure = nextFigure;
-            nextFigure = FigureFactory.GetRandomFigure();
+            nextFigure = NewFigure();
         }
 
         private void TheHeartOfGame()

@@ -8,10 +8,10 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
         private int[] elemCoords;
         private ConsoleColor tempColorHolder;
 
-        internal void Move(IFigure figure, sbyte xValue, sbyte yValue)
+        internal void Move(IFigure figure, sbyte x, sbyte y)
         {
             Clear(figure);
-            SetNewPosition(figure, xValue, yValue);
+            SetNewPosition(figure, x, y);
             Draw(figure);
         }
 
@@ -19,7 +19,7 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
         {
             tempColorHolder = figure.Color;
 
-            figure.Color = Console.BackgroundColor;
+            figure.Color = FieldData.BackgroundColor;
             Draw(figure);
             figure.Color = tempColorHolder;
         }
@@ -37,10 +37,10 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
             }
         }
 
-        private void SetNewPosition(IFigure figure, sbyte xValue, sbyte yValue)
+        private void SetNewPosition(IFigure figure, sbyte x, sbyte y)
         {
-            figure.PositionX += xValue;
-            figure.PositionY += yValue;
+            figure.PositionX += x;
+            figure.PositionY += y;
         }
     }
 }

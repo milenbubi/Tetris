@@ -1,14 +1,10 @@
-﻿using Tetris.Logic.Game;
-
-namespace Tetris
+﻿namespace Tetris
 {
     class Program
     {
         public static void Main(string[] args)
         {
-            GameController gameController = new GameController();
-            KeyController keyController = new KeyController();
-            Engine engine = new Engine(gameController, keyController);
+            Engine engine = new Engine();
 
             engine.Run();
         }

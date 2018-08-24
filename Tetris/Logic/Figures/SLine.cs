@@ -1,10 +1,10 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    internal class SLine : Figure, IFigure
+    public class SLine : Figure, IFigure
     {
-        internal SLine() : base(2)
+        public SLine(params int[] coords) : base(2, coords)
         {
-            elemCoords[0] = new int[] { 0, 0, 0,-1, 1,-1, -1, 0 };
+            elemCoords[0] = new int[] { 0, 0, 0, -1, 1, -1, -1, 0 };
             elemCoords[1] = new int[] { 0, 0, 0, -1, 1, 0, 1, 1 };
         }
     }

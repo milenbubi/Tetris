@@ -14,6 +14,7 @@ namespace Tetris.Logic
         internal static char BorderSymbol = '*';
 
         internal static ConsoleColor MessageColor = ConsoleColor.Yellow;
+        internal static ConsoleColor ObstacleColor = ConsoleColor.Yellow;
         internal static ConsoleColor InfoPanelColor = ConsoleColor.White;
         internal static ConsoleColor BackgroundColor = ConsoleColor.Black;
         internal static ConsoleColor BorderSymbolColor = ConsoleColor.White;

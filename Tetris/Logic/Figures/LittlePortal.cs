@@ -1,8 +1,8 @@
 ﻿namespace Tetris.Logic.Figures
 {
-    class LittlePortal : Figure, IFigure
+   public class LittlePortal : Figure, IFigure
     {
-        internal LittlePortal() : base(4)
+        public LittlePortal(params int[] coords) : base(4, coords)
         {
             elemCoords[0] = new int[] { -1, 0, -1, -1, 0, -1, 1, -1, 1, 0 };
             elemCoords[1] = new int[] { 0, -1, 1, -1, 1, 0, 1, 1, 0, 1 };

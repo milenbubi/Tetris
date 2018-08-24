@@ -6,10 +6,10 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class NextFigurePreviewManager
     {
-        private static IFigure preview;
-        private static GameGraphic graphic;
         private static int positionX;
         private static int positionY;
+        private static IFigure preview;
+        private static GameGraphic graphic;
 
         static NextFigurePreviewManager()
         {
@@ -23,28 +23,25 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             graphic.Draw(preview);
         }
 
+        internal static void SetPreviewPosition(int x, int y)
+        {
+            positionX = x;
+            positionY = y;
+        }
+
         private static void ClearPreview()
         {
             if (preview != null)
             {
-                preview.Color = Console.BackgroundColor;
+                preview.Color = FieldData.BackgroundColor;
                 graphic.Draw(preview);
             }
         }
 
         private static void CreatePreview(IFigure nextFigure)
         {
-            preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), true);
-
-            preview.PositionX = positionX;
-            preview.PositionY = positionY;
+            preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), positionX, positionY);
             preview.Color = nextFigure.Color;
-        }
-
-        internal static void SetUpPreviewPosition(int[] positions)
-        {
-            positionX = positions[0];
-            positionY = positions[1];
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Tetris.Logic.Figures;
 using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Managers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;

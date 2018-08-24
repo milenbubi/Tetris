@@ -6,49 +6,46 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
     internal static class InfoPanel
     {
         private static int horPosition;
-        private static int vertPosition;
+        private static int lastRow;
 
         static InfoPanel()
         {
-            horPosition = FieldData.GameFieldWidth + 4;
-            vertPosition = FieldData.WindowHeight / 2;
+            horPosition = FieldData.GameFieldWidth + 3;
+            lastRow = FieldData.WindowHeight;
 
-            int[] coords =
-            {
-                FieldData.GameFieldWidth + FieldData.InfoPanelWidth / 2,
-                vertPosition - 7
-            };
+            int x = FieldData.GameFieldWidth + FieldData.InfoPanelWidth / 2;
+            int y = 6;
 
-            NextFigurePreviewManager.SetUpPreviewPosition(coords);
+            NextFigurePreviewManager.SetPreviewPosition(x, y);
         }
 
         internal static void Update()
         {
             //Next figure preview
-            CursorPosition(-10);
+            CursorPosition(3);
             Console.WriteLine("Next Figure:");
             NextFigurePreviewManager.Update(GameData.nextFigure);
 
             //Current level
-            CursorPosition(3);
+            CursorPosition(lastRow - 4);
             Console.Write("Level - ");
             Console.Write(GameData.level + " / " + GameData.LevelsCount);
 
             //Figure count per current level
-            CursorPosition(6);
+            CursorPosition(lastRow - 7);
             Console.Write("Figure - ");
             Console.Write(GameData.figureCount + " / " + GameData.FiguresPerLevel);
 
             //Current points
-            CursorPosition(9);
+            CursorPosition(lastRow - 10);
             Console.Write("Points - ");
             Console.Write("{0:d5}", GameData.points);
         }
 
-        private static void CursorPosition(int deviation)
+        private static void CursorPosition(int vertPosition)
         {
             Console.ForegroundColor = FieldData.InfoPanelColor;
-            Console.SetCursorPosition(horPosition, vertPosition + deviation);
+            Console.SetCursorPosition(horPosition, vertPosition);
         }
     }
 }

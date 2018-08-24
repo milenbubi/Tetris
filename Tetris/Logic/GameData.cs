@@ -4,8 +4,8 @@ namespace Tetris.Logic
 {
     internal struct GameData
     {
-        internal static byte LevelsCount = 6;
-        internal static byte FiguresPerLevel = 1;
+        internal static byte LevelsCount = 3;
+        internal static byte FiguresPerLevel = 31;
 
         internal static int PointPerLine = 28;
         internal static int PointsPerLevel = 7;
@@ -27,7 +27,12 @@ namespace Tetris.Logic
             figureCount = 1;
 
             status = Status.Play;
-            nextFigure = FigureFactory.GetRandomFigure();
+            nextFigure = NewFigure();
+        }
+
+        internal static IFigure NewFigure()
+        {
+            return FigureFactory.GetRandomFigure(FieldData.GameFieldWidth / 2, 2);
         }
     }
 }

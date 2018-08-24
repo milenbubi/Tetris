@@ -18,7 +18,7 @@ namespace Tetris
                                    .Where(t => typeof(IFigure).IsAssignableFrom(t) && !t.IsAbstract);
         }
 
-        internal static IFigure GetRandomFigure()
+        internal static IFigure GetRandomFigure(int x, int y)
         {
             Task.Delay(20).Wait();
             int seed = (int)DateTime.Now.Ticks;
@@ -26,7 +26,7 @@ namespace Tetris
 
             Type randomFigure = figureTypes.ElementAt(randomPosition);
 
-            return (IFigure)Activator.CreateInstance(randomFigure, true);
+            return (IFigure)Activator.CreateInstance(randomFigure, x, y);
         }
     }
 }
