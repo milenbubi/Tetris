@@ -61,6 +61,7 @@
     <Compile Include="Logic\Game\BaseLogic\Essentials\Menu.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\FieldCellsManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\LogFileManager.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Providers\RandomNumber.cs" />
     <Compile Include="Logic\Game\BaseLogic\Visualizers\FieldCells.cs" />
     <Compile Include="Logic\Game\BaseLogic\Visualizers\GameGraphic.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\FinishManager.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="Logic\Game\BaseLogic\Essentials\InfoPanel.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\GameInitializeManager.cs" />
     <Compile Include="Engine.cs" />
-    <Compile Include="FigureFactory.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Providers\FigureFactory.cs" />
     <Compile Include="Logic\Figures\IFigure.cs" />
     <Compile Include="Logic\Game\Keys\M.cs" />
     <Compile Include="Logic\Status.cs" />

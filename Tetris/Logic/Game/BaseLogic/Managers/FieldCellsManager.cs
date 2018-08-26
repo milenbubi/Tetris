@@ -34,6 +34,8 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             int bottom = FieldData.GameFieldHeight - 3;
             int lastColumn = FieldData.GameFieldWidth - 3;
 
+
+            //TODO  waiting for new method in Random Provider
             Random random = new Random((int)DateTime.Now.Ticks);
 
             int x = random.Next(2, lastColumn);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tetris.Logic.Game.BaseLogic.Providers;
 
 namespace Tetris.Logic.Figures
 {
@@ -36,13 +37,11 @@ namespace Tetris.Logic.Figures
 
         private ConsoleColor RandomColor()
         {
-            int seed = (int)DateTime.Now.Ticks;
-            Random rand = new Random(seed);
             ConsoleColor color;
 
             do
             {
-                color = (ConsoleColor)rand.Next(16);
+                color = (ConsoleColor)RandomNumber.InRangeZeroTo(16);
             } while (color == Console.BackgroundColor);
 
             return color;

@@ -1,4 +1,5 @@
 ﻿using Tetris.Logic.Figures;
+using Tetris.Logic.Game.BaseLogic.Providers;
 
 namespace Tetris.Logic
 {
