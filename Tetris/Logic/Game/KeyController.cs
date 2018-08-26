@@ -6,26 +6,24 @@ using Tetris.Logic.Game.Keys;
 
 namespace Tetris.Logic.Game
 {
-    internal class KeyController
+    internal static class KeyController
     {
-        private IEnumerable<IKey> keyClasses;
+        private static IDictionary<string, IKey> keyClasses;
 
-        internal KeyController()
+        static KeyController()
         {
             keyClasses = AppDomain.CurrentDomain
                                   .GetAssemblies()
                                   .SelectMany(a => a.GetTypes())
                                   .Where(t => typeof(IKey).IsAssignableFrom(t) && !t.IsAbstract)
-                                  .Select(t => (IKey)Activator.CreateInstance(t));
+                                  .ToDictionary(t => t.Name, t => (IKey)Activator.CreateInstance(t));
         }
 
-        internal void Action(IFigure figure, string keyClassName)
+        internal static void Action(IFigure figure, string key)
         {
-            IKey keyClass = keyClasses.FirstOrDefault(c => c.GetType().Name == keyClassName);
-
-            if (keyClass != null)
+            if (keyClasses.ContainsKey(key))
             {
-                keyClass.Action(figure);
+                keyClasses[key].Action(figure);
             }
         }
     }

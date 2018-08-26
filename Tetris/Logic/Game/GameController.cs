@@ -6,24 +6,24 @@ using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game
 {
-    internal class GameController
+    internal static class GameController
     {
-        internal GameController()
+        static GameController()
         {
             FieldCells = new FieldCells();
             Graphic = new GameGraphic();
             Check = new Checker();
         }
 
-        internal FieldCells FieldCells { get; }
+        internal static FieldCells FieldCells { get; }
 
-        internal GameGraphic Graphic { get; }
+        internal static GameGraphic Graphic { get; }
 
-        internal Checker Check { get; }
+        internal static Checker Check { get; }
 
-        internal void UpdateInfo() => InfoPanel.Update();
+        internal static void UpdateInfo() => InfoPanel.Update();
 
-        internal void InitializeGame()
+        internal static void InitializeGame()
         {
             GameInitializeManager.SetUpWindow();
             GameData.ResetData();
@@ -41,7 +41,7 @@ namespace Tetris.Logic.Game
             GameInitializeManager.ShowWelcomeMessage(false);
         }
 
-        internal void SetObstacles()
+        internal static void SetObstacles()
         {
             FieldCells.ResetCells();
             Task.Delay(500).Wait();
@@ -54,7 +54,7 @@ namespace Tetris.Logic.Game
             }
         }
 
-        internal void Finish()
+        internal static void Finish()
         {
             ScoreManager.UpdateScores();
 
@@ -82,7 +82,7 @@ namespace Tetris.Logic.Game
             }
         }
 
-        private string ReadKey()
+        private static string ReadKey()
         {
             return Console.ReadKey(true)
                           .Key

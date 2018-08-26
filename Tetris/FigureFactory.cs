@@ -20,7 +20,6 @@ namespace Tetris
 
         internal static IFigure GetRandomFigure(int x, int y)
         {
-            Task.Delay(20).Wait();
             int seed = (int)DateTime.Now.Ticks;
             int randomPosition = new Random(seed).Next(figureTypes.Count());
 

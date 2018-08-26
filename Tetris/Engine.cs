@@ -9,35 +9,23 @@ namespace Tetris
 {
     internal class Engine
     {
-        private int speed;
-
         private IFigure figure;
-        private KeyController keyController;
-        private GameController gameController;
 
-        internal Engine()
-        {//SPeed??
-            speed = StartSpeed;
-
-            keyController = new KeyController();
-            gameController = new GameController();
-        }
-
-        private bool IsInPlay
+        private bool InPlay
         {
             get
             {
-                return IsStatusPlay() && !gameController.Check.IsFinished(figure);
+                return IsStatusPlay() && !GameController.Check.IsFinished(figure);
             }
         }
 
         internal void Run()
         {
-            gameController.InitializeGame();
+            GameController.InitializeGame();
 
             Play();
 
-            gameController.Finish();
+            GameController.Finish();
 
             Run();
         }
@@ -46,13 +34,13 @@ namespace Tetris
         {
             while (level <= LevelsCount)
             {
-                gameController.SetObstacles();
+                GameController.SetObstacles();
 
                 while (figureCount <= FiguresPerLevel)
                 {
                     SetFigure();
-                    gameController.UpdateInfo();
-                    DrawFigure();
+                    GameController.UpdateInfo();
+                    FigureFirstDraw();
 
                     TheHeartOfGame();
 
@@ -69,15 +57,15 @@ namespace Tetris
             }
         }
 
-        private void DrawFigure()
+        private void FigureFirstDraw()
         {
-            if (gameController.Check.IsReachedBorder(figure))
+            if (GameController.Check.IsReachedBorder(figure))
             {
                 status = Status.GameOver;
                 return;
             }
 
-            gameController.Graphic.Draw(figure);
+            GameController.Graphic.Draw(figure);
         }
 
         private void SetFigure()
@@ -88,7 +76,7 @@ namespace Tetris
 
         private void TheHeartOfGame()
         {
-            while (IsInPlay)
+            while (InPlay)
             {
                 MoveFigure();
 
@@ -102,16 +90,16 @@ namespace Tetris
         private void MoveFigure()
         {
             Task.Delay(speed).Wait();
-            gameController.Graphic.Move(figure, 0, 1);
+            GameController.Graphic.Move(figure, 0, 1);
         }
 
         private void UsePressedKey()
         {
             //Smoothing the left/right moving
             Task.Delay(12).Wait();
-            string keyClassName = Console.ReadKey(true).Key.ToString();
+            string key = Console.ReadKey(true).Key.ToString();
 
-            keyController.Action(figure, keyClassName);
+            KeyController.Action(figure, key);
         }
 
         private bool IsStatusPlay()

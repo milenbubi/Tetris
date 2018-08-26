@@ -27,7 +27,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             NextFigurePreviewManager.Update(GameData.nextFigure);
 
             //Current level
-            CursorPosition(lastRow - 4);
+            CursorPosition(lastRow - 10);
             Console.Write("Level - ");
             Console.Write(GameData.level + " / " + GameData.LevelsCount);
 
@@ -37,7 +37,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             Console.Write(GameData.figureCount + " / " + GameData.FiguresPerLevel);
 
             //Current points
-            CursorPosition(lastRow - 10);
+            CursorPosition(lastRow - 4);
             Console.Write("Points - ");
             Console.Write("{0:d5}", GameData.points);
         }

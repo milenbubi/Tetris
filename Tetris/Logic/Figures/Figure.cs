@@ -32,10 +32,7 @@ namespace Tetris.Logic.Figures
 
         public ConsoleColor Color { get => Element.Color; set => Element.Color = value; }
 
-        public void Rotate()
-        {
-            State.Enqueue(State.Dequeue());
-        }
+        public void Rotate() => State.Enqueue(State.Dequeue());
 
         private ConsoleColor RandomColor()
         {

@@ -4,8 +4,8 @@ namespace Tetris.Logic
 {
     internal struct GameData
     {
-        internal static byte LevelsCount = 3;
-        internal static byte FiguresPerLevel = 31;
+        internal static int LevelsCount = 5;
+        internal static int FiguresPerLevel = 3;
 
         internal static int PointPerLine = 28;
         internal static int PointsPerLevel = 7;
@@ -13,9 +13,10 @@ namespace Tetris.Logic
         internal static int StartSpeed = 355;
         internal static string LogFile = "GameLog.ini";
 
+        internal static int speed;
         internal static int points;
-        internal static byte level;
-        internal static byte figureCount;
+        internal static int level;
+        internal static int figureCount;
 
         internal static Status status;
         internal static IFigure nextFigure;
@@ -25,6 +26,7 @@ namespace Tetris.Logic
             level = 1;
             points = 0;
             figureCount = 1;
+            speed = StartSpeed;
 
             status = Status.Play;
             nextFigure = NewFigure();
