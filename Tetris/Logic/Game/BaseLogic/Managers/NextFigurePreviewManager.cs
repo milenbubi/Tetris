@@ -33,7 +33,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         {
             if (preview != null)
             {
-                preview.Color = FieldData.BackgroundColor;
+                preview.Element.Color = FieldData.BackgroundColor;
                 graphic.Draw(preview);
             }
         }
@@ -41,7 +41,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         private static void CreatePreview(IFigure nextFigure)
         {
             preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), positionX, positionY);
-            preview.Color = nextFigure.Color;
+            preview.Element.Color = nextFigure.Element.Color;
         }
     }
 }

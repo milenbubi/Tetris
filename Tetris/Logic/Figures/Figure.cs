@@ -31,8 +31,6 @@ namespace Tetris.Logic.Figures
 
         public int[] ElementsCoordinates => elemCoords[State.Peek()];
 
-        public ConsoleColor Color { get => Element.Color; set => Element.Color = value; }
-
         public void Rotate() => State.Enqueue(State.Dequeue());
 
         private ConsoleColor RandomColor()
