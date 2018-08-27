@@ -82,6 +82,7 @@
     <Compile Include="Logic\Game\BaseLogic\Providers\FigureFactory.cs" />
     <Compile Include="Logic\Figures\IFigure.cs" />
     <Compile Include="Logic\Game\Keys\M.cs" />
+    <Compile Include="Logic\Game\Read.cs" />
     <Compile Include="Logic\Status.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

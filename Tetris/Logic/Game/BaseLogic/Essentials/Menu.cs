@@ -47,7 +47,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
         {
             ShowMenu();
 
-            switch (ReadKey())
+            switch (Read.Key)
             {
                 case "C": Controls(); break;
                 case "B": BestScores(); break;
@@ -62,7 +62,6 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
         private static void ShowMenu()
         {
-            //Repeating
             PrepareMenuWindow();
             Console.WriteLine(string.Join("\n", items));
         }
@@ -175,14 +174,6 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
         {
             Console.Clear();
             InfoPanel.Update();
-        }
-
-        private static string ReadKey()
-        {
-            return Console.ReadKey(true)
-                          .Key
-                          .ToString()
-                          .ToUpper();
         }
 
         private static void Print(string[] text)

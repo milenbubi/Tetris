@@ -8,7 +8,6 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
     {
         private static IEnumerable<string> scoreTable;
         private const int countOfBestScores = 10;
-        private const string defaultScore = "0";
 
         static ScoreManager()
         {
@@ -20,9 +19,9 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             string playScore = $"{GameData.points,-9:d5}{"-",-5}";
             string playDate = $"{DateTime.Now:dd MMM yyyy}";
 
-            string currentResult = playScore + playDate;
+            string score = playScore + playDate;
 
-            ReorderScoreTable(currentResult);
+            ReorderScoreTable(score);
 
             LogFileManager.Write(scoreTable);
         }
@@ -30,17 +29,16 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         internal static void DisplayScores()
         {
             Console.Clear();
-            Console.WriteLine($"\n{"Best Scores:", 17}\n");
+            Console.WriteLine($"\n{"Best Scores:",17}\n");
             Console.WriteLine(string.Join("\n", scoreTable));
             Console.WriteLine(Environment.NewLine);
         }
 
-        private static void ReorderScoreTable(string currentResult)
+        private static void ReorderScoreTable(string score)
         {
             scoreTable = scoreTable
-                .Concat(new string[] { currentResult })
+                .Concat(Enumerable.Repeat(score, 1))
                 .OrderByDescending(s => s)
-                .Concat(Enumerable.Repeat(defaultScore, countOfBestScores))
                 .Take(countOfBestScores)
                 .ToList();
         }

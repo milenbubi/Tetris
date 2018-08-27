@@ -8,11 +8,20 @@ namespace Tetris.Logic.Game
 {
     internal static class GameController
     {
+        private static string[] finishMessage;
+
         static GameController()
         {
             FieldCells = new FieldCells();
             Graphic = new GameGraphic();
             Check = new Checker();
+
+            finishMessage = new string[]
+                {
+                    "GAME OVER\n",
+                    "Press 'Q' to quit game",
+                    "or press any key to play new game"
+                };
         }
 
         internal static FieldCells FieldCells { get; }
@@ -33,7 +42,7 @@ namespace Tetris.Logic.Game
             FieldCells.DrawAllRows();
             GameInitializeManager.ShowWelcomeMessage();
 
-            if (ReadKey() == "M")
+            if (Read.Key == "M")
             {
                 Menu.Show();
             }
@@ -60,34 +69,18 @@ namespace Tetris.Logic.Game
 
             Console.Clear();
             Console.ForegroundColor = FieldData.MessageColor;
+            Console.CursorTop = (FieldData.WindowHeight - finishMessage.Length) / 2;
 
-            string[] message = new string[]
-            {
-                "GAME OVER\n",
-                "Press 'Q' to quit game",
-                "or press any key to play new game"
-            };
-
-            Console.CursorTop = (FieldData.WindowHeight - message.Length) / 2;
-
-            foreach (var text in message)
+            foreach (var text in finishMessage)
             {
                 Console.CursorLeft = (FieldData.WindowWidth - text.Length) / 2;
                 Console.WriteLine(text);
             }
 
-            if (ReadKey() == "Q")
+            if (Read.Key == "Q")
             {
                 FinishManager.EndOfGame();
             }
-        }
-
-        private static string ReadKey()
-        {
-            return Console.ReadKey(true)
-                          .Key
-                          .ToString()
-                          .ToUpper();
         }
     }
 }

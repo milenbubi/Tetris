@@ -97,9 +97,7 @@ namespace Tetris
         {
             //Smoothing the left/right moving
             Task.Delay(12).Wait();
-            string key = Console.ReadKey(true).Key.ToString();
-
-            KeyController.Action(figure, key);
+            KeyController.Action(figure, Read.Key);
         }
 
         private bool IsStatusPlay()
