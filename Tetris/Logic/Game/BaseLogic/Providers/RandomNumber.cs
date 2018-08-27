@@ -1,4 +1,3 @@
-using System;
 using System.Security.Cryptography;
 
 namespace Tetris.Logic.Game.BaseLogic.Providers
@@ -10,18 +9,19 @@ namespace Tetris.Logic.Game.BaseLogic.Providers
 
         static RandomNumber()
         {
-            provider = RNGCryptoServiceProvider.Create();
-            byteArray = new byte[2];
+            provider = RandomNumberGenerator.Create();
+            byteArray = new byte[1];
         }
 
-        internal static int InRangeZeroTo(int maxNumber)
+        internal static int ZeroBasedRange(int maxNumber)
         {
             provider.GetBytes(byteArray);
-            int randomNumber = BitConverter.ToUInt16(byteArray, 0) % maxNumber;
-
-            return randomNumber;
+            return byteArray[0] % maxNumber;
         }
 
-        //TODO  A new method with two parameters  :  from - to
+        internal static int InRange(int min, int max)
+        {
+            return ZeroBasedRange(max - min + 1) + min;
+        }
     }
 }

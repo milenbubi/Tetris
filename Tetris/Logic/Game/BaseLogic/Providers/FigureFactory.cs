@@ -19,7 +19,7 @@ namespace Tetris.Logic.Game.BaseLogic.Providers
  
         internal static IFigure GetRandomFigure(int x, int y)
         {
-            int randomPosition = RandomNumber.InRangeZeroTo(figureTypes.Count());
+            int randomPosition = RandomNumber.ZeroBasedRange(figureTypes.Count());
 
             Type randomFigure = figureTypes.ElementAt(randomPosition);
 

@@ -1,5 +1,5 @@
-﻿using System;
-using Tetris.Logic.Figures;
+﻿using Tetris.Logic.Figures;
+using Tetris.Logic.Game.BaseLogic.Providers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
@@ -30,16 +30,12 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static void AddNewObstacle(FieldCells fieldCells)
         {
-            int middle = FieldData.GameFieldHeight / 2;
+            int middle = FieldData.GameFieldHeight / 2 + 1;
             int bottom = FieldData.GameFieldHeight - 3;
             int lastColumn = FieldData.GameFieldWidth - 3;
 
-
-            //TODO  waiting for new method in Random Provider
-            Random random = new Random((int)DateTime.Now.Ticks);
-
-            int x = random.Next(2, lastColumn);
-            int y = random.Next(middle + 1, bottom);
+            int x = RandomNumber.InRange(2, lastColumn);
+            int y = RandomNumber.InRange(middle, bottom);
 
             fieldCells[y][x] = obstacle;
         }

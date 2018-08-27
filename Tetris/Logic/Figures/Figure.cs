@@ -11,8 +11,8 @@ namespace Tetris.Logic.Figures
 
         internal Figure(int states, int[] coords)
         {
-            PositionX = coords[0];
-            PositionY = coords[1];
+            PositionX = coords.First();
+            PositionY = coords.Last();
 
             Element = new FigureElement(RandomColor());
 
@@ -41,7 +41,7 @@ namespace Tetris.Logic.Figures
 
             do
             {
-                color = (ConsoleColor)RandomNumber.InRangeZeroTo(16);
+                color = (ConsoleColor)RandomNumber.ZeroBasedRange(16);
             } while (color == Console.BackgroundColor);
 
             return color;
