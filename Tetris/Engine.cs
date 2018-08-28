@@ -1,9 +1,7 @@
-using System;
 using Tetris.Logic.Game;
 using Tetris.Logic.Figures;
 using static Tetris.Logic.GameData;
 using Tetris.Logic;
-using System.Threading.Tasks;
 
 namespace Tetris
 {
@@ -11,22 +9,13 @@ namespace Tetris
     {
         private IFigure figure;
 
-        private bool InPlay
-        {
-            get
-            {
-                return IsStatusPlay() && !GameController.Check.IsFinished(figure);
-            }
-        }
+        private bool InPlay => PlayStatus() && !GameController.Check.IsFinished(figure);
 
         internal void Run()
         {
             GameController.InitializeGame();
-
             Play();
-
             GameController.Finish();
-
             Run();
         }
 
@@ -44,7 +33,7 @@ namespace Tetris
 
                     TheHeartOfGame();
 
-                    if (!IsStatusPlay()) return;
+                    if (!PlayStatus()) return;
 
                     figureCount++;
                     points++;
@@ -59,9 +48,10 @@ namespace Tetris
 
         private void FigureFirstDraw()
         {
-            if (GameController.Check.IsReachedBorder(figure))
+            if (GameController.Check.IsReachedBorder(figure, 0, 0))
             {
                 status = Status.GameOver;
+                GameController.Delay(1000);
                 return;
             }
 
@@ -80,7 +70,7 @@ namespace Tetris
             {
                 MoveFigure();
 
-                while (Console.KeyAvailable)
+                while (GameController.KeyIsPressed)
                 {
                     UsePressedKey();
                 }
@@ -89,27 +79,23 @@ namespace Tetris
 
         private void MoveFigure()
         {
-            Task.Delay(speed).Wait();
+            GameController.Delay(speed);
             GameController.Graphic.Move(figure, 0, 1);
         }
 
         private void UsePressedKey()
         {
             //Smoothing the left/right moving
-            Task.Delay(12).Wait();
-            KeyController.Action(figure, Read.Key);
+            GameController.Delay(12);
+            KeyController.Action(figure, GameController.PressKey());
         }
 
-        private bool IsStatusPlay()
+        private bool PlayStatus()
         {
             switch (status)
             {
+                case Status.Skip: status = Status.Play; return false;
                 case Status.Play: return true;
-
-                case Status.Skip:
-                    status = Status.Play;
-                    return false;
-
                 default: return false;
             }
         }

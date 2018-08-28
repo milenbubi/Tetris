@@ -5,14 +5,13 @@ using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Visualizers
 {
-    internal class FieldCells
+    internal class Field
     {
         private static readonly int fieldRows;
         private static readonly int fieldColumns;
         private static readonly FigureElement BorderElement;
-        private static IList<FigureElement[]> fieldCells;
 
-        static FieldCells()
+        static Field()
         {
             fieldRows = FieldData.GameFieldHeight;
             fieldColumns = FieldData.GameFieldWidth;
@@ -20,13 +19,13 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
             BorderElement = new FigureElement(FieldData.BorderSymbolColor, FieldData.BorderSymbol);
         }
 
-        internal FigureElement[] this[int index] => fieldCells[index];
+        internal static IList<FigureElement[]> Cells { get; set; }
 
-        internal void ReDrawFieldOnReadyLine(int readyLine)
+        internal static void ReDrawFieldOnReadyLine(int readyLine)
         {
             //Removing ready line, insert and initializing a new empty row
-            fieldCells.RemoveAt(readyLine);
-            fieldCells.Insert(1, new FigureElement[fieldColumns]);
+            Cells.RemoveAt(readyLine);
+            Cells.Insert(1, new FigureElement[fieldColumns]);
             Initialize(1);
 
             //Redrawing game field
@@ -37,12 +36,12 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
 
         internal static void ResetCells()
         {
-            fieldCells = new List<FigureElement[]>(fieldRows);
+            Cells = new List<FigureElement[]>(fieldRows);
 
             //Initialize the cell List
             for (int row = 0; row < fieldRows - 2; row++)
             {
-                fieldCells.Add(new FigureElement[fieldColumns]);
+                Cells.Add(new FigureElement[fieldColumns]);
                 Initialize(row);
             }
 
@@ -51,20 +50,20 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
                 .Repeat(BorderElement, fieldColumns)
                 .ToArray();
 
-            fieldCells.Insert(0, horizontalBorder);
-            fieldCells.Add(horizontalBorder);
+            Cells.Insert(0, horizontalBorder);
+            Cells.Add(horizontalBorder);
         }
 
         private static void Initialize(int row)
         {
             for (int col = 1; col < fieldColumns - 1; col++)
             {
-                fieldCells[row][col] = new FigureElement(FieldData.BackgroundColor, ' ');
+                Cells[row][col] = new FigureElement(FieldData.BackgroundColor, ' ');
             }
 
             //Vertical borders
-            fieldCells[row][0] = BorderElement;
-            fieldCells[row][fieldColumns - 1] = BorderElement;
+            Cells[row][0] = BorderElement;
+            Cells[row][fieldColumns - 1] = BorderElement;
         }
 
         private static void DrawRowsInRange(int from, int to)
@@ -73,7 +72,7 @@ namespace Tetris.Logic.Game.BaseLogic.Visualizers
             {
                 Console.SetCursorPosition(0, row);
 
-                foreach (var item in fieldCells[row])
+                foreach (var item in Cells[row])
                 {
                     Console.Write(item);
                 }

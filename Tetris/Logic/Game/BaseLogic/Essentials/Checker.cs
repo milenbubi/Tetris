@@ -7,19 +7,11 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 {
     internal class Checker
     {
-        private FieldCells fieldCells;
-
-        internal Checker()
-        {
-            fieldCells = new FieldCells();
-        }
-
         internal bool IsFinished(IFigure figure)
         {
-
             if (IsReachedBorder(figure, 0, 1))
             {
-                FieldCellsManager.AddFigure(fieldCells, figure);
+                FieldCellsManager.AddFigure(figure);
 
                 CheckForReadyLine(figure);
                 return true;
@@ -28,7 +20,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             return false;
         }
 
-        internal bool IsReachedBorder(IFigure figure, sbyte xValue = 0, sbyte yValue = 0)
+        internal bool IsReachedBorder(IFigure figure, sbyte xValue, sbyte yValue)
         {
             int x = figure.PositionX + xValue;
             int y = figure.PositionY + yValue;
@@ -36,7 +28,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
             for (int i = 0; i < elemCoords.Length; i += 2)
             {
-                if (fieldCells
+                if (Field.Cells
                    [y + elemCoords[i + 1]]
                    [x + elemCoords[i]]
                    .Symbol != ' ')
@@ -63,9 +55,9 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
                 }
 
                 //Checks if approximate row is ready
-                if (fieldCells[approximateRow].All(e => e.Symbol != ' '))
+                if (Field.Cells[approximateRow].All(e => e.Symbol != ' '))
                 {
-                    fieldCells.ReDrawFieldOnReadyLine(approximateRow);
+                    Field.ReDrawFieldOnReadyLine(approximateRow);
                     GameData.points += GameData.PointPerLine;
                     continue;
                 }

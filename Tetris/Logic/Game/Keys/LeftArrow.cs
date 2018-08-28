@@ -10,6 +10,7 @@ namespace Tetris.Logic.Game.Keys
             {
                 return;
             }
+
             Graphic.Move(figure, -1, 0);
         }
     }

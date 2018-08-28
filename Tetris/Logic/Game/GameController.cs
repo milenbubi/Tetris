@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Managers;
+using Tetris.Logic.Game.BaseLogic.Providers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game
@@ -12,10 +13,6 @@ namespace Tetris.Logic.Game
 
         static GameController()
         {
-            FieldCells = new FieldCells();
-            Graphic = new GameGraphic();
-            Check = new Checker();
-
             finishMessage = new string[]
                 {
                     "GAME OVER\n",
@@ -24,13 +21,17 @@ namespace Tetris.Logic.Game
                 };
         }
 
-        internal static FieldCells FieldCells { get; }
+        internal static Checker Check => Container.Check;
 
-        internal static GameGraphic Graphic { get; }
+        internal static GameGraphic Graphic => Container.Graphic;
 
-        internal static Checker Check { get; }
+        internal static bool KeyIsPressed => Keyboard.KeyIsPressed;
+
+        internal static string PressKey() => Keyboard.ReadKey;
 
         internal static void UpdateInfo() => InfoPanel.Update();
+
+        internal static void Delay(int miliSeconds) => Task.Delay(miliSeconds).Wait();
 
         internal static void InitializeGame()
         {
@@ -38,11 +39,11 @@ namespace Tetris.Logic.Game
             GameData.ResetData();
             UpdateInfo();
 
-            FieldCells.ResetCells();
-            FieldCells.DrawAllRows();
+            Field.ResetCells();
+            Field.DrawAllRows();
             GameInitializeManager.ShowWelcomeMessage();
 
-            if (Read.Key == "M")
+            if (PressKey() == "M")
             {
                 Menu.Show();
             }
@@ -52,14 +53,14 @@ namespace Tetris.Logic.Game
 
         internal static void SetObstacles()
         {
-            FieldCells.ResetCells();
-            Task.Delay(500).Wait();
+            Field.ResetCells();
+            Delay(500);
 
             for (int i = 1; i < GameData.level; i++)
             {
-                FieldCellsManager.AddNewObstacle(FieldCells);
-                FieldCells.DrawAllRows();
-                Task.Delay(500).Wait();
+                FieldCellsManager.AddNewObstacle();
+                Field.DrawAllRows();
+                Delay(500);
             }
         }
 
@@ -77,7 +78,7 @@ namespace Tetris.Logic.Game
                 Console.WriteLine(text);
             }
 
-            if (Read.Key == "Q")
+            if (PressKey() == "Q")
             {
                 FinishManager.EndOfGame();
             }

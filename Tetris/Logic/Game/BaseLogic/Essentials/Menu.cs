@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
+using Tetris.Logic.Game.BaseLogic.Providers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game.BaseLogic.Essentials
@@ -47,14 +48,14 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
         {
             ShowMenu();
 
-            switch (Read.Key)
+            switch (Keyboard.ReadKey)
             {
                 case "C": Controls(); break;
                 case "B": BestScores(); break;
                 case "N": NewGame(); return;
                 case "Q": QuitGame(); break;
                 case "A": AboutMe(); break;
-                default: ShowInfoPanel(); FieldCells.DrawAllRows(); return;
+                default: ShowInfoPanel(); Field.DrawAllRows(); return;
             }
 
             Show();
