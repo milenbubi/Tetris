@@ -2,7 +2,7 @@
 {
     public class LittleT : Figure, IFigure
     {
-        public LittleT(params int[] coords) : base(4, coords)
+        public LittleT(int x, int y) : base(4, x, y)
         {
             elemCoords[0] = new int[] { 0, 0, -1, 0, 1, 0, 0, -1 };
             elemCoords[1] = new int[] { 0, 0, 0, -1, 0, 1, 1, 0 };

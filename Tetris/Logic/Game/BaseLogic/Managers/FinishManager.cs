@@ -9,7 +9,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             Console.BufferHeight = 45;
             Console.BufferWidth = 150;
             Console.WindowHeight = 23;
-            Console.WindowWidth = 75;
+            Console.WindowWidth = 51;
 
             Console.Clear();
             Console.CursorVisible = true;

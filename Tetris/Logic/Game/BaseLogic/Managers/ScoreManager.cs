@@ -22,7 +22,6 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             string score = playScore + playDate;
 
             ReorderScoreTable(score);
-
             LogFileManager.Write(scoreTable);
         }
 

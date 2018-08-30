@@ -27,9 +27,9 @@ namespace Tetris.Logic.Game
 
         internal static bool KeyIsPressed => Keyboard.KeyIsPressed;
 
-        internal static string PressKey() => Keyboard.ReadKey;
-
         internal static void UpdateInfo() => InfoPanel.Update();
+
+        internal static string PressKey() => Keyboard.ReadKey;
 
         internal static void Delay(int miliSeconds) => Task.Delay(miliSeconds).Wait();
 

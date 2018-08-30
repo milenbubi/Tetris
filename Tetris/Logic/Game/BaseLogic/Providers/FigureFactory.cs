@@ -16,7 +16,7 @@ namespace Tetris.Logic.Game.BaseLogic.Providers
                                    .SelectMany(a => a.GetTypes())
                                    .Where(t => typeof(IFigure).IsAssignableFrom(t) && !t.IsAbstract);
         }
- 
+
         internal static IFigure GetRandomFigure(int x, int y)
         {
             int randomPosition = RandomNumber.ZeroBasedRange(figureTypes.Count());

@@ -2,7 +2,7 @@
 {
     public class BigAngle : Figure, IFigure
     {
-        public BigAngle(params int[] coords) : base(4, coords)
+        public BigAngle(int x, int y) : base(4, x, y)
         {
             elemCoords[0] = new int[] { -1, -1, 0, -1, 1, -1, 1, 0, 1, 1 };
             elemCoords[1] = new int[] { -1, 1, 0, 1, 1, 1, 1, 0, 1, -1 };
@@ -11,3 +11,4 @@
         }
     }
 }
+

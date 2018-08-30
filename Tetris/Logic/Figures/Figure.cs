@@ -9,10 +9,10 @@ namespace Tetris.Logic.Figures
     {
         protected int[][] elemCoords;
 
-        internal Figure(int states, int[] coords)
+        internal Figure(int states, int x, int y)
         {
-            PositionX = coords.First();
-            PositionY = coords.Last();
+            PositionX = x;
+            PositionY = y;
 
             Element = new FigureElement(RandomColor());
 
@@ -40,7 +40,7 @@ namespace Tetris.Logic.Figures
             do
             {
                 color = (ConsoleColor)RandomNumber.ZeroBasedRange(16);
-            } while (color == Console.BackgroundColor);
+            } while (color == FieldData.BackgroundColor);
 
             return color;
         }

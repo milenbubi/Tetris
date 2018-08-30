@@ -2,7 +2,7 @@
 {
     public class Line : Figure, IFigure
     {
-        public Line(params int[] coords) : base(2, coords)
+        public Line(int x, int y) : base(2, x, y)
         {
             elemCoords[0] = new int[] { 0, -1, -1, -1, 1, -1 };
             elemCoords[1] = new int[] { 0, 0, 0, -1, 0, 1 };
