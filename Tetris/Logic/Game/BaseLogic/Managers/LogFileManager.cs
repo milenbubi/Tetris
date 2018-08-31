@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using System;
-using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
@@ -19,7 +17,6 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static IEnumerable<string> Read()
         {
-
             using (StreamReader reader = new StreamReader(logFile))
             {
                 string line = reader.ReadLine();
