@@ -1,5 +1,6 @@
 ﻿using System;
 using Tetris.Logic.Figures;
+using Tetris.Logic.Game.BaseLogic.Providers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
@@ -9,18 +10,14 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         private static int positionX;
         private static int positionY;
         private static IFigure preview;
-        private static GameGraphic graphic;
 
-        static NextFigurePreviewManager()
-        {
-            graphic = new GameGraphic();
-        }
+        internal static GameGraphic Graphic => Container.Graphic;
 
         internal static void Update(IFigure nextFigure)
         {
             ClearPreview();
             CreatePreview(nextFigure);
-            graphic.Draw(preview);
+            Graphic.Draw(preview);
         }
 
         internal static void SetPreviewPosition(int x, int y)
@@ -33,8 +30,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         {
             if (preview != null)
             {
-                preview.Element.Color = FieldData.BackgroundColor;
-                graphic.Draw(preview);
+                Graphic.Clear(preview);
             }
         }
 

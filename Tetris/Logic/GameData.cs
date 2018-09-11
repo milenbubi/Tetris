@@ -5,14 +5,14 @@ namespace Tetris.Logic
 {
     internal struct GameData
     {
-        internal static int LevelsCount = 3;
-        internal static int FiguresPerLevel = 56;
+        internal const int LevelsCount = 3;
+        internal const int FiguresPerLevel = 56;
 
-        internal static int PointPerLine = 28;
-        internal static int PointsPerLevel = 7;
+        internal const int PointPerLine = 28;
+        internal const int PointsPerLevel = 7;
 
-        internal static int StartSpeed = 355;
-        internal static string LogFile = "GameLog.ini";
+        internal const int StartSpeed = 355;
+        internal const string LogFile = "GameLog.ini";
 
         internal static int speed;
         internal static int points;

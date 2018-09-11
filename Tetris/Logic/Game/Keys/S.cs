@@ -1,5 +1,4 @@
-﻿using System;
-using Tetris.Logic.Figures;
+﻿using Tetris.Logic.Figures;
 
 namespace Tetris.Logic.Game.Keys
 {
@@ -13,11 +12,9 @@ namespace Tetris.Logic.Game.Keys
                 return;
             }
 
-            figure.Element.Color = Console.BackgroundColor;
             Graphic.Clear(figure);
 
             GameData.status = Status.Skip;
-
             GameData.figureCount--;
             GameData.points--;
         }

@@ -28,5 +28,4 @@ Game controls:
 
 <b>
     I have added new feature - obstacles after each level.
-    But this is beta version.
 <b/>

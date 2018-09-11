@@ -38,8 +38,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             scoreTable = scoreTable
                 .Concat(Enumerable.Repeat(score, 1))
                 .OrderByDescending(s => s)
-                .Take(countOfBestScores)
-                .ToList();
+                .Take(countOfBestScores);
         }
     }
 }

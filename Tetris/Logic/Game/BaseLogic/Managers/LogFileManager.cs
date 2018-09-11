@@ -5,7 +5,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class LogFileManager
     {
-        private static readonly string logFile = GameData.LogFile;
+        private static string logFile = GameData.LogFile;
 
         static LogFileManager()
         {
@@ -19,13 +19,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         {
             using (StreamReader reader = new StreamReader(logFile))
             {
-                string line = reader.ReadLine();
-
-                while (line != null)
-                {
-                    yield return line;
-                    line = reader.ReadLine();
-                }
+                return reader.ReadToEnd().Trim().Split("\n".ToCharArray());
             }
         }
 

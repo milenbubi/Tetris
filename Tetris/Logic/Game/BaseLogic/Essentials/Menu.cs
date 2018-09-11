@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Tetris.Logic.Game.BaseLogic.Managers;
 using Tetris.Logic.Game.BaseLogic.Providers;
@@ -12,6 +13,8 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
         private static string[] items;
         private static string[] backMessage;
+
+        public static object Ienumerable { get; private set; }
 
         static Menu()
         {
@@ -94,28 +97,28 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
         private static void BestScores()
         {
             ScoreManager.DisplayScores();
-
             Console.ForegroundColor = ConsoleColor.Red;
 
             int currentScore = GameData.points;
             Console.WriteLine("  Current score: {0} pts.\n", currentScore);
 
+            IEnumerable<string> scoreTable = LogFileManager.Read();
+
             try
             {
-                int lowestBestScore = Convert.ToInt32(LogFileManager
-                    .Read()
+                int lowestBestScore = int.Parse(scoreTable
                     .Last()
                     .Split()
                     .First());
 
-                if (currentScore >= lowestBestScore)
+                if (currentScore >= lowestBestScore || scoreTable.Count() < 10)
                 {
                     Console.WriteLine("  You already reached");
                     Console.WriteLine("  the top 10 results.\n");
                     Console.WriteLine("  Just finish the game!");
                 }
             }
-            catch (InvalidOperationException)
+            catch (FormatException)
             {
                 Console.WriteLine("  Score table is empty!\n");
             }
