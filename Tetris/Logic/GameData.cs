@@ -5,7 +5,7 @@ namespace Tetris.Logic
 {
     internal struct GameData
     {
-        internal const int LevelsCount = 3;
+        internal const int LevelsCount = 7;
         internal const int FiguresPerLevel = 56;
 
         internal const int PointPerLine = 28;

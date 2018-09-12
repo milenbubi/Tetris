@@ -87,7 +87,7 @@ namespace Tetris
         {
             //Smoothing the left/right moving
             GameController.Delay(12);
-            KeyController.Action(figure, GameController.PressKey());
+            KeyController.Action(figure, GameController.PressedKey);
         }
 
         private bool PlayStatus()

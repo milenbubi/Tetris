@@ -27,9 +27,9 @@ namespace Tetris.Logic.Game
 
         internal static bool KeyIsPressed => Keyboard.KeyIsPressed;
 
-        internal static void UpdateInfo() => InfoPanel.Update();
+        internal static string PressedKey => Keyboard.ReadKey;
 
-        internal static string PressKey() => Keyboard.ReadKey;
+        internal static void UpdateInfo() => InfoPanel.Update();
 
         internal static void Delay(int miliSeconds) => Task.Delay(miliSeconds).Wait();
 
@@ -43,7 +43,7 @@ namespace Tetris.Logic.Game
             Field.DrawAllRows();
             GameInitializeManager.ShowWelcomeMessage();
 
-            if (PressKey() == "M")
+            if (PressedKey == "M")
             {
                 Menu.Show();
             }
@@ -56,7 +56,7 @@ namespace Tetris.Logic.Game
             Field.ResetCells();
             Delay(500);
 
-            for (int i = 1; i < GameData.level; i++)
+            for (int i = 1; i <= GameData.level / 2; i++)
             {
                 FieldCellsManager.AddNewObstacle();
                 Field.DrawAllRows();
@@ -78,7 +78,7 @@ namespace Tetris.Logic.Game
                 Console.WriteLine(text);
             }
 
-            if (PressKey() == "Q")
+            if (PressedKey == "Q")
             {
                 FinishManager.EndOfGame();
             }

@@ -24,7 +24,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             //Next figure preview
             CursorPosition(3);
             Console.WriteLine("Next Figure:");
-            NextFigurePreviewManager.Update(GameData.nextFigure);
+            NextFigurePreviewManager.Update();
 
             //Current level
             CursorPosition(lastRow - 10);

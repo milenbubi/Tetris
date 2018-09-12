@@ -11,19 +11,15 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
     {
         private const string Title = "MAIN MENU";
 
-        private static string[] items;
-        private static string[] backMessage;
-
-        public static object Ienumerable { get; private set; }
+        private static IEnumerable<string> items;
+        private static IEnumerable<string> backMessage;
 
         static Menu()
         {
-            int padding = (FieldData.GameFieldWidth + Title.Length) / 2;
-
-            items = new string[]
+            items = new[]
             {
                 Environment.NewLine,
-                Title.PadLeft(padding),
+                Title.PadLeft((FieldData.GameFieldWidth + Title.Length) / 2),
                 Environment.NewLine,
                 "'C' - Controls",
                 "'B' - Best Scores\n",
@@ -39,7 +35,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
                 " playing."
             };
 
-            backMessage = new string[]
+            backMessage = new[]
             {
                 Environment.NewLine,
                 "Press any key",
@@ -49,7 +45,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
         internal static void Show()
         {
-            ShowMenu();
+            DisplayItems();
 
             switch (Keyboard.ReadKey)
             {
@@ -64,7 +60,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             Show();
         }
 
-        private static void ShowMenu()
+        private static void DisplayItems()
         {
             PrepareMenuWindow();
             Console.WriteLine(string.Join("\n", items));
@@ -91,7 +87,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
             //Repeating
             PrepareMenuWindow();
-            Print(controls.Concat(backMessage).ToArray());
+            Print(controls.Concat(backMessage));
         }
 
         private static void BestScores()
@@ -162,7 +158,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             };
 
             Console.Clear();
-            Print(aboutMe.Concat(backMessage).ToArray());
+            Print(aboutMe.Concat(backMessage));
         }
 
         private static void PrepareMenuWindow()
@@ -180,10 +176,10 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             InfoPanel.Update();
         }
 
-        private static void Print(string[] text)
+        private static void Print(IEnumerable<string> text)
         {
             Console.WriteLine(string.Join("\n", text));
-            Console.ReadKey(true);
+            Keyboard.PressAnyKey();
         }
     }
 }

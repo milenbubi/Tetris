@@ -8,7 +8,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         static GameInitializeManager()
         {
-            welcomeMessage = new string[]
+            welcomeMessage = new[]
             {
                 "Press 'M'",
                 "for Main Menu",

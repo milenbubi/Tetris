@@ -13,10 +13,10 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static GameGraphic Graphic => Container.Graphic;
 
-        internal static void Update(IFigure nextFigure)
+        internal static void Update()
         {
             ClearPreview();
-            CreatePreview(nextFigure);
+            CreatePreview();
             Graphic.Draw(preview);
         }
 
@@ -34,10 +34,10 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             }
         }
 
-        private static void CreatePreview(IFigure nextFigure)
+        private static void CreatePreview()
         {
-            preview = (IFigure)Activator.CreateInstance(nextFigure.GetType(), positionX, positionY);
-            preview.Element.Color = nextFigure.Element.Color;
+            preview = (IFigure)Activator.CreateInstance(GameData.nextFigure.GetType(), positionX, positionY);
+            preview.Element.Color = GameData.nextFigure.Element.Color;
         }
     }
 }
