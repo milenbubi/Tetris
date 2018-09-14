@@ -12,7 +12,6 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             if (IsReachedBorder(figure, 0, 1))
             {
                 FieldCellsManager.AddFigure(figure);
-
                 CheckForReadyLine(figure);
                 return true;
             }
@@ -59,6 +58,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
                 {
                     Field.ReDrawFieldOnReadyLine(approximateRow);
                     GameData.points += GameData.PointPerLine;
+                    GameData.speed += 5;
                     continue;
                 }
 
