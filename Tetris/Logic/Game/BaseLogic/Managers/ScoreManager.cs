@@ -35,7 +35,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         private static void ReorderScoreTable(string score)
         {
-            scoreTable = scoreTable.AsEnumerable()
+            scoreTable = scoreTable
                 .Concat(Enumerable.Repeat(score, 1))
                 .OrderByDescending(s => s)
                 .Take(countOfBestScores);
