@@ -1,5 +1,5 @@
 # Tetris
-.NET console project based on classic Tetris game
+.NET console project based on classic Tetris game.
 
  This application has detailed menu section and simplified, but informative interface.
  
@@ -25,7 +25,6 @@ Game controls:
     <br>
 </div>
 
-
 <b>
-    I have added new feature - obstacles after each level.
-<b/>
+    I have added new features - obstacles after each level and speed label.
+</b>
