@@ -6,16 +6,12 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
     {
         internal static void EndOfGame()
         {
-            Console.BufferHeight = 45;
-            Console.BufferWidth = 150;
-            Console.WindowHeight = 23;
-            Console.WindowWidth = 51;
+            Console.SetWindowSize(91, 28);
+            Console.SetBufferSize(300, 200);
 
             Console.Clear();
+            Console.ResetColor();
             Console.CursorVisible = true;
-
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
 
             ScoreManager.DisplayScores();
             Environment.Exit(0);

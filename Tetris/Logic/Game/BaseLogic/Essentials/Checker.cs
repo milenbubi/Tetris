@@ -58,7 +58,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
                 {
                     Field.ReDrawFieldOnReadyLine(approximateRow);
                     GameData.points += GameData.PointPerLine;
-                    GameData.speed += 5;
+                    GameData.speed += 4;
                     continue;
                 }
 

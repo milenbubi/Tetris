@@ -26,6 +26,11 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             Console.WriteLine("Next Figure:");
             NextFigurePreviewManager.Update();
 
+            //Current speed
+            CursorPosition(lastRow - 13);
+            Console.Write("Speed - ");
+            Console.Write(60000 / GameData.speed + "/min");
+
             //Current level
             CursorPosition(lastRow - 10);
             Console.Write("Level - ");
