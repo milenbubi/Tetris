@@ -19,7 +19,7 @@ Game controls:
 
 <div>
     <img src = "1.png">
- &nbsp;
+ &nbsp; &nbsp;
     <img src = "2.png">
     <br>
     <br>
