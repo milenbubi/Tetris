@@ -28,7 +28,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
             //Current speed
             CursorPosition(lastRow - 13);
-            Console.Write("Speed - ");
+            Console.Write("Moves - ");
             Console.Write(60000 / GameData.speed + "/min");
 
             //Current level
