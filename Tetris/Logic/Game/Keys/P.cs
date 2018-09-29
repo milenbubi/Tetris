@@ -31,13 +31,12 @@ namespace Tetris.Logic.Game.Keys
             timer.Start();
 
             Keyboard.PressAnyKey();
-            timer.Enabled = false;
+            timer.Stop();
             Field.DrawAllRows();
         }
 
         private static void BlinkPauseMessage(object sender, ElapsedEventArgs e)
         {
-            ((Timer)sender).Enabled = true;
             Console.ForegroundColor = FieldData.MessageColor;
             Console.CursorTop = (FieldData.WindowHeight - pauseMessage.Length) / 2;
 

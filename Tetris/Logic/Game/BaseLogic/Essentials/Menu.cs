@@ -11,12 +11,12 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
     {
         private const string Title = "MAIN MENU";
 
-        private static IEnumerable<string> items;
+        private static IEnumerable<string> options;
         private static IEnumerable<string> backMessage;
 
         static Menu()
         {
-            items = new[]
+            options = new[]
             {
                 Environment.NewLine,
                 Title.PadLeft((FieldData.GameFieldWidth + Title.Length) / 2),
@@ -45,7 +45,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
         internal static void Show()
         {
-            DisplayItems();
+            DisplayOptions();
 
             switch (Keyboard.ReadKey)
             {
@@ -60,10 +60,10 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             Show();
         }
 
-        private static void DisplayItems()
+        private static void DisplayOptions()
         {
             PrepareMenuWindow();
-            Console.WriteLine(string.Join("\n", items));
+            Console.WriteLine(string.Join("\n", options));
         }
 
         private static void Controls()
@@ -72,7 +72,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             {
                 Environment.NewLine,
                 "   Game Controls:",
-                new string('\n',2),
+                Environment.NewLine,
                 " ◄ - Left\n",
                 " ► - Right\n",
                 " ▼ - To the bottom",
