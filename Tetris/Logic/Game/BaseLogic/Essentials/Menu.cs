@@ -81,6 +81,8 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
                 string.Empty,
                 " S - Next figure",
                 string.Empty,
+                " P - Pause",
+                string.Empty,
                 " M - Menu",
                 Environment.NewLine
             };
