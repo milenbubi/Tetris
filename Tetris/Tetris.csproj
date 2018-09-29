@@ -71,6 +71,7 @@
     <Compile Include="Logic\Game\Keys\DownArrow.cs" />
     <Compile Include="Logic\Game\Keys\LeftArrow.cs" />
     <Compile Include="Logic\Game\Keys\IKey.cs" />
+    <Compile Include="Logic\Game\Keys\P.cs" />
     <Compile Include="Logic\Game\Keys\PressedKey.cs" />
     <Compile Include="Logic\Game\Keys\RightArrow.cs" />
     <Compile Include="Logic\Game\Keys\S.cs" />

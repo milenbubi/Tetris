@@ -34,24 +34,16 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         internal static void ShowWelcomeMessage(bool showMessage = true)
         {
             Console.ForegroundColor = FieldData.MessageColor;
+            Console.CursorTop = (FieldData.WindowHeight - welcomeMessage.Length) / 2;
 
             if (!showMessage)
             {
                 Console.ForegroundColor = FieldData.BackgroundColor;
             }
 
-            PrintMessage(welcomeMessage);
-        }
-
-        private static void PrintMessage(string[] welcome)
-        {
-            Console.CursorTop = (FieldData.WindowHeight - welcome.Length) / 2;
-
-            foreach (var text in welcome)
+            foreach (var text in welcomeMessage)
             {
-                int textColumn = (FieldData.GameFieldWidth - text.Length) / 2;
-
-                Console.CursorLeft = textColumn;
+                Console.CursorLeft = (FieldData.GameFieldWidth - text.Length) / 2;
                 Console.WriteLine(text);
             }
         }
