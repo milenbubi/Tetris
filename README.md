@@ -10,11 +10,12 @@ Game controls:
 
         Right Arrow - Right
         Left Arrow - Left
-        Down Arrow - To Bottom
+        Down Arrow - To bottom
         Space - Figure rotation
         
+        P - Pause
         S - Skip current figure
-        M - Game Menu - Pause
+        M - Game Menu
         
 
 <div>
