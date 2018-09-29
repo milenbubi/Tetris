@@ -13,8 +13,8 @@ Game controls:
         Down Arrow - To bottom
         Space - Figure rotation
         
-        P - Pause
         S - Skip current figure
+        P - Pause
         M - Game Menu
         
 
