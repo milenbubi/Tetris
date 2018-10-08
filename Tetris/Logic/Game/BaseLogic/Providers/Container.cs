@@ -7,12 +7,12 @@ namespace Tetris.Logic.Game.BaseLogic.Providers
     {
         static Container()
         {
-            Check = new Checker();
-            Graphic = new GameGraphic();
+            Checker = new Checker();
+            GameGraphic = new GameGraphic();
         }
 
-        internal static Checker Check { get; }
+        internal static Checker Checker { get; }
 
-        internal static GameGraphic Graphic { get; }
+        internal static GameGraphic GameGraphic { get; }
     }
 }

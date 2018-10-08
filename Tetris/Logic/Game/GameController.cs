@@ -21,9 +21,9 @@ namespace Tetris.Logic.Game
                 };
         }
 
-        internal static Checker Check => Container.Check;
+        internal static Checker Check => Container.Checker;
 
-        internal static GameGraphic Graphic => Container.Graphic;
+        internal static GameGraphic Graphic => Container.GameGraphic;
 
         internal static bool KeyIsPressed => Keyboard.KeyIsPressed;
 
@@ -70,17 +70,34 @@ namespace Tetris.Logic.Game
 
             Console.Clear();
             Console.ForegroundColor = FieldData.MessageColor;
-            Console.CursorTop = (FieldData.WindowHeight - finishMessage.Length) / 2;
 
-            foreach (var text in finishMessage)
+            if (GameData.status == Status.NewGame)
             {
-                Console.CursorLeft = (FieldData.WindowWidth - text.Length) / 2;
-                Console.WriteLine(text);
+                string newGameMessage = "New game after {0} seconds";
+
+                Console.CursorTop = FieldData.WindowHeight / 2 - 1;
+
+                for (int i = 4; i >= 0; i--)
+                {
+                    Console.CursorLeft = (FieldData.WindowWidth - newGameMessage.Length) / 2;
+                    Console.Write(String.Format(newGameMessage, i));
+                    Delay(1000);
+                }
             }
-
-            if (PressedKey == "Q")
+            else
             {
-                FinishManager.EndOfGame();
+                Console.CursorTop = (FieldData.WindowHeight - finishMessage.Length) / 2;
+
+                foreach (var text in finishMessage)
+                {
+                    Console.CursorLeft = (FieldData.WindowWidth - text.Length) / 2;
+                    Console.WriteLine(text);
+                }
+
+                if (PressedKey == "Q")
+                {
+                    FinishManager.EndOfGame();
+                }
             }
         }
     }

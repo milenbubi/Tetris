@@ -7,9 +7,9 @@ namespace Tetris.Logic.Game.Keys
 {
     internal abstract class PressedKey : IKey
     {
-        internal static Checker Check => Container.Check;
+        internal Checker Check => Container.Checker;
 
-        internal static GameGraphic Graphic => Container.Graphic;
+        internal GameGraphic Graphic => Container.GameGraphic;
 
         public abstract void Action(IFigure figure);
     }
