@@ -37,13 +37,10 @@ namespace Tetris.Logic.Game.Keys
 
         private static void BlinkPauseMessage(object sender, ElapsedEventArgs e)
         {
-            Console.ForegroundColor = FieldData.MessageColor;
-            Console.CursorTop = (FieldData.WindowHeight - pauseMessage.Length) / 2;
+            Console.ForegroundColor = index++ % 2 == 0 ?
+                FieldData.MessageColor : FieldData.BackgroundColor;
 
-            if (index++ % 2 == 1)
-            {
-                Console.ForegroundColor = FieldData.BackgroundColor;
-            }
+            Console.CursorTop = (FieldData.WindowHeight - pauseMessage.Length) / 2;
 
             foreach (var text in pauseMessage)
             {
