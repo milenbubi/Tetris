@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using Tetris.Logic.Game.BaseLogic.Managers;
 using Tetris.Logic.Game.BaseLogic.Providers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
@@ -10,7 +10,6 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
     internal static class Menu
     {
         private const string Title = "MAIN MENU";
-
         private static IEnumerable<string> options;
         private static IEnumerable<string> backMessage;
 
@@ -47,7 +46,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
         {
             DisplayOptions();
 
-            switch (Keyboard.ReadKey)
+            switch (Keyboard.ReadKey())
             {
                 case "C": Controls(); break;
                 case "B": BestScores(); break;

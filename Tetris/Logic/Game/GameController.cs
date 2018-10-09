@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Managers;
 using Tetris.Logic.Game.BaseLogic.Providers;
+using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game
@@ -27,7 +27,7 @@ namespace Tetris.Logic.Game
 
         internal static bool KeyIsPressed => Keyboard.KeyIsPressed;
 
-        internal static string PressedKey => Keyboard.ReadKey;
+        internal static string PressedKey => Keyboard.ReadKey();
 
         internal static void UpdateInfo() => InfoPanel.Update();
 
@@ -67,7 +67,6 @@ namespace Tetris.Logic.Game
         internal static void Finish()
         {
             ScoreManager.UpdateScores();
-
             Console.Clear();
             Console.ForegroundColor = FieldData.MessageColor;
 

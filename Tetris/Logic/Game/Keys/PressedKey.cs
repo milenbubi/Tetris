@@ -1,6 +1,6 @@
 ﻿using Tetris.Logic.Figures;
-using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Providers;
+using Tetris.Logic.Game.BaseLogic.Essentials;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
 namespace Tetris.Logic.Game.Keys

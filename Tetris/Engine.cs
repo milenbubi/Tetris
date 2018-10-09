@@ -1,7 +1,7 @@
+using Tetris.Logic;
 using Tetris.Logic.Game;
 using Tetris.Logic.Figures;
 using static Tetris.Logic.GameData;
-using Tetris.Logic;
 
 namespace Tetris
 {

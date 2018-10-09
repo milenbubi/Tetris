@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Tetris.Logic.Figures;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Visualizers
 {

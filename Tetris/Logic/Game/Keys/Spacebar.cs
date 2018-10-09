@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Tetris.Logic.Figures;
 using System.Collections.Generic;
-using Tetris.Logic.Figures;
 
 namespace Tetris.Logic.Game.Keys
 {
@@ -13,24 +12,14 @@ namespace Tetris.Logic.Game.Keys
             tempFigureState = new Queue<int>(figure.State);
             figure.Rotate();
 
-            try
-            {
-                if (Check.IsReachedBorder(figure, 0, 0))
-                {
-                    return;
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-                return;
-            }
-            finally
-            {
-                figure.State = tempFigureState;
-            }
+            bool reachedBorder = Check.IsReachedBorder(figure, 0, 0);
+            figure.State = tempFigureState;
 
-            Graphic.Clear(figure);
-            figure.Rotate();
+            if (!reachedBorder)
+            {
+                Graphic.Clear(figure);
+                figure.Rotate();
+            }
         }
     }
 }

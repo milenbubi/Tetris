@@ -6,12 +6,10 @@ namespace Tetris.Logic.Game.Keys
     {
         public override void Action(IFigure figure)
         {
-            if (Check.IsReachedBorder(figure, 1, 0))
+            if (!Check.IsReachedBorder(figure, 1, 0))
             {
-                return;
+                Graphic.Move(figure, 1, 0);
             }
-
-            Graphic.Move(figure, 1, 0);
         }
     }
 }

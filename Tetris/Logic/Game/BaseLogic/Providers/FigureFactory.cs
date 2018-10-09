@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Tetris.Logic.Figures;
+using System.Collections.Generic;
 
 namespace Tetris.Logic.Game.BaseLogic.Providers
 {
@@ -11,10 +12,9 @@ namespace Tetris.Logic.Game.BaseLogic.Providers
 
         static FigureFactory()
         {
-            figureTypes = AppDomain.CurrentDomain
-                                   .GetAssemblies()
-                                   .SelectMany(a => a.GetTypes())
-                                   .Where(t => typeof(IFigure).IsAssignableFrom(t) && !t.IsAbstract);
+            figureTypes = Assembly.GetExecutingAssembly()
+                                  .GetTypes()
+                                  .Where(t => typeof(IFigure).IsAssignableFrom(t) && !t.IsAbstract);
         }
 
         internal static IFigure GetRandomFigure(int x, int y)
