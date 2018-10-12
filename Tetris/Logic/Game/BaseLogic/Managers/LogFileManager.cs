@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
@@ -18,7 +19,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static IEnumerable<string> Read()
         {
-            return File.ReadAllText(logFile).Trim().Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            return File.ReadAllText(logFile).Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         }
 
         internal static void Write(IEnumerable<string> scoreTable)
