@@ -76,7 +76,7 @@ namespace Tetris.Logic.Game
 
                 Console.CursorTop = FieldData.WindowHeight / 2 - 1;
 
-                for (int i = 4; i >= 0; i--)
+                for (int i = 3; i >= 0; i--)
                 {
                     Console.CursorLeft = (FieldData.WindowWidth - newGameMessage.Length) / 2;
                     Console.Write(String.Format(newGameMessage, i));

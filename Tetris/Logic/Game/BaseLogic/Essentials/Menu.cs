@@ -101,23 +101,20 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
             IEnumerable<string> scoreTable = LogFileManager.Read();
 
-            try
-            {
-                int lowestBestScore = int.Parse(scoreTable
-                    .Last()
-                    .Split()
-                    .First());
+            string lowestBestScore = scoreTable
+                .Last()
+                .Split()
+                .First();
 
-                if (currentScore >= lowestBestScore || scoreTable.Count() < 10)
-                {
-                    Console.WriteLine("  You already reached");
-                    Console.WriteLine("  the top 10 results.\n");
-                    Console.WriteLine("  Just finish the game!");
-                }
-            }
-            catch (FormatException)
+            if (lowestBestScore.Length == 0)
             {
                 Console.WriteLine("  Score table is empty!\n");
+            }
+            else if (currentScore >= int.Parse(lowestBestScore) || scoreTable.Count() < 10)
+            {
+                Console.WriteLine("  You already reached");
+                Console.WriteLine("  the top 10 results.\n");
+                Console.WriteLine("  Just finish the game!");
             }
 
             Console.ForegroundColor = FieldData.MessageColor;
