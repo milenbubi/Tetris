@@ -1,11 +1,12 @@
 ﻿using System.IO;
 using System.Collections.Generic;
+using System;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class LogFileManager
     {
-        private static readonly string logFile = GameData.LogFile;
+        private static string logFile = GameData.LogFile;
 
         static LogFileManager()
         {
@@ -17,7 +18,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static IEnumerable<string> Read()
         {
-            return File.ReadAllText(logFile).Trim().Split("\n".ToCharArray());
+            return File.ReadAllText(logFile).Trim().Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
         }
 
         internal static void Write(IEnumerable<string> scoreTable)
