@@ -1,7 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
-using System;
-using System.Linq;
 
 namespace Tetris.Logic.Game.BaseLogic.Managers
 {
