@@ -23,7 +23,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
         {
             //Next figure preview
             CursorPosition(3);
-            Console.WriteLine("Next Figure:");
+            Console.Write("Next Figure:");
             NextFigurePreviewManager.Update();
 
             //Current speed

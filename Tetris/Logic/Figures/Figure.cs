@@ -27,7 +27,7 @@ namespace Tetris.Logic.Figures
 
         public Queue<int> State { get; set; }
 
-        public FigureElement Element { get; set; }
+        public FigureElement Element { get; }
 
         public int[] ElementsCoordinates => elemCoords[State.Peek()];
 

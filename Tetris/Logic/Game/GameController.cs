@@ -58,7 +58,7 @@ namespace Tetris.Logic.Game
 
             for (int i = 1; i <= GameData.level / 2; i++)
             {
-                FieldCellsManager.AddNewObstacle();
+                FieldCellsManager.AddObstacle();
                 Field.DrawAllRows();
                 Delay(500);
             }

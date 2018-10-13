@@ -13,7 +13,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             obstacle = new FigureElement(FieldData.ObstacleColor);
         }
 
-        internal static void AddFigure( IFigure figure)
+        internal static void AddFigure(IFigure figure)
         {
             int x;
             int y;
@@ -28,13 +28,13 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             }
         }
 
-        internal static void AddNewObstacle()
+        internal static void AddObstacle()
         {
-            int middle = FieldData.GameFieldHeight / 2 + 1;
-            int bottom = FieldData.GameFieldHeight - 3;
-            int lastColumn = FieldData.GameFieldWidth - 3;
+            int middle = FieldData.GameFieldHeight / 2;
+            int bottom = FieldData.GameFieldHeight - 2;
+            int lastColumn = FieldData.GameFieldWidth - 2;
 
-            int x = RandomNumber.InRange(2, lastColumn);
+            int x = RandomNumber.InRange(1, lastColumn);
             int y = RandomNumber.InRange(middle, bottom);
 
             Field.Cells[y][x] = obstacle;

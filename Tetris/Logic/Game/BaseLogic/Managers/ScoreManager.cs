@@ -7,7 +7,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
     internal static class ScoreManager
     {
         private static IEnumerable<string> scoreTable;
-        private const int countOfBestScores = 10;
+        private static readonly int countOfBestScores = 10;
 
         static ScoreManager()
         {
