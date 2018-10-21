@@ -72,7 +72,7 @@ namespace Tetris
 
                 while (GameController.KeyIsPressed)
                 {
-                    UsePressedKey();
+                    KeyController.Action(figure, GameController.PressedKey);
                 }
             }
         }
@@ -81,13 +81,6 @@ namespace Tetris
         {
             GameController.Delay(speed);
             GameController.Graphic.Move(figure, 0, 1);
-        }
-
-        private void UsePressedKey()
-        {
-            //Smoothing the left/right moving
-            GameController.Delay(12);
-            KeyController.Action(figure, GameController.PressedKey);
         }
 
         private bool PlayStatus()

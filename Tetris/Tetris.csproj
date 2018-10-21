@@ -69,6 +69,7 @@
     <Compile Include="Logic\Game\BaseLogic\Managers\NextFigurePreviewManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\ScoreManager.cs" />
     <Compile Include="Logic\Game\Keys\DownArrow.cs" />
+    <Compile Include="Logic\Game\Keys\HorizontalMove.cs" />
     <Compile Include="Logic\Game\Keys\LeftArrow.cs" />
     <Compile Include="Logic\Game\Keys\IKey.cs" />
     <Compile Include="Logic\Game\Keys\P.cs" />

@@ -2,14 +2,12 @@
 
 namespace Tetris.Logic.Game.Keys
 {
-    internal class RightArrow : PressedKey, IKey
+    internal class RightArrow : HorizontalMove, IKey
     {
         public override void Action(IFigure figure)
         {
-            if (!Check.IsReachedBorder(figure, 1, 0))
-            {
-                Graphic.Move(figure, 1, 0);
-            }
+            xValue = 1;
+            base.Action(figure);
         }
     }
 }
