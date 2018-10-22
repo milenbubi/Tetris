@@ -52,10 +52,12 @@ namespace Tetris
             {
                 status = Status.GameOver;
                 GameController.Delay(1000);
-                return;
             }
-
-            GameController.Graphic.Draw(figure);
+            else
+            {
+                GameController.Graphic.Draw(figure);
+                GameController.Delay(speed);
+            }
         }
 
         private void SetFigure()
@@ -79,8 +81,8 @@ namespace Tetris
 
         private void MoveFigure()
         {
-            GameController.Delay(speed);
             GameController.Graphic.Move(figure, 0, 1);
+            GameController.Delay(speed);
         }
 
         private bool PlayStatus()
