@@ -2,6 +2,7 @@
 {
     internal enum Status
     {
+        Win,
         Play,
         Skip,
         NewGame,

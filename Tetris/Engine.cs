@@ -44,6 +44,8 @@ namespace Tetris
                 figureCount = 1;
                 points += PointsPerLevel;
             }
+
+            status = Status.Win;
         }
 
         private void FigureFirstDraw()
@@ -51,13 +53,11 @@ namespace Tetris
             if (GameController.Check.IsReachedBorder(figure, 0, 0))
             {
                 status = Status.GameOver;
-                GameController.Delay(1000);
+                return;
             }
-            else
-            {
-                GameController.Graphic.Draw(figure);
-                GameController.Delay(speed);
-            }
+
+            GameController.Graphic.Draw(figure);
+            GameController.Delay(speed);
         }
 
         private void SetFigure()

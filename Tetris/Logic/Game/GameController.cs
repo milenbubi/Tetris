@@ -66,38 +66,32 @@ namespace Tetris.Logic.Game
 
         internal static void Finish()
         {
-            ScoreManager.UpdateScores();
+            Delay(1000);
             Console.Clear();
+            ScoreManager.UpdateScores();
             Console.ForegroundColor = FieldData.MessageColor;
 
             if (GameData.status == Status.NewGame)
             {
-                string newGameMessage = "New game after {0} seconds";
-
-                Console.CursorTop = FieldData.WindowHeight / 2 - 1;
-
                 for (int i = 3; i >= 0; i--)
                 {
-                    Console.CursorLeft = (FieldData.WindowWidth - newGameMessage.Length) / 2;
-                    Console.Write(String.Format(newGameMessage, i));
+                    FinishManager.NewGameNotice(i);
                     Delay(1000);
                 }
+
+                return;
             }
-            else
+
+            switch (GameData.status)
             {
-                Console.CursorTop = (FieldData.WindowHeight - finishMessage.Length) / 2;
-
-                foreach (var text in finishMessage)
-                {
-                    Console.CursorLeft = (FieldData.WindowWidth - text.Length) / 2;
-                    Console.WriteLine(text);
-                }
-
-                if (PressedKey == "Q")
-                {
-                    FinishManager.EndOfGame();
-                }
+                case Status.GameOver:
+                    FinishManager.GameOverNotice(); break;
+                case Status.Win:
+                    FinishManager.WinnerNotice(); break;
             }
+
+            if (PressedKey == "Q")
+                FinishManager.EndOfGame();
         }
     }
 }
