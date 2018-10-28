@@ -61,6 +61,8 @@ namespace Tetris.Logic.Game
             if (PressedKey == "M")
             {
                 Menu.Show();
+                Field.DrawAllRows();
+                GameData.status = Status.Play;
             }
 
             GameInitializeManager.ShowWelcomeMessage(false);

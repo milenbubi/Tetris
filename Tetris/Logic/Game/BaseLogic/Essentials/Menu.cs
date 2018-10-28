@@ -61,7 +61,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
 
         private static void DisplayOptions()
         {
-            PrepareMenuWindow();
+            ShowInfoPanel();
             Console.WriteLine(string.Join("\n", options));
         }
 
@@ -86,8 +86,7 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
                 Environment.NewLine
             };
 
-            //Repeating
-            PrepareMenuWindow();
+            ShowInfoPanel();
             Print(controls.Concat(backMessage));
         }
 
@@ -162,19 +161,14 @@ namespace Tetris.Logic.Game.BaseLogic.Essentials
             Print(aboutMe.Concat(backMessage));
         }
 
-        private static void PrepareMenuWindow()
-        {
-            ShowInfoPanel();
-            Console.ForegroundColor = FieldData.MessageColor;
-
-            // !!!  After printing Info Panel, cursor is fixed on the last line and I am forced to move it up~!
-            Console.SetCursorPosition(0, 0);
-        }
-
         private static void ShowInfoPanel()
         {
             Console.Clear();
             InfoPanel.Update();
+            Console.ForegroundColor = FieldData.MessageColor;
+
+            // !!!  After printing Info Panel, cursor is fixed on the last line and I am forced to move it up~!
+            Console.SetCursorPosition(0, 0);
         }
 
         private static void Print(IEnumerable<string> text)
