@@ -19,6 +19,7 @@ namespace Tetris.Logic.Game.Keys
             {
                 Graphic.Clear(figure);
                 figure.Rotate();
+                Graphic.Draw(figure);
             }
         }
     }
