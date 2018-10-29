@@ -1,4 +1,5 @@
-﻿using Tetris.Logic.Figures;
+﻿using System.Timers;
+using Tetris.Logic.Figures;
 using Tetris.Logic.Game.BaseLogic.Providers;
 
 namespace Tetris.Logic
@@ -11,7 +12,7 @@ namespace Tetris.Logic
         internal const int PointPerLine = 28;
         internal const int PointsPerLevel = 7;
 
-        internal const int StartSpeed = 355;
+        internal const int StartSpeed = 450;
         internal const string LogFile = "GameLog.ini";
 
         internal static int speed;
@@ -21,6 +22,7 @@ namespace Tetris.Logic
 
         internal static Status status;
         internal static IFigure nextFigure;
+        internal static Timer speedDelay;
 
         internal static void ResetData()
         {
@@ -31,6 +33,8 @@ namespace Tetris.Logic
 
             status = Status.Play;
             nextFigure = NewFigure();
+            speedDelay = new Timer();
+            speedDelay.AutoReset = false;
         }
 
         internal static IFigure NewFigure()

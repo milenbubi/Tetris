@@ -1,5 +1,4 @@
 ﻿using Tetris.Logic.Figures;
-using System.Threading.Tasks;
 
 namespace Tetris.Logic.Game.Keys
 {
@@ -11,9 +10,6 @@ namespace Tetris.Logic.Game.Keys
         {
             if (!Check.IsReachedBorder(figure, xValue, 0))
             {
-                //Smoothing the left/right moving
-                Task.Delay(12).Wait();
-
                 Graphic.Move(figure, xValue, 0);
             }
         }

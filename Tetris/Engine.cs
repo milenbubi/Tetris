@@ -53,11 +53,12 @@ namespace Tetris
             if (GameController.Check.IsReachedBorder(figure, 0, 0))
             {
                 status = Status.GameOver;
-                return;
             }
-
-            GameController.Graphic.Draw(figure);
-            GameController.Delay(speed);
+            else if (status.Equals(Status.Play))
+            {
+                GameController.Graphic.Draw(figure);
+                DelayNextFigure();
+            }
         }
 
         private void SetFigure()
@@ -71,7 +72,16 @@ namespace Tetris
             while (InPlay)
             {
                 MoveFigure();
+            }
+        }
 
+        private void DelayNextFigure()
+        {
+            speedDelay.Interval = speed;
+            speedDelay.Enabled = true;
+
+            while (speedDelay.Enabled)
+            {
                 while (GameController.KeyIsPressed)
                 {
                     KeyController.Action(figure, GameController.PressedKey);
@@ -82,7 +92,7 @@ namespace Tetris
         private void MoveFigure()
         {
             GameController.Graphic.Move(figure, 0, 1);
-            GameController.Delay(speed);
+            DelayNextFigure();
         }
 
         private bool PlayStatus()
