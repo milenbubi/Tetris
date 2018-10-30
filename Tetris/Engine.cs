@@ -78,11 +78,11 @@ namespace Tetris
         private void DelayNextFigure()
         {
             speedDelay.Interval = speed;
-            speedDelay.Enabled = true;
+            speedDelay.Start();
 
             while (speedDelay.Enabled)
             {
-                while (GameController.KeyIsPressed)
+                if (GameController.KeyIsPressed)
                 {
                     KeyController.Action(figure, GameController.PressedKey);
                 }

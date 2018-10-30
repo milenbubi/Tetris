@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Timers;
 using Tetris.Logic.Figures;
+using Tetris.Logic.Game.BaseLogic.Managers;
 using Tetris.Logic.Game.BaseLogic.Providers;
 using Tetris.Logic.Game.BaseLogic.Visualizers;
 
@@ -28,6 +29,7 @@ namespace Tetris.Logic.Game.Keys
         public override void Action(IFigure figure)
         {
             index = 0;
+            BlinkPauseMessage(timer, null);
             timer.Start();
 
             Keyboard.PressAnyKey();
@@ -37,16 +39,11 @@ namespace Tetris.Logic.Game.Keys
 
         private static void BlinkPauseMessage(object sender, ElapsedEventArgs e)
         {
-            Console.ForegroundColor = index++ % 2 == 0 ?
-                FieldData.MessageColor : FieldData.BackgroundColor;
+            ConsoleColor color = index % 2 == 0 ? FieldData.MessageColor : FieldData.BackgroundColor;
 
-            Console.CursorTop = (FieldData.WindowHeight - pauseMessage.Length) / 2;
+            MessageManager.PrintInGameField(pauseMessage, color);
 
-            foreach (var text in pauseMessage)
-            {
-                Console.CursorLeft = (FieldData.GameFieldWidth - text.Length) / 2;
-                Console.WriteLine(text);
-            }
+            index++;
         }
     }
 }

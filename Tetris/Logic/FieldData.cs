@@ -11,12 +11,12 @@ namespace Tetris.Logic
         internal const int WindowHeight = 26;
         internal const int GameFieldHeight = WindowHeight - 1;
 
-        internal static char BorderSymbol = '*';
+        internal const ConsoleColor MessageColor = ConsoleColor.Yellow;
+        internal const ConsoleColor ObstacleColor = ConsoleColor.Yellow;
+        internal const ConsoleColor InfoPanelColor = ConsoleColor.White;
+        internal const ConsoleColor BackgroundColor = ConsoleColor.Black;
+        internal const ConsoleColor BorderSymbolColor = ConsoleColor.White;
 
-        internal static ConsoleColor MessageColor = ConsoleColor.Yellow;
-        internal static ConsoleColor ObstacleColor = ConsoleColor.Yellow;
-        internal static ConsoleColor InfoPanelColor = ConsoleColor.White;
-        internal static ConsoleColor BackgroundColor = ConsoleColor.Black;
-        internal static ConsoleColor BorderSymbolColor = ConsoleColor.White;
+        internal static char BorderSymbol = '*';
     }
 }

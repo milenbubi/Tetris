@@ -61,6 +61,7 @@
     <Compile Include="Logic\Game\BaseLogic\Essentials\Menu.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\FieldCellsManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Managers\LogFileManager.cs" />
+    <Compile Include="Logic\Game\BaseLogic\Managers\MessageManager.cs" />
     <Compile Include="Logic\Game\BaseLogic\Providers\Container.cs" />
     <Compile Include="Logic\Game\BaseLogic\Providers\RandomNumber.cs" />
     <Compile Include="Logic\Game\BaseLogic\Visualizers\Field.cs" />

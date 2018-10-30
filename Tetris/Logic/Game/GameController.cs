@@ -59,9 +59,7 @@ namespace Tetris.Logic.Game
             GameInitializeManager.ShowWelcomeMessage();
 
             if (PressedKey == "M")
-            {
                 Menu.Show();
-            }
 
             GameInitializeManager.ShowWelcomeMessage(false);
         }
@@ -81,40 +79,34 @@ namespace Tetris.Logic.Game
 
         internal static void Finish()
         {
-            Delay(1000);
-            Console.Clear();
             ScoreManager.UpdateScores();
-            Console.ForegroundColor = FieldData.MessageColor;
-
-            if (GameData.status == Status.NewGame)
-            {
-                for (int i = 3; i >= 0; i--)
-                {
-                    Print(new string[] { string.Format(newGameMessage, i) });
-                    Delay(1000);
-                }
-
-                return;
-            }
 
             switch (GameData.status)
             {
-                case Status.GameOver: Print(gameOverMessage); break;
-                case Status.Win: Print(winMessage); break;
+                case Status.NewGame:
+                    PrintNewGameMessage();
+                    return;
+
+                case Status.GameOver:
+                    Delay(1000);
+                    MessageManager.PrintOnWholeWindow(gameOverMessage);
+                    break;
+
+                case Status.Win:
+                    MessageManager.PrintOnWholeWindow(winMessage);
+                    break;
             }
 
             if (PressedKey == "Q")
                 FinishManager.EndOfGame();
         }
 
-        private static void Print(string[] message)
+        private static void PrintNewGameMessage()
         {
-            Console.CursorTop = (FieldData.WindowHeight - message.Length) / 2;
-
-            foreach (var line in message)
+            for (int i = 3; i >= 0; i--)
             {
-                Console.CursorLeft = (FieldData.WindowWidth - line.Length) / 2;
-                Console.WriteLine(line);
+                MessageManager.PrintOnWholeWindow(string.Format(newGameMessage, i));
+                Delay(1000);
             }
         }
     }
