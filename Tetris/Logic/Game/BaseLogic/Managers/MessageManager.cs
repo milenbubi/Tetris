@@ -11,15 +11,15 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
             Print(FieldData.WindowWidth, message);
         }
 
-        internal static void PrintInGameField(string[] message, ConsoleColor color)
+        internal static void PrintInGameField(string[] message, bool showMessage)
         {
-            SetConsoleProperties(message.Length, color);
+            SetConsoleProperties(message.Length, showMessage);
             Print(FieldData.GameFieldWidth, message);
         }
 
-        private static void SetConsoleProperties(int messageLength, ConsoleColor color = FieldData.MessageColor)
+        private static void SetConsoleProperties(int messageLength, bool showMessage = true)
         {
-            Console.ForegroundColor = color;
+            Console.ForegroundColor = showMessage ? FieldData.MessageColor : FieldData.BackgroundColor;
             Console.CursorTop = (FieldData.WindowHeight - messageLength) / 2;
         }
 

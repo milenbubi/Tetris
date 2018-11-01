@@ -39,9 +39,9 @@ namespace Tetris.Logic.Game.Keys
 
         private static void BlinkPauseMessage(object sender, ElapsedEventArgs e)
         {
-            ConsoleColor color = index % 2 == 0 ? FieldData.MessageColor : FieldData.BackgroundColor;
+            bool showMessage = index % 2 == 0;
 
-            MessageManager.PrintInGameField(pauseMessage, color);
+            MessageManager.PrintInGameField(pauseMessage, showMessage);
 
             index++;
         }

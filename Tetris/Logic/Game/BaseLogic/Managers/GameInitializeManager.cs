@@ -33,8 +33,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 
         internal static void ShowWelcomeMessage(bool showMessage = true)
         {
-            ConsoleColor color = showMessage ? FieldData.MessageColor : FieldData.BackgroundColor;
-            MessageManager.PrintInGameField(welcomeMessage, color);
+            MessageManager.PrintInGameField(welcomeMessage, showMessage);
         }
     }
 }

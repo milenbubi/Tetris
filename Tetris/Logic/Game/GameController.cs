@@ -26,12 +26,13 @@ namespace Tetris.Logic.Game
 
             winMessage = new string[]
             {
-                "  CONGRATULATION !!!\n",
-
+                "CONGRATULATION !!!",
+                string.Empty,
                 "YOU WIN THE GAME !!!",
                 Environment.NewLine,
                 Environment.NewLine,
-                "  press any key to play new game\n",
+                "press any key to play new game",
+                string.Empty,
                 "or 'Q' to quit game"
             };
         }
