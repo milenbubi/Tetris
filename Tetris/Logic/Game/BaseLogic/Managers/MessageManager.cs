@@ -4,30 +4,30 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
 {
     internal static class MessageManager
     {
-        internal static void PrintOnWholeWindow(params string[] message)
+        internal static void PrintOnWholeWindow(string[] message)
         {
             Console.Clear();
-            SetConsoleProperties(message.Length);
+            SetMessageStyle(message.Length, true);
             Print(FieldData.WindowWidth, message);
         }
 
         internal static void PrintInGameField(string[] message, bool showMessage)
         {
-            SetConsoleProperties(message.Length, showMessage);
+            SetMessageStyle(message.Length, showMessage);
             Print(FieldData.GameFieldWidth, message);
         }
 
-        private static void SetConsoleProperties(int messageLength, bool showMessage = true)
+        private static void SetMessageStyle(int messageLength, bool showMessage)
         {
             Console.ForegroundColor = showMessage ? FieldData.MessageColor : FieldData.BackgroundColor;
             Console.CursorTop = (FieldData.WindowHeight - messageLength) / 2;
         }
 
-        private static void Print(int width, params string[] message)
+        private static void Print(int printWidth, string[] message)
         {
             foreach (string line in message)
             {
-                Console.CursorLeft = (width - line.Length) / 2;
+                Console.CursorLeft = (printWidth - line.Length) / 2;
                 Console.WriteLine(line);
             }
         }

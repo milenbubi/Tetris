@@ -85,7 +85,12 @@ namespace Tetris.Logic.Game
             switch (GameData.status)
             {
                 case Status.NewGame:
-                    PrintNewGameMessage();
+                    for (int i = 3; i >= 0; i--)
+                    {
+                        MessageManager.PrintOnWholeWindow(new[] { string.Format(newGameMessage, i) });
+                        Delay(1000);
+                    }
+
                     return;
 
                 case Status.GameOver:
@@ -100,15 +105,6 @@ namespace Tetris.Logic.Game
 
             if (PressedKey == "Q")
                 FinishManager.EndOfGame();
-        }
-
-        private static void PrintNewGameMessage()
-        {
-            for (int i = 3; i >= 0; i--)
-            {
-                MessageManager.PrintOnWholeWindow(string.Format(newGameMessage, i));
-                Delay(1000);
-            }
         }
     }
 }
