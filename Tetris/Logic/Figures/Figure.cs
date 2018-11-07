@@ -40,7 +40,7 @@ namespace Tetris.Logic.Figures
             do
             {
                 color = (ConsoleColor)RandomNumber.ZeroBasedRange(16);
-            } while (color == FieldData.BackgroundColor);
+            } while (color.Equals(FieldData.BackgroundColor));
 
             return color;
         }

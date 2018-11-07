@@ -17,7 +17,7 @@ namespace Tetris.Logic.Figures
         }
 
         internal ConsoleColor Color { get; set; }
-        internal Char Symbol { get; }
+        internal char Symbol { get; }
 
         public override string ToString()
         {
