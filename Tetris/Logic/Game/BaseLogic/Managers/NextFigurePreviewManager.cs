@@ -11,7 +11,7 @@ namespace Tetris.Logic.Game.BaseLogic.Managers
         private static int positionY;
         private static IFigure preview;
 
-        internal static GameGraphic Graphic => Container.GameGraphic;
+        private static GameGraphic Graphic => Container.GameGraphic;
 
         internal static void Update()
         {
